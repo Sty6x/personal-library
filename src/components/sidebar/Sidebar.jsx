@@ -1,5 +1,11 @@
+import SidebarStyles from "./sidebar.module.css";
+
 const Sidebar = () => {
-  return <div id="side-bar">This is a sidebar</div>;
+  return (
+    <div id="side-bar" className={SidebarStyles.container}>
+      This is a sidebar
+    </div>
+  );
 };
 
 export default Sidebar;

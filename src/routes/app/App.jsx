@@ -15,7 +15,6 @@ function App() {
     <main id="main-contents" className={AppStyles.main}>
       <Topbar />
       <Sidebar />
-      <h1>This is a book</h1>
       <Outlet />
     </main>
   );
