@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <p>Hello World!</p>
+      <div id="book-container">
+        <Outlet />
+      </div>
     </>
   );
 }
