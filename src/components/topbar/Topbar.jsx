@@ -1,4 +1,4 @@
-import TopbarStyles from "./Topbar.module.css";
+import TopbarStyles from "./topbar.module.css";
 
 const Topbar = () => {
   return (

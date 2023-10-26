@@ -1,9 +1,13 @@
+import BookStyles from "./book.module.css";
 const Book = () => {
   return (
-    <main id="book">
+    <div id="book" className={BookStyles.container}>
+      <h1>This is a book</h1>
       <canvas id="canvas">
         <p>Nothing here</p>
       </canvas>
-    </main>
+    </div>
   );
 };
+
+export default Book;
