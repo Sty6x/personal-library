@@ -13,9 +13,15 @@ const Topbar = () => {
       <div id="center-nav" className={`${TopbarStyles.actionContainers} topbar-actions`}>
         <span id="book-center-title">Moby Dick by Herman Melville</span>
         <div id="book-center-props" className={`${TopbarStyles.bookProps}`}>
-          <p>359</p>
-          <p>200</p>
-          <p>65%</p>
+          <span>
+            <p>359</p>
+          </span>
+          <span>
+            <p>359</p>
+          </span>
+          <span>
+            <p>359</p>
+          </span>
         </div>
       </div>
       <div id="right-nav" className={`${TopbarStyles.actionContainers} topbar-actions`}>
