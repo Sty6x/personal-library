@@ -1,14 +1,35 @@
 .navbar{
   width: 70vw; 
-  background-color: #ffffff;
   color:#000000;
   position:absolute;
   top: 20px;
-  border-radius:9px;
-  height:1.5em;
   display:flex;
-  justify-contents:spaced-evenly;
   align-items:center;
-  padding:.5em;
   z-index:10;
+  justify-content:space-between;
 }
+
+.navbar{
+  &>:nth-child(2){
+    gap:2em !important;
+  }
+  :last-child,.bookProps{
+    gap:.4em;
+  }
+}
+
+.actionContainers{
+  padding:.5em;
+  background-color: #ffffff;
+  border-radius:9px;
+  gap:1.2em;
+  height:1.5em;
+}
+.actionContainers,.bookProps{
+  display:flex;
+  align-items:center;
+}
+
+.bookProps{
+}
+
