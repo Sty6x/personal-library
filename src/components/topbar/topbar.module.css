@@ -9,10 +9,5 @@
   color:var(--text-white);
 }
 
-.navbar{
-  :first-child{
-    display:flex;
-  }
-}
 
 

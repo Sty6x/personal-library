@@ -1,14 +1,14 @@
 .container{
   display:flex;
   justify-content:space-between;
-
-   gap:2em !important;
-   min-width:40%;
-   width:40%;
-   & > span{
-   box-sizing:border-box;
-     font-weight: 600;
-   }
+  gap:2em !important;
+  padding:.5em .8em !important;
+  min-width:40%;
+  width:40%;
+  & > span{
+  box-sizing:border-box;
+    font-weight: 600;
+  }
 }
 .bookProps{
   display:flex;

@@ -1,12 +1,7 @@
 .container{
-  :first-child{
     display:flex;
-  }
 }
 
-.buttonsContainer{
-  &> button{
-
-  color:red !important;
-  }
+.addBookBtn{
+  margin-left:.8em;
 }
