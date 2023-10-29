@@ -1,0 +1,9 @@
+
+.actionContainers{
+  padding:.5em .8em;
+  background-color: var(--shade-dark);
+  border-radius:9px;
+  height:1.5em;
+  display:flex;
+  align-items:center;
+}

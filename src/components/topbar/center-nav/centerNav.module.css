@@ -1,0 +1,22 @@
+.container{
+  display:flex;
+  justify-content:space-between;
+
+   gap:2em !important;
+   min-width:40%;
+   width:40%;
+   & > span{
+   box-sizing:border-box;
+     font-weight: 600;
+   }
+}
+.bookProps{
+  display:flex;
+  align-items:center;
+  font-size:.9rem;
+  & > *{
+    padding:0em .4em;
+  }
+}
+
+

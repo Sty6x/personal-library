@@ -1,0 +1,12 @@
+.container{
+  :first-child{
+    display:flex;
+  }
+}
+
+.buttonsContainer{
+  &> button{
+
+  color:red !important;
+  }
+}
