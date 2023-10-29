@@ -1,9 +1,10 @@
 import SidebarStyles from "./sidebar.module.css";
+import LibraryPanel from "./library-panel/LibraryPanel";
 
 const Sidebar = () => {
   return (
     <div id="side-bar" className={SidebarStyles.container}>
-      This is a sidebar
+      <LibraryPanel />
     </div>
   );
 };
