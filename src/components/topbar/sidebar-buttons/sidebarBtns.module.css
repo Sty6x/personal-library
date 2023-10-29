@@ -1,7 +1,28 @@
 .container{
-    display:flex;
+   display:flex;
 }
 
 .addBookBtn{
   margin-left:.8em;
+}
+
+.buttonsContainer{
+  padding:0 !important;
+  display:block;
+  height:100%;
+  box-sizing:border-box;
+  overflow:hidden;
+  & > span{
+    display:inline-block;
+    height:100%;
+  }
+   & > span{
+    & > button {
+      transition: background-color 150ms ease-in-out;
+    }
+    & > button:hover{
+      transition: background-color 150ms ease-in-out;
+     background-color:#ffffff20;
+    }
+  }
 }

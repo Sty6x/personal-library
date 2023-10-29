@@ -9,10 +9,10 @@ const CurrentBookTitle = () => {
           <p>359</p>
         </span>
         <span>
-          <p>359</p>
+          <p>251</p>
         </span>
         <span>
-          <p>359</p>
+          <p>70%</p>
         </span>
       </div>
     </div>
