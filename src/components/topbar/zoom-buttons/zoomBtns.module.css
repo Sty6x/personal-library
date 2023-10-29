@@ -8,7 +8,7 @@
      transition: background-color 150ms ease-in-out;
    }
    & > button:hover{
-     transition: background-color 150ms ease-in-out;
+    transition: background-color 150ms ease-in-out;
     background-color:#ffffff20;
    }
   }
