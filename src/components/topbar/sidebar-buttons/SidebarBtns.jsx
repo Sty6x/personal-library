@@ -53,8 +53,8 @@ const SidebarBtns = () => {
       </span>
       <button id="add-book" className={`${sidebarBtnStyles.addBookBtn}`}>
         <svg
-          width="22"
-          height="25"
+          width="30"
+          height="29"
           viewBox="0 0 25 25"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

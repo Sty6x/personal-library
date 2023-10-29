@@ -6,20 +6,22 @@
   margin-left:.8em;
   & > svg circle{
     transition: fill 150ms 200ms ease-in;
+    fill: var(--accent1);
   }
   & > svg path{
     transition: fill 150ms ease-in;
+    fill: var(--bg);
   }
 }
 .addBookBtn:hover{
 
   & > svg circle{
     transition: fill 150ms ease-in;
-    fill: var(--accent1);
+    fill: none;
   }
   & > svg path{
-    transition: fill 150ms 180ms ease-in;
-    fill: var(--bg);
+    transition: fill 150ms 50ms ease-in;
+    fill: var(--accent1);
   }
 }
 
