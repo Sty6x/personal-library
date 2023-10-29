@@ -1,8 +1,8 @@
-import centerNavStyles from "./centerNav.module.css";
+import centerNavStyles from "./currentBookTitle.module.css";
 
-const CenterNav = () => {
+const CurrentBookTitle = () => {
   return (
-    <div id="center-nav" className={`actionContainers ${centerNavStyles.container}`}>
+    <div id="center-nav" className={`topbarActionContainers ${centerNavStyles.container}`}>
       <span id="book-center-title">Moby Dick by Herman Melville</span>
       <div id="book-center-props" className={`${centerNavStyles.bookProps}`}>
         <span>
@@ -18,4 +18,4 @@ const CenterNav = () => {
     </div>
   );
 };
-export default CenterNav;
+export default CurrentBookTitle;

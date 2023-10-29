@@ -3,7 +3,10 @@ import sidebarBtnStyles from "./sidebarBtns.module.css";
 const SidebarBtns = () => {
   return (
     <div id="sidebar-btns-container" className={`topbar-actions ${sidebarBtnStyles.container}`}>
-      <span id="sidebar-btns" className={`actionContainers ${sidebarBtnStyles.buttonsContainer}`}>
+      <span
+        id="sidebar-btns"
+        className={`topbarActionContainers ${sidebarBtnStyles.buttonsContainer}`}
+      >
         <button id="sidebar" className={`${sidebarBtnStyles.libraryBtn}`}>
           <svg
             width="38"
