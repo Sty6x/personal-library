@@ -1,10 +1,15 @@
 .container{
-  text-align:center;
-  & > button{
-    color:white;
-    font-weight: 700;
-    font-size:1.5rem;
-  }
-  & > p{
+  gap:.8em;
+  padding:0 !important;
+  height:100%;
+  overflow:hidden;
+  & > span{
+   & > button {
+     transition: background-color 150ms ease-in-out;
+   }
+   & > button:hover{
+     transition: background-color 150ms ease-in-out;
+    background-color:#ffffff20;
+   }
   }
 }
