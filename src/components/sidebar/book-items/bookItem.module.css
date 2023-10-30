@@ -29,12 +29,12 @@
 .contentsContainer{
   display:flex;
   align-items:center;
-  gap:2em;
-  & > :first-child{
+  gap:1em;
+4  & > :first-child{
     display:flex;
     align-items:center;
     justify-content:center;
-    width:2.5em;
+    width:4em;
   }
 }
 
