@@ -4,11 +4,12 @@ import BookItem from "../book-items/BookItem";
 const LibraryPanel = () => {
   const placeholders = [
     {
-      author: "Haruki Murakami",
+      author: "Haruki Murakamiwdadawdawdwa",
       title: "Killing Commendatore",
       totalPages: 367,
       currentPage: 0,
       isFinished: false,
+      genre: ["Physchological", "Fantasy", "History", "Noveldawdawdawdawdwadwadadawd"],
     },
 
     {
@@ -17,6 +18,7 @@ const LibraryPanel = () => {
       totalPages: 523,
       currentPage: 263,
       isFinished: false,
+      genre: ["Epic", "Nautical", "Adventure Fiction"],
     },
 
     {
@@ -25,6 +27,7 @@ const LibraryPanel = () => {
       totalPages: 490,
       currentPage: 461,
       isFinished: false,
+      genre: ["Novel", "Psychological", "Crime", "Philosophical"],
     },
 
     {
@@ -33,6 +36,7 @@ const LibraryPanel = () => {
       totalPages: 490,
       currentPage: 461,
       isFinished: false,
+      genre: ["Biography", "Autobiography", "Personal Narrative"],
     },
 
     {
@@ -41,6 +45,7 @@ const LibraryPanel = () => {
       totalPages: 262,
       currentPage: 152,
       isFinished: false,
+      genre: ["Novel", "Fiction"],
     },
   ];
 

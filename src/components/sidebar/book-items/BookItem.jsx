@@ -1,6 +1,6 @@
 import bookItemStyles from "./bookItem.module.css";
 
-const BookItem = ({ book: { author, title, totalPages, currentPage, genres, isFinished } }) => {
+const BookItem = ({ book: { author, title, totalPages, currentPage, genre, isFinished } }) => {
   return (
     <li className={`book-item ${bookItemStyles.container}`}>
       <a className={`${bookItemStyles.linkContainer}`}>
@@ -30,13 +30,13 @@ const BookItem = ({ book: { author, title, totalPages, currentPage, genres, isFi
           </div>
           <div id="book-item-info" className={`${bookItemStyles.bookInfoContainer}`}>
             <p>{title}</p>
-            <span>
+            <span className={`${bookItemStyles.metaBookInfo}`}>
               <p>{author}</p>
               <p>
-                Pages:{totalPages} | Page: {currentPage}
+                Pages: {totalPages} | Page: {currentPage}
               </p>
+              <p>{genre.join(", ")}</p>
             </span>
-            <p>{genres}</p>
           </div>
         </div>
         <div>Updated 1 week ago</div>
