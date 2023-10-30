@@ -2,10 +2,8 @@
   background-color:var(--shade-dark);
   display:flex;
   flex-direction:column;
-  /* gap:1em; */
   box-sizing:border-box;
   border-radius:9px;
   overflow:hidden;
-
-  
+  height:100%;
 }
