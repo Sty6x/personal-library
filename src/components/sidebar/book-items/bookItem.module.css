@@ -1,8 +1,10 @@
 .container{
   background-color:var(--shade-dark);
   color:white;
+  transition: background-color 150ms ease-in;
 }
 .container:hover{
+  transition: background-color 150ms ease-in;
   background-color:#ffffff10;
 }
 .container:not(:last-of-type){
