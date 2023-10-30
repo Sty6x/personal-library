@@ -1,8 +1,8 @@
 .container{
   position:absolute;
-  top: 8%;
+  top: 10%;
   left:1vw;
-  max-height:84vh;
+  max-height:80vh;
   width: 24em;
   color:black;
   /* background-color: #d9d9d9; */

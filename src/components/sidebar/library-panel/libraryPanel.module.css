@@ -7,3 +7,40 @@
   overflow:hidden;
   height:100%;
 }
+
+.searchContainer{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-bottom:2px solid var(--bg);
+  height:4em;
+  position:relative;
+}
+
+.searchInput{
+  display:inline-block;
+  box-sizing:content-box;
+  appearance:none;
+  border:none;
+  border-radius:6px;
+  width:70%;
+  padding:.8em;
+  padding-left:3em;
+  font-size:1rem;
+  font-weight:400;
+  background-color:var(--bg);
+  color:var(--text-white);
+}
+
+.searchContainer::before{
+  content:"";
+  display:inline-block;
+  position:absolute;
+  background: no-repeat url("../../../assets/icons/personal-library/search-icon.svg") center;
+  width:20px;
+  height:20px;
+  background-size:20px 20px;
+  left:2.5em;
+}
+
+

@@ -49,7 +49,7 @@ table {
 }
 
 :root {
-  font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   --bg: #1A1B1D;
@@ -125,4 +125,7 @@ li{
 
 a{
   cursor:pointer;
+}
+input{
+  font-family:poppins;
 }

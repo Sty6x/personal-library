@@ -50,6 +50,13 @@ const LibraryPanel = () => {
 
   return (
     <div id="library-panel" className={`${libraryPanelStyles.container}`}>
+      <div id="search-library-container" className={`${libraryPanelStyles.searchContainer}`}>
+        <input
+          className={`${libraryPanelStyles.searchInput}`}
+          type="search"
+          placeholder="Search a book"
+        />
+      </div>
       {mapBookItems}
     </div>
   );
