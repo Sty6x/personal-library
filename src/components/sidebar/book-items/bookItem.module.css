@@ -15,4 +15,42 @@
   height:100%;
   box-sizing:border-box;
   display:inline-block;
+  & > :last-child{
+    text-align:end;
+    margin-top:.6em;
+    font-size:.8rem;
+    font-weight:400;
+    color:#ffffff50;
+  }
 }
+
+.contentsContainer{
+  display:flex;
+  align-items:center;
+  gap:2em;
+  & > :first-child{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:2.5em;
+  }
+}
+
+
+.bookInfoContainer{
+  & > :first-child{
+    max-width:350px;
+    font-weight:700;
+    font-size:1.2rem;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  & > span{
+    font-weight:400;
+    color:#ffffff50;
+  }
+  line-height:20px;
+}
+
+
