@@ -45,7 +45,7 @@ const LibraryPanel = () => {
   ];
 
   const mapBookItems = placeholders.map((book) => {
-    return <BookItem title={book.title} />;
+    return <BookItem book={book} />;
   });
 
   return (
