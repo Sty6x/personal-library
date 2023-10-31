@@ -20,8 +20,8 @@ const BookItem = ({ book: { author, title, totalPages, currentPage, genre, isFin
                 fontWeight="bold"
                 x="51%"
                 y="59%"
-                font-size="15"
-                text-anchor="middle"
+                fontSize="15"
+                textAnchor="middle"
                 fill="white"
               >
                 {Math.round((currentPage / totalPages) * 100)}%

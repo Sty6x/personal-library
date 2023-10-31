@@ -3,7 +3,7 @@ import sidebarBtnStyles from "./sidebarBtns.module.css";
 import { TopBarContext } from "../../../routes/app/App";
 
 const SidebarBtns = () => {
-  const { activateSidebar, isSidebarActive } = useContext(TopBarContext);
+  const { returnSidebarBtn, activateSidebar, isSidebarActive } = useContext(TopBarContext);
   return (
     <div id="sidebar-btns-container" className={`topbar-actions ${sidebarBtnStyles.container}`}>
       <span
@@ -12,8 +12,11 @@ const SidebarBtns = () => {
       >
         <span>
           <button
-            onClick={activateSidebar}
-            id="sidebar"
+            onClick={(e) => {
+              activateSidebar();
+              returnSidebarBtn(e);
+            }}
+            id="library-panel"
             className={`${sidebarBtnStyles.libraryBtn} ${sidebarBtnStyles.btns}`}
           >
             <svg
@@ -33,6 +36,10 @@ const SidebarBtns = () => {
         </span>
         <span>
           <button
+            onClick={(e) => {
+              activateSidebar();
+              returnSidebarBtn(e);
+            }}
             id="edit-panel"
             className={`${sidebarBtnStyles.sidebarBtn}  ${sidebarBtnStyles.btns}`}
           >
