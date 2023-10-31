@@ -14,12 +14,12 @@ function App() {
 
   const placeholders = [
     {
-      author: "Haruki Murakamiwdadawdawdwa",
+      author: "Haruki Murakami",
       title: "Killing Commendatore",
       totalPages: 367,
       currentPage: 0,
       isFinished: false,
-      genre: ["Physchological", "Fantasy", "History", "Noveldawdawdawdawdwadwadadawd"],
+      genre: ["Physchological", "Fantasy", "History", "Novel"],
       link: "book1",
     },
 

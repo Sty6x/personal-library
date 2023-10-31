@@ -4,7 +4,7 @@ import { TopBarContext } from "../../../routes/app/App";
 
 const SidebarBtns = () => {
   const { returnSidebarBtn, setIsSidebarActive, isSidebarActive } = useContext(TopBarContext);
-  const [currentActivePanel, setCurrentActivePanel] = useState();
+  const [currentActivePanel, setCurrentActivePanel] = useState("library-panel");
   function activateSidebar() {
     return isSidebarActive ? setIsSidebarActive(false) : setIsSidebarActive(true);
   }

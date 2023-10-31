@@ -16,7 +16,7 @@ const CurrentBookTitle = () => {
 
   return (
     <div id="center-nav" className={`topbarActionContainers ${currentBookTitleStyles.container}`}>
-      <span id="book-center-title">{currentBook.title} {currentBook.author}</span>
+      <span id="book-center-title">{currentBook.title} by {currentBook.author}</span>
       <div id="book-center-props" className={`${currentBookTitleStyles.bookProps}`}>
         <span>
           <p>{currentBook.totalPages}</p>
