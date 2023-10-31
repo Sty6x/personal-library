@@ -64,9 +64,6 @@ function App() {
     },
   ];
   const [library, setLibrary] = useState([...placeholders]);
-
-
-
   useEffect(() => {
     console.log("/book1");
     navigate("/book1");
