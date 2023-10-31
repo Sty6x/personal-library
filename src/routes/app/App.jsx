@@ -44,15 +44,32 @@ function App() {
     },
 
     {
+      author: "Anne Frank",
+      title: "Diary of a Young Girl",
+      totalPages: 365,
+      currentPage: 250,
+      isFinished: false,
+      genre: ["Biography", "Autobiography", "Diary", "Personal Narrative"],
+      link: "book4",
+    },
+    {
       author: "Viktor Frankl",
       title: "Man's Search For Meaning",
       totalPages: 490,
       currentPage: 461,
       isFinished: false,
       genre: ["Biography", "Autobiography", "Personal Narrative"],
-      link: "book4",
+      link: "book5",
     },
-
+    {
+      author: "Niccolo Machiavelli",
+      title: "Prince",
+      totalPages: 224,
+      currentPage: 51,
+      isFinished: false,
+      genre: ["Autobiography", "History"],
+      link: "book6",
+    },
     {
       author: "Osamu Dazai",
       title: "No Longer Human",
@@ -60,7 +77,7 @@ function App() {
       currentPage: 152,
       isFinished: false,
       genre: ["Novel", "Fiction"],
-      link: "book5",
+      link: "book7",
     },
   ];
   const [library, setLibrary] = useState([...placeholders]);

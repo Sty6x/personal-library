@@ -20,7 +20,9 @@ const LibraryPanel = () => {
         />
       </div>
       {/* contain mapped book items separately  */}
-      {mapBookItems}
+      <div id="library-panel-book-container" className={`${libraryPanelStyles.bookItemsContainer}`}>
+        {mapBookItems}
+      </div>
     </div>
   );
 };
