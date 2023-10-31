@@ -8,17 +8,13 @@ export const TopBarContext = createContext();
 
 function App() {
   const navigate = useNavigate();
-  const [isSidebarActive, setIsSidebarActive] = useState(true);
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState();
 
   useEffect(() => {
     console.log("/book1");
     navigate("/book1");
   }, []);
-
-  function activateSidebar() {
-    return isSidebarActive ? setIsSidebarActive(false) : setIsSidebarActive(true);
-  }
 
   function returnSidebarBtn(e) {
     e.stopPropagation();
@@ -28,8 +24,8 @@ function App() {
   }
 
   return (
-    <main id="main-contents" className={AppStyles.main} onClick={returnSidebarBtn}>
-      <TopBarContext.Provider value={{ returnSidebarBtn, activateSidebar, isSidebarActive }}>
+    <main id="main-contents" className={AppStyles.main}>
+      <TopBarContext.Provider value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}>
         <Topbar />
       </TopBarContext.Provider>
       {isSidebarActive && <Sidebar currentPanel={sidebarBtn} />}

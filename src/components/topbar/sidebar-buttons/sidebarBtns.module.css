@@ -46,11 +46,11 @@
 .btns:hover{
   transition: background-color 150ms ease-in-out;
   background-color:#ffffff20;
-  & > svg {
-    fill: var(--accent1, #DF7868);
-    & > path{
-      stroke: var(--accent1);
-    }
-  }
+  /* & > svg { */
+  /*   fill: var(--accent1, #DF7868); */
+  /*   & > path{ */
+  /*     stroke: var(--accent1); */
+  /*   } */
+  /* } */
 
 }
