@@ -1,60 +1,12 @@
 import libraryPanelStyles from "./libraryPanel.module.css";
 import BookItem from "../book-items/BookItem";
+import { useContext } from "react";
+import { LibraryContext } from "../../../routes/app/App";
 
 const LibraryPanel = () => {
-  const placeholders = [
-    {
-      author: "Haruki Murakamiwdadawdawdwa",
-      title: "Killing Commendatore",
-      totalPages: 367,
-      currentPage: 0,
-      isFinished: false,
-      genre: ["Physchological", "Fantasy", "History", "Noveldawdawdawdawdwadwadadawd"],
-      link: "book1",
-    },
+  const { library } = useContext(LibraryContext);
 
-    {
-      author: "Herman Melville",
-      title: "Moby Dick",
-      totalPages: 523,
-      currentPage: 263,
-      isFinished: false,
-      genre: ["Epic", "Nautical", "Adventure Fiction"],
-      link: "book2",
-    },
-
-    {
-      author: "Fyodor Dostoyevsky",
-      title: "Crime and Punishment",
-      totalPages: 490,
-      currentPage: 461,
-      isFinished: false,
-      genre: ["Novel", "Psychological", "Crime", "Philosophical"],
-      link: "book3",
-    },
-
-    {
-      author: "Viktor Frankl",
-      title: "Man's Search For Meaning",
-      totalPages: 490,
-      currentPage: 461,
-      isFinished: false,
-      genre: ["Biography", "Autobiography", "Personal Narrative"],
-      link: "book4",
-    },
-
-    {
-      author: "Osamu Dazai",
-      title: "No Longer Human",
-      totalPages: 262,
-      currentPage: 152,
-      isFinished: false,
-      genre: ["Novel", "Fiction"],
-      link: "book5",
-    },
-  ];
-
-  const mapBookItems = placeholders.map((book) => {
+  const mapBookItems = library.map((book) => {
     return <BookItem book={book} />;
   });
 
@@ -67,6 +19,7 @@ const LibraryPanel = () => {
           placeholder="Search a book"
         />
       </div>
+      {/* contain mapped book items separately  */}
       {mapBookItems}
     </div>
   );
