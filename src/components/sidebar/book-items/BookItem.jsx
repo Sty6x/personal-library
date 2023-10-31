@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import bookItemStyles from "./bookItem.module.css";
 
-const BookItem = ({ book: { author, title, totalPages, currentPage, genre, isFinished } }) => {
+const BookItem = ({
+  book: { link, author, title, totalPages, currentPage, genre, isFinished },
+}) => {
   return (
     <li className={`book-item ${bookItemStyles.container}`}>
-      <a className={`${bookItemStyles.linkContainer}`}>
+      <Link to={`/${link}`} className={`${bookItemStyles.linkContainer}`}>
         <div id="contents" className={`${bookItemStyles.contentsContainer}`}>
           <div id="book-item-progress-container" className={`${bookItemStyles.progressContainer}`}>
             <svg version="1.1" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +43,7 @@ const BookItem = ({ book: { author, title, totalPages, currentPage, genre, isFin
           </div>
         </div>
         <div>Updated 1 week ago</div>
-      </a>
+      </Link>
     </li>
   );
 };

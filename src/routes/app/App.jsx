@@ -8,8 +8,8 @@ export const TopBarContext = createContext();
 
 function App() {
   const navigate = useNavigate();
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
-  const [sidebarBtn, setSidebarBtn] = useState();
+  const [isSidebarActive, setIsSidebarActive] = useState(true);
+  const [sidebarBtn, setSidebarBtn] = useState("library-panel");
 
   useEffect(() => {
     console.log("/book1");

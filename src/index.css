@@ -126,6 +126,14 @@ li{
 a{
   cursor:pointer;
 }
+
+a:link,a:visited,a:hover,a:active{
+  color:var(--text-white);
+  text-decoration:none;
+}
+a{
+}
 input{
   font-family:poppins;
 }
+
