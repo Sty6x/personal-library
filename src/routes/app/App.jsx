@@ -9,7 +9,7 @@ export const LibraryContext = createContext();
 
 function App() {
   const navigate = useNavigate();
-  const [isSidebarActive, setIsSidebarActive] = useState(true);
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState("library-panel");
 
   const placeholders = [
