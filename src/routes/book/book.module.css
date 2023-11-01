@@ -1,6 +1,11 @@
 .container{
-  flex:1;
+  /* flex:1; */
   min-width:100%;
+  min-height: 100%;
   position:relative;
+}
 
+.canvas{
+  height:100%;
+  width: 100%;
 }
