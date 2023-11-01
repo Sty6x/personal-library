@@ -15,41 +15,41 @@ const Book = () => {
   });
 
   async function drawCanvas() {
-    canvas.add(rect);
-  }
-
-  function setCanvasDrawingBuffer(canvas) {
-    // Lookup the size the browser is displaying the canvas in CSS pixels.
-    const displayWidth = canvas.clientWidth;
-    const displayHeight = canvas.clientHeight;
-
-    // Check if the canvas is not the same size.
-    const needResize = canvas.width !== displayWidth || canvas.height !== displayHeight;
-
-    if (needResize) {
-      // Make the canvas the same size
-      canvas.width = displayWidth;
-      canvas.height = displayHeight;
+    try {
+      canvas.add(rect);
+    } catch (err) {
+      console.log("init");
     }
-
-    return needResize;
   }
 
   useEffect(() => {
-    console.log(setCanvasDrawingBuffer(canvasRef.current));
-  }, []);
-
-  useEffect(() => {
-    if (canvas !== undefined) {
-      console.log(canvas);
-      drawCanvas();
-    }
+    drawCanvas();
   }, [canvas]);
 
   return (
     <div id="book" className={BookStyles.container}>
-      <canvas ref={canvasRef} id="canvas" className={`${BookStyles.canvas}`} />
-      {/* <p>Nothing here</p */}
+      <button
+        onClick={() => {
+          var circle = new fabric.Circle({
+            radius: 20,
+            fill: "green",
+            left: 100,
+            top: 100,
+          });
+          canvas.add(circle);
+          canvas.renderAll();
+        }}
+      >
+        Click
+      </button>
+      <canvas
+        width={1280}
+        height={720}
+        ref={canvasRef}
+        id="canvas"
+        className={`${BookStyles.canvas}`}
+      />
+      {/* <p>Nothing her</p */}
     </div>
   );
 };

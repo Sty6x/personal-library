@@ -3,6 +3,7 @@ import { fabric } from "fabric";
 
 const useCanvas = (canvasId) => {
   const canvasFabric = useRef();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasId, {
@@ -13,9 +14,10 @@ const useCanvas = (canvasId) => {
     canvas.setWidth("100%", { cssOnly: true });
     canvas.setHeight("100%", { cssOnly: true });
     canvasFabric.current = canvas;
+    setIsReady(true);
   }, []);
 
-  return canvasFabric.current;
+  return isReady && canvasFabric.current;
 };
 
 export default useCanvas;
