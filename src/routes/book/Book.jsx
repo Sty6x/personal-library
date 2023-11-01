@@ -1,8 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BookStyles from "./book.module.css";
 import { fabric } from "fabric";
 import useCanvas from "../../utils/hooks/useCanvas";
+import { LibraryContext } from "../app/App";
 const Book = () => {
+  const { library } = useContext(LibraryContext);
+  const [currentBook, setCurrentBook] = useState(() => {
+    const [book] = library.filter((book) => `/${book.link}` === window.location.pathname);
+    return book;
+  });
+
   const canvas = useCanvas("canvas");
   const canvasRef = useRef();
 
@@ -21,6 +28,16 @@ const Book = () => {
       console.log("init");
     }
   }
+
+  function filterCurrentBook(arr) {
+    const [book] = arr.filter((book) => `/${book.link}` === window.location.pathname);
+    return book;
+  }
+
+  useEffect(() => {
+    setCurrentBook(() => filterCurrentBook(library));
+    console.log(currentBook);
+  }, [window.location.pathname]);
 
   useEffect(() => {
     drawCanvas();
