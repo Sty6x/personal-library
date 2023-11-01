@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fabric } from "fabric";
 
 const useCanvas = (canvasId) => {
-  const [canvas, setCanvas] = useState();
+  const canvasFabric = useRef();
 
   useEffect(() => {
     const canvas = new fabric.Canvas(canvasId, {
-      backgroundColor: "red",
-      selectionColor: "blue",
-      selectionLineWidth: 2,
+      backgroundColor: "#1A1B1D",
+      selectionColor: "transparent",
+      selection: false,
     });
     canvas.setWidth("100%", { cssOnly: true });
     canvas.setHeight("100%", { cssOnly: true });
-    setCanvas(canvas);
+    canvasFabric.current = canvas;
   }, []);
 
-  return canvas;
+  return canvasFabric.current;
 };
 
 export default useCanvas;
