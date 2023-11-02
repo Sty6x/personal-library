@@ -9,7 +9,7 @@ const useCanvas = (canvasId) => {
     const canvas = new fabric.Canvas(canvasId, {
       backgroundColor: "#1A1B1D",
       selectionColor: "transparent",
-      selection: false,
+      selection: true,
     });
     canvas.setWidth("100%", { cssOnly: true });
     canvas.setHeight("100%", { cssOnly: true });

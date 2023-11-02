@@ -21,6 +21,15 @@ function App() {
       isFinished: false,
       genre: ["Physchological", "Fantasy", "History", "Novel"],
       link: "book1",
+      notes: [{
+        contents: "This is the contents \nof the current note of \nHaruki murakami", page: 31,
+        position: { x: 100, y: 250 }
+      },
+      {
+        contents: "Somethin something \nhe said to \nmr something", page: 152,
+        position: { x: 120, y: 320 }
+      }
+      ]
     },
 
     {

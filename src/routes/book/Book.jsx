@@ -13,17 +13,41 @@ const Book = () => {
   const canvas = useCanvas("canvas");
   const canvasRef = useRef();
 
-  const rect = new fabric.Rect({
-    top: 100,
-    left: 100,
-    fill: "white",
-    width: 100,
-    height: 100,
-  });
 
-  async function drawCanvas() {
+  async function drawCanvas(note) {
+    console.log(note)
+    const rect = new fabric.Rect({
+      originX: "center",
+      originY: "center",
+      fill: "#DF7868",
+      width: 150,
+      height: 100,
+    });
+    // const text = new fabric.Text(note.contents, {
+    //   originX: "center",
+    //   originY: "center",
+    //   fontSize: 10,
+    //   fontFamily: "poppins",
+    //   width: 150,
+    //   height: 200,
+    //   fill: "#1a1b1d"
+    // })
+    const text = new fabric.Textbox(note.contents, {
+      originX: "center",
+      originY: "center",
+      fontFamily: "poppins",
+      width: 200,
+      height: 200,
+      fill: "pink",
+    })
+
+    const group = new fabric.Group([text], {
+      left: note.position.x,
+      top: note.position.y,
+    })
+
     try {
-      canvas.add(rect);
+      canvas.add(text);
     } catch (err) {
       console.log("init");
     }
@@ -40,7 +64,7 @@ const Book = () => {
   }, [window.location.pathname]);
 
   useEffect(() => {
-    drawCanvas();
+    currentBook.notes.forEach(note => drawCanvas(note))
   }, [canvas]);
 
   return (
@@ -60,8 +84,8 @@ const Book = () => {
         Click
       </button>
       <canvas
-        width={1280}
-        height={720}
+        width={1920}
+        height={1080}
         ref={canvasRef}
         id="canvas"
         className={`${BookStyles.canvas}`}
