@@ -139,7 +139,7 @@ a:link,a:visited,a:hover,a:active{
 }
 a{
 }
-input,textarea{
+input,textarea,button{
   font-family: poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
