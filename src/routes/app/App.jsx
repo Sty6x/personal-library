@@ -6,6 +6,7 @@ import AppStyles from "./app.module.css";
 
 export const TopBarContext = createContext();
 export const LibraryContext = createContext();
+export const SidebarContext = createContext();
 
 function App() {
   const navigate = useNavigate();
@@ -98,6 +99,10 @@ function App() {
     setLibrary();
   }
 
+  function updateBook(contents) {
+    setLibrary();
+  }
+
   useEffect(() => {
     console.log("/book1");
     navigate("/book1");
@@ -116,7 +121,9 @@ function App() {
         <TopBarContext.Provider value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}>
           <Topbar />
         </TopBarContext.Provider>
-        {isSidebarActive && <Sidebar currentPanel={sidebarBtn} />}
+        <SidebarContext.Provider value={{ currentPanel: sidebarBtn, addBook, setIsSidebarActive }}>
+          {isSidebarActive && <Sidebar />}
+        </SidebarContext.Provider>
         <Outlet />
       </LibraryContext.Provider>
     </main>

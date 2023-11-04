@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import bookPanelStyles from "./bookPanel.module.css";
+import { SidebarContext } from "../../../routes/app/App";
 
-const BookPanel = ({ panelTitle, buttonText, handleButton, handleCancelButton }) => {
+const BookPanel = ({ panelTitle, buttonText, handleButton }) => {
+  const { setIsSidebarActive } = useContext(SidebarContext);
   return (
     <div id="book-panel" className={`${bookPanelStyles.container}`}>
       <p>{panelTitle}</p>
@@ -25,7 +28,14 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, handleCancelButton })
         </span>
         <span id="book-panel-btn" className={`${bookPanelStyles.bookPanelBtnContainer}`}>
           <button type="button">{buttonText}</button>
-          <button type="button">Cancel</button>
+          <button
+            onClick={() => {
+              setIsSidebarActive((prev) => (prev ? false : true));
+            }}
+            type="button"
+          >
+            Cancel
+          </button>
         </span>
       </form>
     </div>
