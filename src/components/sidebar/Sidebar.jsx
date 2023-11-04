@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { SidebarContext } from "../../routes/app/App";
 
 const Sidebar = () => {
-  const { currentPanel, addBook } = useContext(SidebarContext);
+  const { currentPanel, addBook, library } = useContext(SidebarContext);
   const panel = revealSidebar();
 
   function revealSidebar() {
@@ -17,7 +17,13 @@ const Sidebar = () => {
     } else if (currentPanel === "add-book-panel") {
       return <BookPanel panelTitle={"Add book"} buttonText={"Add book"} handleButton={addBook} />;
     } else if (currentPanel === "edit-book-panel") {
-      return <BookPanel panelTitle={"Edit book"} buttonText={"Edit book"} />;
+      return (
+        <BookPanel
+          panelTitle={"Edit book"}
+          buttonText={"Edit book"}
+          currentBook={library.filter((book) => `/${book.link}` === window.location.pathname)[0]}
+        />
+      );
     }
   }
   return (

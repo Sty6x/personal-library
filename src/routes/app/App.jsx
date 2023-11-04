@@ -17,7 +17,15 @@ function App() {
   const [library, setLibrary] = useState([...placeholders]);
 
   function editBook(contents) {
-    setLibrary();
+    const mapLibrary = library.map((book) => {
+      if (book.link === `/${window.location.pathname}`) {
+        const editedBook = {
+          ...contents,
+          ...book,
+        };
+      }
+    });
+    setLibrary(mapLibrary);
   }
 
   function addBook(contents) {
@@ -27,6 +35,7 @@ function App() {
       isFinished: false,
     };
     setLibrary((prev) => [newBook, ...prev]);
+    setIsSidebarActive(false);
   }
 
   useEffect(() => {
@@ -57,6 +66,7 @@ function App() {
             addBook,
             editBook,
             setIsSidebarActive,
+            library,
           }}
         >
           {isSidebarActive && <Sidebar />}
