@@ -15,16 +15,16 @@ const EditPanel = () => {
         <span className={`${editPanelStyles.pagesCountContainer}`}>
           <div className={`${editPanelStyles.inputsContainer}`}>
             <label htmlFor="book-pages">Book pages</label>
-            <input type="number" id="book-pages" />
+            <input min={1} type="number" id="book-pages" />
           </div>
           <div className={`${editPanelStyles.inputsContainer}`}>
             <label htmlFor="current-page">Current page</label>
-            <input type="number" id="current-page" />
+            <input min={0} type="number" id="current-page" />
           </div>
         </span>
         <div className={`${editPanelStyles.inputsContainer}`}>
-          <label htmlFor="note-contents">Title</label>
-          <textarea type="text" placeholder="Title" id="note-contents" />
+          <label htmlFor="note-contents">Edit note</label>
+          <textarea type="text" placeholder="edit" id="note-contents" />
         </div>
       </div>
     </div>
