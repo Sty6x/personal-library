@@ -6,20 +6,20 @@ import * as PIXI from "pixi.js";
 
 const Book = () => {
   const bookRef = useRef();
-  const { library } = useContext(LibraryContext);
-  const [currentBook, setCurrentBook] = useState(() => {
-    const [book] = library.filter((book) => `/${book.link}` === window.location.pathname);
-    return book;
-  });
+  // const { library } = useContext(LibraryContext);
+  // const [currentBook, setCurrentBook] = useState(() => {
+  //   const [book] = library.filter((book) => `/${book.link}` === window.location.pathname);
+  //   return book;
+  // });
 
-  function filterCurrentBook(arr) {
-    const [book] = arr.filter((book) => `/${book.link}` === window.location.pathname);
-    return book;
-  }
+  // function filterCurrentBook(arr) {
+  //   const [book] = arr.filter((book) => `/${book.link}` === window.location.pathname);
+  //   return book;
+  // }
 
-  useEffect(() => {
-    setCurrentBook(() => filterCurrentBook(library));
-  }, [window.location.pathname]);
+  // useEffect(() => {
+  //   setCurrentBook(() => filterCurrentBook(library));
+  // }, [window.location.pathname]);
 
   return (
     <div id="book" ref={bookRef} className={BookStyles.container}>

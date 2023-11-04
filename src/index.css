@@ -100,7 +100,7 @@ table {
 	}
 	@font-face {
 		font-family: "poppins";
-		font-weight: 700;
+		font-weight:  700;
 		src:
 			url("./assets/fonts/poppins-bold-webfont.woff2") format("woff2"),
 			url("./assets/fonts/poppins-bold-webfont.woff") format("woff");
@@ -139,7 +139,14 @@ a:link,a:visited,a:hover,a:active{
 }
 a{
 }
-input{
-  font-family:poppins;
+input,textarea{
+  font-family: poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+
+textarea{
+  min-height:15em;
+  resize:none;
+}
+
+
 

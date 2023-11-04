@@ -27,6 +27,10 @@ const EditPanel = () => {
           <textarea type="text" placeholder="edit" id="note-contents" />
         </div>
       </div>
+      <div
+        id="color-progress-container"
+        className={`${editPanelStyles.colorProgressContainer}`}
+      ></div>
     </div>
   );
 };
