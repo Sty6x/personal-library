@@ -148,5 +148,23 @@ textarea{
   resize:none;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f120;
+}
 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius:5px;
+  background: var(--accent1);
+  transition:background 150ms ease-in;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  transition:background 150ms ease-in;
+}
