@@ -18,12 +18,18 @@ function App() {
 
   function editBook(contents) {
     const mapLibrary = library.map((book) => {
-      if (book.link === `/${window.location.pathname}`) {
+      if (`/${book.link}` === window.location.pathname) {
+        console.log(contents);
         const editedBook = {
-          ...contents,
           ...book,
+          title: contents.title,
+          author: contents.author,
+          totalPages: contents.totalPages,
+          currentPage: contents.currentPage,
         };
+        return editedBook;
       }
+      return book;
     });
     setLibrary(mapLibrary);
   }
@@ -39,7 +45,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("/book1");
     navigate("/book1");
   }, []);
 

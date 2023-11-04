@@ -24,7 +24,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           <label htmlFor="title">Title</label>
           <input
             type="text"
-            placeholder={"Title"}
+            // placeholder={"Title"}
             name="title"
             id="title"
             defaultValue={currentBook ? currentBook.title : ""}
@@ -34,7 +34,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           <label htmlFor="author">Author</label>
           <input
             type="text"
-            placeholder="Author"
+            // placeholder="Author"
             name="author"
             id="author"
             defaultValue={currentBook ? currentBook.author : ""}
@@ -44,7 +44,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           <div className={`${bookPanelStyles.inputsContainer}`}>
             <label htmlFor="book-pages">Book pages</label>
             <input
-              min={1}
+              min={0}
               type="number"
               name="totalPages"
               id="book-pages"
