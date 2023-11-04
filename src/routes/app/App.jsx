@@ -11,7 +11,7 @@ export const SidebarContext = createContext();
 function App() {
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(true);
-  const [sidebarBtn, setSidebarBtn] = useState("book-panel");
+  const [sidebarBtn, setSidebarBtn] = useState("add-book-panel");
 
   const placeholders = [
     {
