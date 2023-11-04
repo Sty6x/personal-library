@@ -38,7 +38,7 @@ const BookItem = ({
               <p>
                 Pages: {totalPages} | Page: {currentPage}
               </p>
-              <p>{genre.join(", ")}</p>
+              <p>{genre}</p>
             </span>
           </div>
         </div>

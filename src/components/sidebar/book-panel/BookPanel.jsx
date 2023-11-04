@@ -11,7 +11,6 @@ const BookPanel = ({ panelTitle, buttonText, handleButton }) => {
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.currentTarget);
-          console.log(formData);
           const formEntries = Object.fromEntries(formData.entries());
           console.log(formEntries);
           handleButton(formEntries);
