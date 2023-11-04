@@ -96,10 +96,11 @@ function App() {
   const [library, setLibrary] = useState([...placeholders]);
 
   function addBook(contents) {
+    console.log(contents);
     setLibrary();
   }
 
-  function updateBook(contents) {
+  function editBook(contents) {
     setLibrary();
   }
 
@@ -121,7 +122,9 @@ function App() {
         <TopBarContext.Provider value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}>
           <Topbar />
         </TopBarContext.Provider>
-        <SidebarContext.Provider value={{ currentPanel: sidebarBtn, addBook, setIsSidebarActive }}>
+        <SidebarContext.Provider
+          value={{ currentPanel: sidebarBtn, addBook, editBook, setIsSidebarActive }}
+        >
           {isSidebarActive && <Sidebar />}
         </SidebarContext.Provider>
         <Outlet />

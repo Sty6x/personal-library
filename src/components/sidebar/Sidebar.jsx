@@ -15,7 +15,7 @@ const Sidebar = () => {
     } else if (currentPanel === "edit-panel") {
       return <EditPanel />;
     } else if (currentPanel === "add-book-panel") {
-      return <BookPanel panelTitle={"Add book"} buttonText={"Add book"} />;
+      return <BookPanel panelTitle={"Add book"} buttonText={"Add book"} handleButton={addBook} />;
     } else if (currentPanel === "edit-book-panel") {
       return <BookPanel panelTitle={"Edit book"} buttonText={"Edit book"} />;
     }
