@@ -27,7 +27,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
             // placeholder={"Title"}
             name="title"
             id="title"
-            defaultValue={currentBook ? currentBook.title : ""}
+            defaultValue={currentBook !== undefined ? currentBook.title : ""}
           />
         </div>
         <div className={`${bookPanelStyles.inputsContainer}`}>
@@ -37,7 +37,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
             // placeholder="Author"
             name="author"
             id="author"
-            defaultValue={currentBook ? currentBook.author : ""}
+            defaultValue={currentBook !== undefined ? currentBook.author : ""}
           />
         </div>
         <span className={`${bookPanelStyles.pagesCountContainer}`}>
@@ -48,7 +48,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
               type="number"
               name="totalPages"
               id="book-pages"
-              defaultValue={currentBook ? currentBook.totalPages : 0}
+              defaultValue={currentBook && currentBook.totalPages}
             />
           </div>
           <div className={`${bookPanelStyles.inputsContainer}`}>
@@ -58,7 +58,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
               type="number"
               name="currentPage"
               id="current-page"
-              defaultValue={currentBook ? currentBook.totalPages : 0}
+              defaultValue={currentBook && currentBook.totalPages}
             />
           </div>
         </span>
