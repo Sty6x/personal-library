@@ -1,0 +1,45 @@
+
+.container{
+  background-color: var(--shade-dark);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  height: 100%;
+  padding:2em 1.5em;
+}
+.editContainer{
+  display:flex;
+  flex-direction:column;
+  gap:1em;
+}
+.inputsContainer{
+  /* Labels */
+  & > :first-child{
+    display:block;
+    margin-bottom:.6em;
+    color:var(--text-white);
+    font-weight:600;
+    font-size:1rem;
+  }
+
+  /* Inputs */
+  & > :last-child{
+    box-sizing:border-box;
+    padding:.8em;
+    appearance:none;
+    border:none;
+    border-radius: 5px;
+    color:var(--text-white);
+    background-color:var(--bg);
+    display:block;
+    width:100%;
+    max-width:100%;
+  }
+  
+}
+
+.pagesCountContainer{
+  display:flex;
+  gap:1em;
+}

@@ -81,7 +81,15 @@ const SidebarBtns = () => {
           </button>
         </span>
       </span>
-      <button id="add-book" className={`${sidebarBtnStyles.addBookBtn}`}>
+      <button
+        onClick={(e) => {
+          activateSidebar();
+          returnSidebarBtn(e);
+          setCurrentActivePanel(e.currentTarget.id);
+        }}
+        id="book-panel"
+        className={`${sidebarBtnStyles.addBookBtn}`}
+      >
         <svg
           width="30"
           height="29"
