@@ -17,6 +17,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           const formEntries = Object.fromEntries(formData.entries());
           console.log(formEntries);
           handleButton(formEntries);
+          setIsSidebarActive(false);
         }}
         className={`${bookPanelStyles.editContainer}`}
       >
@@ -24,7 +25,6 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           <label htmlFor="title">Title</label>
           <input
             type="text"
-            // placeholder={"Title"}
             name="title"
             id="title"
             defaultValue={currentBook !== undefined ? currentBook.title : ""}
@@ -34,7 +34,6 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           <label htmlFor="author">Author</label>
           <input
             type="text"
-            // placeholder="Author"
             name="author"
             id="author"
             defaultValue={currentBook !== undefined ? currentBook.author : ""}
