@@ -173,3 +173,8 @@ textarea{
   transition:background 150ms ease-in;
 }
 
+a.active{
+  transition: background-color 150ms ease-in;
+  background-color:#ffffff20;
+}
+

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import bookItemStyles from "./bookItem.module.css";
 
 const BookItem = ({
@@ -6,7 +6,7 @@ const BookItem = ({
 }) => {
   return (
     <li className={`book-item ${bookItemStyles.container}`}>
-      <Link to={`/${link}`} className={`${bookItemStyles.linkContainer}`}>
+      <NavLink to={`/${link}`} className={`${bookItemStyles.linkContainer}`}>
         <div id="contents" className={`${bookItemStyles.contentsContainer}`}>
           <div id="book-item-progress-container" className={`${bookItemStyles.progressContainer}`}>
             <svg version="1.1" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
@@ -46,7 +46,7 @@ const BookItem = ({
           </div>
         </div>
         <div>Updated 1 week ago</div>
-      </Link>
+      </NavLink>
     </li>
   );
 };
