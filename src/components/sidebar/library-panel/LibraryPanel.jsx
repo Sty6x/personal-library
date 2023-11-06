@@ -1,11 +1,11 @@
 import libraryPanelStyles from "./libraryPanel.module.css";
 import BookItem from "../book-items/BookItem";
 import { useContext } from "react";
-import { LibraryContext } from "../../../routes/app/App";
+import { LibraryContext, SidebarContext } from "../../../routes/app/App";
 
 const LibraryPanel = () => {
   const { library } = useContext(LibraryContext);
-
+  const { addBook } = useContext(SidebarContext);
   const mapBookItems = library.map((book) => {
     return <BookItem book={book} />;
   });
@@ -23,9 +23,6 @@ const LibraryPanel = () => {
         <button
           onClick={(e) => {
             addBook();
-            // activateSidebar();
-            // returnSidebarBtn(e);
-            // setCurrentActivePanel(e.currentTarget.id);
           }}
           id="add-book-panel"
           className={`${libraryPanelStyles.addBookBtn} ${libraryPanelStyles.bookBtn}`}

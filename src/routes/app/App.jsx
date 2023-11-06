@@ -67,13 +67,12 @@ function App() {
   return (
     <main id="main-contents" className={AppStyles.main}>
       <LibraryContext.Provider value={{ library }}>
-        <TopBarContext.Provider
-          value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive, addBook }}
-        >
+        <TopBarContext.Provider value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}>
           <Topbar />
         </TopBarContext.Provider>
         <SidebarContext.Provider
           value={{
+            addBook,
             currentPanel: sidebarBtn,
             editBook,
             setIsSidebarActive,

@@ -62,6 +62,7 @@
 }
 
 .addBookBtn{
+  padding:0;
   display:inline-block;
   & > svg circle{
     transition: fill 150ms 200ms ease-in;
@@ -73,7 +74,6 @@
   }
 }
 .addBookBtn:hover{
-
   & > svg circle{
     transition: fill 150ms ease-in;
     fill: none;
