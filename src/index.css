@@ -147,6 +147,28 @@ input,textarea,button{
   font-family: poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+	color: white;
+	-webkit-text-fill-color: white;
+	-webkit-box-shadow: none;
+	transition: background-color 10000s ease-in-out 0s;
+}
+
+input,textarea{
+  border:none;
+  appearance:none;
+  -webkit-appearance:none;
+  outline:1px solid transparent;
+  transition:outline 150ms ease-in-out;
+}
+
+input:focus,textarea:focus{
+  transition:outline 150ms ease-in-out;
+  outline:1px solid var(--accent1);
+}
+
 textarea{
   min-height:15em;
   resize:none;
