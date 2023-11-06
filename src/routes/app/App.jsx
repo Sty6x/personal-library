@@ -50,8 +50,8 @@ function App() {
   }
 
   useEffect(() => {
-    navigate("/book1");
-  }, []);
+    navigate(library[0].link);
+  }, [library]);
 
   useEffect(() => {
     console.log(library);

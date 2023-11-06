@@ -37,11 +37,11 @@ const BookItem = ({
           <div id="book-item-info" className={`${bookItemStyles.bookInfoContainer}`}>
             <p>{title}</p>
             <span className={`${bookItemStyles.metaBookInfo}`}>
-              <p>{author}</p>
+              <p>Author: {author}</p>
               <p>
                 Pages: {totalPages} | Page: {currentPage}
               </p>
-              <p>{genre.join(", ")}</p>
+              <p>Genre: {genre.join(", ")}</p>
             </span>
           </div>
         </div>
