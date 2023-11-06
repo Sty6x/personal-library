@@ -2,7 +2,7 @@ import colorPickerStyles from "./colorPicker.module.css";
 const ColorPicker = ({ title }) => {
   // if the local storage for pickedColors array is empty
   // then use default colors state
-  const colorNumbers = 5;
+  const colorNumbers = 6;
   const defaultColors = [
     "#C7A2DE",
     "#AFDEA2",
@@ -27,7 +27,10 @@ const ColorPicker = ({ title }) => {
           id={defaultColors[randomizeColors]}
           data-color={defaultColors[randomizeColors]}
           className={`${colorPickerStyles.colors}`}
-          style={{ backgroundColor: `${defaultColors[randomizeColors]}` }}
+          style={{
+            backgroundColor: `${defaultColors[randomizeColors]}`,
+            ":hover": { outline: `2px solid red` },
+          }}
         />,
       );
     }
