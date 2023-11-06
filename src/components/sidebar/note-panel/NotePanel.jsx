@@ -12,7 +12,7 @@ const NotePanel = ({ title }) => {
       </div>
       <div id="color-progress-container" className={`${notePanelStyles.colorProgressContainer}`}>
         <ColorPicker title={"Background"} />
-        <ColorPicker title={"Stroke"} />
+        {/* <ColorPicker title={"Stroke"} /> */}
         <ColorPicker title={"Text"} />
       </div>
     </div>
