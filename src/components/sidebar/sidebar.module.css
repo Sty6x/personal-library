@@ -2,7 +2,7 @@
   position: absolute;
   top: 10%;
   left: 1vw;
-  width: 28em;
+  width: max-content;
   color: black;
   border-radius: 7px;
   overflow: hidden;
