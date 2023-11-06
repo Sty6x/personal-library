@@ -1,24 +1,40 @@
 import libraryPanelStyles from "./libraryPanel.module.css";
 import BookItem from "../book-items/BookItem";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LibraryContext, SidebarContext } from "../../../routes/app/App";
 
 const LibraryPanel = () => {
   const { library } = useContext(LibraryContext);
+  const [books, setBooks] = useState([...library]);
   const { addBook } = useContext(SidebarContext);
-  const mapBookItems = library.map((book) => {
-    return <BookItem book={book} />;
+
+  function searchQuery(e) {
+    e.preventDefault();
+    console.log("submit");
+    const searchInput = new FormData(e.currentTarget);
+    const { text } = Object.fromEntries(searchInput.entries());
+    console.log(text);
+    const searchBooks = books.filter((book) => book.title.match(text));
+    setBooks([...searchBooks]);
+  }
+
+  const displayBookItems = books.map((book) => {
+    return <BookItem key={book.link} book={book} />;
   });
 
   return (
     <div id="library-panel" className={`${libraryPanelStyles.container}`}>
       <div id="library-actions-container" className={`${libraryPanelStyles.actionsContainer}`}>
         <div id="search-library-container" className={`${libraryPanelStyles.searchContainer}`}>
-          <input
-            className={`${libraryPanelStyles.searchInput}`}
-            type="search"
-            placeholder="Search a book"
-          />
+          <form onSubmit={searchQuery}>
+            <input
+              className={`${libraryPanelStyles.searchInput}`}
+              type="search"
+              placeholder="Search a book title"
+              name="text"
+              id="searchText"
+            />
+          </form>
         </div>
         <button
           onClick={(e) => {
@@ -44,7 +60,7 @@ const LibraryPanel = () => {
       </div>
       {/* contain mapped book items separately  */}
       <div id="library-panel-book-container" className={`${libraryPanelStyles.bookItemsContainer}`}>
-        {mapBookItems}
+        {displayBookItems}
       </div>
     </div>
   );
