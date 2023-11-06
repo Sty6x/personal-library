@@ -1,0 +1,43 @@
+import colorPickerStyles from "./colorPicker.module.css";
+const ColorPicker = () => {
+  // if the local storage for pickedColors array is empty
+  // then use default colors state
+  const colorNumbers = 4;
+  const defaultColors = [
+    "#C7A2DE",
+    "#AFDEA2",
+    "#DF9368",
+    "#DF7868",
+    "#A2C1DE",
+    "#6888DE",
+    "#68DE8C",
+    "#DE9C68",
+    "#68A5DE",
+    "#DE6868",
+    "#CA68DE",
+  ];
+
+  const displayDefaultColors = ()=>{
+    if (i < 4) {
+      const randomizeColors = Math.floor(Math.random() * defaultColors.length);
+      console.log(randomizeColors);
+      return (
+        <span
+          id={color}
+          data-color={defaultColors[randomizeColors]}
+          className={`${colorPickerStyles.colors}`}
+          style={{ backgroundColor: `${defaultColors[randomizeColors]}` }}
+        ></span>
+      );
+    }
+  };
+
+  }
+  return (
+    <div id="color-picker-container" className={`${colorPickerStyles.container}`}>
+      {displayDefaultColors}
+    </div>
+  );
+};
+
+export default ColorPicker;

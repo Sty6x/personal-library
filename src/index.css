@@ -58,6 +58,10 @@ table {
   --shade-dark:#2B2C31;
   --shade-dark2:#5E6269;
   --accent1:#DF7868;
+  --accent2:#68DE8C;
+  --accent3:#68A5DE;
+  --accent4:#DE6868;
+  
 
   color: var(--text-white);
   background-color: var(--bg);
@@ -168,3 +172,4 @@ textarea{
 ::-webkit-scrollbar-thumb:hover {
   transition:background 150ms ease-in;
 }
+

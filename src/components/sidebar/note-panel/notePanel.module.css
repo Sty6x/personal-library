@@ -7,6 +7,8 @@
   overflow: hidden;
   height: 100%;
   padding:2em 1.5em;
+  gap:1.5em;
+
 }
 .editContainer{
   display:flex;
@@ -42,4 +44,9 @@
 .pagesCountContainer{
   display:flex;
   gap:1em;
+}
+.colorProgressContainer{
+  display:flex;
+  flex-direction:column;
+  gap:1em
 }

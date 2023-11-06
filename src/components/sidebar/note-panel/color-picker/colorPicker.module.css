@@ -1,0 +1,36 @@
+.container{
+  display:flex;
+  flex-direction:column;
+  gap:.8em;
+  & > :first-child{
+    color:var(--text-white);
+    font-weight:600;
+  }
+}
+.colorContainer{
+  display:flex;
+  gap:1em;
+  /* justify-content:space-between; */
+  align-items:center;
+}
+
+
+.colors{
+  width:45px;
+  height:45px;
+  border-radius:7px;
+}
+
+.colorInputContainer{
+  display:flex;
+  align-items:center;
+  &> :last-child{
+    cursor:pointer;
+    border:none;
+    width:45px;
+    height:45px;
+    border-radius:7px;
+    margin-left:auto;
+  }
+}
+

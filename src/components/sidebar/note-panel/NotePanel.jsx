@@ -1,3 +1,4 @@
+import ColorPicker from "./color-picker/ColorPicker";
 import notePanelStyles from "./notePanel.module.css";
 
 const NotePanel = ({ title }) => {
@@ -9,10 +10,11 @@ const NotePanel = ({ title }) => {
           <textarea type="text" id="note-contents" />
         </div>
       </div>
-      <div
-        id="color-progress-container"
-        className={`${notePanelStyles.colorProgressContainer}`}
-      ></div>
+      <div id="color-progress-container" className={`${notePanelStyles.colorProgressContainer}`}>
+        <ColorPicker title={"Background"} />
+        <ColorPicker title={"Stroke"} />
+        <ColorPicker title={"Text"} />
+      </div>
     </div>
   );
 };
