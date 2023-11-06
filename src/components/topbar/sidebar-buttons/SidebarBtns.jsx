@@ -3,7 +3,8 @@ import sidebarBtnStyles from "./sidebarBtns.module.css";
 import { TopBarContext } from "../../../routes/app/App";
 
 const SidebarBtns = () => {
-  const { returnSidebarBtn, setIsSidebarActive, isSidebarActive } = useContext(TopBarContext);
+  const { returnSidebarBtn, setIsSidebarActive, isSidebarActive, addBook } =
+    useContext(TopBarContext);
   const [currentActivePanel, setCurrentActivePanel] = useState("library-panel");
   function activateSidebar() {
     // return isSidebarActive ? setIsSidebarActive(false) : setIsSidebarActive(true);
@@ -84,9 +85,10 @@ const SidebarBtns = () => {
       </span>
       <button
         onClick={(e) => {
-          activateSidebar();
-          returnSidebarBtn(e);
-          setCurrentActivePanel(e.currentTarget.id);
+          addBook();
+          // activateSidebar();
+          // returnSidebarBtn(e);
+          // setCurrentActivePanel(e.currentTarget.id);
         }}
         id="add-book-panel"
         className={`${sidebarBtnStyles.addBookBtn} ${sidebarBtnStyles.bookBtn}`}

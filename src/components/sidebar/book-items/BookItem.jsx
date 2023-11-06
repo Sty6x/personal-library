@@ -27,7 +27,10 @@ const BookItem = ({
                 textAnchor="middle"
                 fill="white"
               >
-                {Math.round((currentPage / totalPages) * 100)}%
+                {currentPage === 0 || totalPages === 0
+                  ? 0
+                  : Math.round((currentPage / totalPages) * 100)}
+                %
               </text>
             </svg>
           </div>
@@ -38,7 +41,7 @@ const BookItem = ({
               <p>
                 Pages: {totalPages} | Page: {currentPage}
               </p>
-              <p>{genre}</p>
+              <p>{genre.join(", ")}</p>
             </span>
           </div>
         </div>
