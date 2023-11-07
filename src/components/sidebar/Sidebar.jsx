@@ -5,16 +5,21 @@ import { useContext } from "react";
 import { SidebarContext } from "../../routes/app/App";
 import NotePanel from "./note-panel/NotePanel";
 const Sidebar = () => {
-  const { currentPanel, addBook, editBook, library } = useContext(SidebarContext);
+  const { currentPanel, editBook, library } = useContext(SidebarContext);
   const panel = revealSidebar();
 
   function revealSidebar() {
     if (currentPanel === "library-panel") {
       return <LibraryPanel />;
     } else if (currentPanel === "note-panel") {
-      return <NotePanel title={"Add Note"} />;
-    } else if (currentPanel === "add-book-panel") {
-      return <BookPanel panelTitle={"Add book"} buttonText={"Add book"} handleButton={addBook} />;
+      return (
+        <NotePanel
+          title={"Add Note"}
+          panelTitle={"Edit book"}
+          buttonText={"Edit book"}
+          // handleButton={editBook}
+        />
+      );
     } else if (currentPanel === "edit-book-panel") {
       return (
         <BookPanel

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import bookItemStyles from "./bookItem.module.css";
 
 const BookItem = ({
@@ -6,7 +6,7 @@ const BookItem = ({
 }) => {
   return (
     <li className={`book-item ${bookItemStyles.container}`}>
-      <Link to={`/${link}`} className={`${bookItemStyles.linkContainer}`}>
+      <NavLink to={`/${link}`} className={`${bookItemStyles.linkContainer}`}>
         <div id="contents" className={`${bookItemStyles.contentsContainer}`}>
           <div id="book-item-progress-container" className={`${bookItemStyles.progressContainer}`}>
             <svg version="1.1" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
@@ -27,23 +27,26 @@ const BookItem = ({
                 textAnchor="middle"
                 fill="white"
               >
-                {Math.round((currentPage / totalPages) * 100)}%
+                {currentPage === 0 || totalPages === 0
+                  ? 0
+                  : Math.round((currentPage / totalPages) * 100)}
+                %
               </text>
             </svg>
           </div>
           <div id="book-item-info" className={`${bookItemStyles.bookInfoContainer}`}>
             <p>{title}</p>
             <span className={`${bookItemStyles.metaBookInfo}`}>
-              <p>{author}</p>
+              <p>Author: {author}</p>
               <p>
                 Pages: {totalPages} | Page: {currentPage}
               </p>
-              <p>{genre}</p>
+              <p>Genre: {genre.join(", ")}</p>
             </span>
           </div>
         </div>
         <div>Updated 1 week ago</div>
-      </Link>
+      </NavLink>
     </li>
   );
 };

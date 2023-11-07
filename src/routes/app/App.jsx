@@ -13,7 +13,7 @@ export const SidebarContext = createContext();
 function App() {
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(true);
-  const [sidebarBtn, setSidebarBtn] = useState("add-book-panel");
+  const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
 
   function editBook(contents) {
@@ -34,9 +34,14 @@ function App() {
     setLibrary(mapLibrary);
   }
 
-  function addBook(contents) {
+  function addBook() {
     const newBook = {
-      ...contents,
+      title: "",
+      author: "",
+      genre: [],
+      notes: [],
+      totalPages: 0,
+      currentPage: 0,
       link: uid(16),
       isFinished: false,
     };
@@ -45,8 +50,8 @@ function App() {
   }
 
   useEffect(() => {
-    navigate("/book1");
-  }, []);
+    navigate(library[0].link);
+  }, [library]);
 
   useEffect(() => {
     console.log(library);
@@ -67,8 +72,8 @@ function App() {
         </TopBarContext.Provider>
         <SidebarContext.Provider
           value={{
-            currentPanel: sidebarBtn,
             addBook,
+            currentPanel: sidebarBtn,
             editBook,
             setIsSidebarActive,
             library,

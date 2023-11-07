@@ -22,7 +22,7 @@
     margin-bottom:.6em;
     color:var(--text-white);
     font-weight:600;
-    font-size:1rem;
+    font-size:1.2rem;
   }
 
   /* Inputs */
@@ -52,3 +52,38 @@
   position:relative;
 }
 
+.notePanelBtnsContainer{
+
+  display:flex;
+  gap:.6em;
+  & > button{
+    margin-top:.6em;
+    border-radius:4px;
+    padding:.5em .7em;
+    font-weight:600;
+  }
+
+  & > :first-child{
+    color:var(--bg);
+    font-size:.9rem;
+    background-color:var(--accent1);
+    transition: outline 150ms ease-in;
+    outline:transparent 1px solid;
+    outline-offset:2px;
+  }
+  & > :first-child:hover{
+    transition: outline 150ms ease-in;
+    outline:var(--accent1) 1px solid;
+    outline-offset:2px;
+  }
+
+  & > :last-child{
+    background-color:transparent;
+    font-size:.8rem;
+    color:var(--text-white);
+    font-weight:500;
+  }
+  & > :last-child:hover{
+    text-decoration:underline;
+  }
+}
