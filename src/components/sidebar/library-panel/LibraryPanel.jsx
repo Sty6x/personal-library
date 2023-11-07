@@ -5,7 +5,7 @@ import { LibraryContext, SidebarContext } from "../../../routes/app/App";
 
 const LibraryPanel = () => {
   const { library } = useContext(LibraryContext);
-  const [books, setBooks] = useState([...library]);
+  const [searchBooks, setSearchBooks] = useState([...library]);
   const { addBook } = useContext(SidebarContext);
 
   function searchQuery(e) {
@@ -14,11 +14,25 @@ const LibraryPanel = () => {
     const searchInput = new FormData(e.currentTarget);
     const { text } = Object.fromEntries(searchInput.entries());
     console.log(text);
-    const searchBooks = books.filter((book) => book.title.match(text));
-    setBooks([...searchBooks]);
+    if (text === "") {
+      setSearchBooks([...library]);
+      return;
+    } else {
+      const searchedBooks = library.filter((book) => book.title.match(text));
+      setSearchBooks([...searchedBooks]);
+      return;
+    }
   }
 
-  const displayBookItems = books.map((book) => {
+  function restoreBooks(e) {
+    const currentInput = e.target.value;
+    currentInput === "" ? setSearchBooks([...library]) : 0;
+  }
+
+  useEffect(() => {
+    setSearchBooks([...library]);
+  }, [library]);
+  const displayBookItems = searchBooks.map((book) => {
     return <BookItem key={book.link} book={book} />;
   });
 
@@ -28,6 +42,7 @@ const LibraryPanel = () => {
         <div id="search-library-container" className={`${libraryPanelStyles.searchContainer}`}>
           <form onSubmit={searchQuery}>
             <input
+              onChange={restoreBooks}
               className={`${libraryPanelStyles.searchInput}`}
               type="search"
               placeholder="Search a book title"
@@ -60,7 +75,7 @@ const LibraryPanel = () => {
       </div>
       {/* contain mapped book items separately  */}
       <div id="library-panel-book-container" className={`${libraryPanelStyles.bookItemsContainer}`}>
-        {displayBookItems}
+        {searchBooks.length === 0 ? <p> You dont have any books in here. </p> : displayBookItems}
       </div>
     </div>
   );
