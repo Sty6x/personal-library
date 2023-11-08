@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import bookPanelStyles from "./bookPanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
+import GenreInput from "../library-panel/genre-input/GenreInput";
 
 const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
@@ -61,6 +62,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
             />
           </div>
         </span>
+        <GenreInput />
         <span id="book-panel-btn" className={`${bookPanelStyles.bookPanelBtnContainer}`}>
           <button>{buttonText}</button>
           <button

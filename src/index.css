@@ -164,6 +164,26 @@ input,textarea{
   transition:outline 150ms ease-in-out;
 }
 
+label{
+
+    display:block;
+    margin-bottom:.6em;
+    font-weight:600;
+    font-size:1rem;
+}
+input{
+    box-sizing:border-box;
+    padding:.8em;
+    appearance:none;
+    border:none;
+    border-radius: 5px;
+    color:var(--text-white);
+    background-color:var(--bg);
+    display:block;
+    width:100%;
+    max-width:100%;
+}
+
 input:focus,textarea:focus{
   transition:outline 150ms ease-in-out;
   outline:1px solid var(--accent1);
@@ -199,4 +219,5 @@ a.active{
   transition: background-color 150ms ease-in;
   background-color:#ffffff20;
 }
+
 
