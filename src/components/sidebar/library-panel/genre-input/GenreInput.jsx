@@ -11,8 +11,8 @@ const GenreInput = () => {
     "Thriller",
     "History",
   ]);
-
   const currentSidebarWidth = useRef();
+  const userInputRef = useRef();
 
   function wrapGenresInList() {
     const newSidebarWidth = document.getElementById("side-bar");
@@ -31,10 +31,9 @@ const GenreInput = () => {
   }, []);
 
   function addGenre(e) {
-    // const inputData = new FormData(e.target);
-    // const inputText = Object.fromEntries(inputData);
-    // console.log(inputText);
-    setGenreList(["Psychological", ...genreList]);
+    setGenreList([userInputRef.current.value, ...genreList]);
+    console.log(userInputRef.current.value);
+    userInputRef.current.value = "";
   }
 
   const displayGenres = genreList.map((genre, i) => {
@@ -45,7 +44,7 @@ const GenreInput = () => {
     <div className={`${genreInputStyles.container}`}>
       <div id="genre-input" className={`${genreInputStyles.inputContainer}`}>
         <label htmlFor="genre-input">Genre</label>
-        <input id="genre-input" name="genreInput" />
+        <input ref={userInputRef} id="genre-input" name="genreInput" />
         <button type="button" onClick={addGenre} style={{ color: "white" }}>
           Add
         </button>
