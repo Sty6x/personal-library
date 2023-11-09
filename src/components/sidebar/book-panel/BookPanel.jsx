@@ -76,7 +76,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
               type="number"
               name="currentPage"
               id="current-page"
-              defaultValue={currentBook && currentBook.totalPages}
+              defaultValue={currentBook && currentBook.currentPage}
             />
           </div>
         </span>

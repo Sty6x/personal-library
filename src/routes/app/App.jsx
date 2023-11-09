@@ -17,22 +17,19 @@ function App() {
   const [library, setLibrary] = useState([...placeholders]);
 
   function editBook(contents) {
-    const mapLibrary = library.map((book) => {
-      if (`/${book.link}` === window.location.pathname) {
-        console.log(contents);
-        const editedBook = {
-          ...book,
-          title: contents.title,
-          author: contents.author,
-          totalPages: contents.totalPages,
-          currentPage: contents.currentPage,
-          genre: [...contents.genre],
-        };
-        return editedBook;
-      }
-      return book;
-    });
-    setLibrary(mapLibrary);
+    const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
+    const currentLibraryState = library.filter(
+      (book) => `/${book.link}` !== window.location.pathname,
+    );
+    const updatedBook = {
+      ...currentBook,
+      title: contents.title,
+      author: contents.author,
+      totalPages: contents.totalPages,
+      currentPage: contents.currentPage,
+      genre: [...contents.genre],
+    };
+    setLibrary([updatedBook, ...currentLibraryState]);
   }
 
   function addBook() {
