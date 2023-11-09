@@ -4,12 +4,12 @@ import genreInputStyles from "./genreInput.module.css";
 
 const GenreInput = () => {
   const [genreList, setGenreList] = useState([
-    // "Drama",
+    "Drama",
     // "Psychological",
     // "Psychological",
-    // "Nautical",
-    // "Thriller",
-    // "History",
+    "Nautical",
+    "Thriller",
+    "History",
   ]);
 
   const currentSidebarWidth = useRef();

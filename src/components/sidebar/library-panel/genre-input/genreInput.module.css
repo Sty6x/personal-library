@@ -1,5 +1,33 @@
+.container{
+  display:flex;
+  flex-direction:column;
+  gap:.6em;
+}
 .genreLists{
   display:grid;
-  grid-template-columns:repeat(4,auto);
-
+  grid-template-columns:repeat(3,6em);
+  gap:.4em
 }
+.inputContainer{
+  & > button{
+    margin-top:.6em;
+    border-radius:4px;
+    padding:.5em .7em;
+    font-weight:600;
+  }
+  & > :last-child{
+    margin-top:1em;
+    color:var(--bg) !important;
+    font-size:.9rem;
+    background-color:var(--accent1);
+    transition: outline 150ms ease-in;
+    outline:transparent 1px solid;
+    outline-offset:2px;
+  }
+  & > :last-child:hover{
+    transition: outline 150ms ease-in;
+    outline:var(--accent1) 1px solid;
+    outline-offset:2px;
+  }
+}
+
