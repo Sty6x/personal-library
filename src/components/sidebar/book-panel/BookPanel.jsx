@@ -1,10 +1,19 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import bookPanelStyles from "./bookPanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
 import GenreInput from "../library-panel/genre-input/GenreInput";
 
 const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
+  const [genreList, setGenreList] = useState([...currentBook.genre]);
+  function addGenre(input) {
+    if (input.current.value !== "") {
+      setGenreList([input.current.value, ...genreList]);
+      console.log(input.current.value);
+      input.current.value = "";
+      return;
+    }
+  }
   useEffect(() => {
     console.log(currentBook);
   }, [window.location.pathname]);
@@ -17,7 +26,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           const formData = new FormData(e.currentTarget);
           const formEntries = Object.fromEntries(formData.entries());
           console.log(formEntries);
-          handleButton(formEntries);
+          handleButton({ ...formEntries, genre: genreList });
           // setIsSidebarActive(false);
         }}
         className={`${bookPanelStyles.editContainer}`}
@@ -62,7 +71,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
             />
           </div>
         </span>
-        <GenreInput />
+        <GenreInput genreList={genreList} handleOnAdd={addGenre} />
         <span id="book-panel-btn" className={`${bookPanelStyles.bookPanelBtnContainer}`}>
           <button>{buttonText}</button>
           <button
