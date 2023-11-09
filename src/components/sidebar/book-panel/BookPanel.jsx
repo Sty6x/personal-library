@@ -18,7 +18,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           const formEntries = Object.fromEntries(formData.entries());
           console.log(formEntries);
           handleButton(formEntries);
-          setIsSidebarActive(false);
+          // setIsSidebarActive(false);
         }}
         className={`${bookPanelStyles.editContainer}`}
       >

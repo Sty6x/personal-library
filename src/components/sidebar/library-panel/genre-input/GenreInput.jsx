@@ -44,10 +44,12 @@ const GenreInput = () => {
     <div className={`${genreInputStyles.container}`}>
       <div id="genre-input" className={`${genreInputStyles.inputContainer}`}>
         <label htmlFor="genre-input">Genre</label>
-        <input ref={userInputRef} id="genre-input" name="genreInput" />
-        <button type="button" onClick={addGenre} style={{ color: "white" }}>
-          Add
-        </button>
+        <span className={`${genreInputStyles.innerInputContainer}`}>
+          <input ref={userInputRef} id="genre-input" name="genreInput" />
+          <button type="button" onClick={addGenre} style={{ color: "white" }}>
+            {">"}
+          </button>
+        </span>
       </div>
       <div className={`${genreInputStyles.genreLists}`}>{displayGenres}</div>
     </div>
