@@ -1,8 +1,30 @@
 .container{
   display:flex;
-  align-content:center;
+  align-items:center;
+  justify-content:space-between;
+  text-align:center;
   background-color:var(--bg);
   border-radius:5px;
   padding:.4em .6em;
   gap:.4em;
+  & > :last-child{
+   box-sizing:content-box;
+   width:20px;
+   height:20px;
+   padding:0;
+   display:inline-block;
+   & > svg {
+     /* transition: stroke 200ms ease-in-out; */
+     color: var(--accent1);
+     stroke: var(--accent1);
+   }
+  }
+  & > :last-child:hover{
+   & > svg {
+     transition: stroke 150ms ease-in;
+     fill: var(--accent1);
+     stroke: var(--bg);
+     color: var(--bg);
+   }
+  }
 }

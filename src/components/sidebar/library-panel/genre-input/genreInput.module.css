@@ -6,7 +6,7 @@
 }
 .genreLists{
   display:grid;
-  grid-template-columns:repeat(3,6em);
+  grid-template-columns:repeat(3,auto);
   gap:.4em
 }
 .innerInputContainer{
