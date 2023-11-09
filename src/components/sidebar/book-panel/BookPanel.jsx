@@ -6,6 +6,7 @@ import GenreInput from "../library-panel/genre-input/GenreInput";
 const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
   const [genreList, setGenreList] = useState([...currentBook.genre]);
+
   function addGenre(input) {
     if (input.current.value !== "") {
       setGenreList([input.current.value, ...genreList]);
@@ -14,6 +15,14 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
       return;
     }
   }
+
+  function removeGenre(e) {
+    const currentGenre = e.currentTarget.parentNode.id;
+    const currentGenreIndex = currentGenre.charAt(currentGenre.length - 1);
+    const filterGenres = genreList.filter((genre) => genreList[currentGenreIndex] !== genre);
+    setGenreList(filterGenres);
+  }
+
   useEffect(() => {
     console.log(currentBook);
   }, [window.location.pathname]);
@@ -71,7 +80,11 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
             />
           </div>
         </span>
-        <GenreInput genreList={genreList} handleOnAdd={addGenre} />
+        <GenreInput
+          genreList={genreList}
+          handleOnAdd={addGenre}
+          handleOnRemoveGenre={removeGenre}
+        />
         <span id="book-panel-btn" className={`${bookPanelStyles.bookPanelBtnContainer}`}>
           <button>{buttonText}</button>
           <button

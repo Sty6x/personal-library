@@ -1,10 +1,10 @@
 import genreStyles from "./genre.module.css";
 
-const Genre = ({ genreText }) => {
+const Genre = ({ genreText, id, handleOnClick }) => {
   return (
-    <span id="genre-item" className={`${genreStyles.container}`}>
+    <span id={`genre-${id}`} className={`${genreStyles.container}`}>
       <p>{genreText}</p>
-      <button>
+      <button type="button" onClick={handleOnClick}>
         <svg
           viewBox="0 0 24 24"
           role="img"

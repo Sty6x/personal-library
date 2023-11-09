@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Genre from "./genre/Genre";
 import genreInputStyles from "./genreInput.module.css";
 
-const GenreInput = ({ genreList, handleOnAdd }) => {
+const GenreInput = ({ genreList, handleOnAdd, handleOnRemoveGenre }) => {
   const currentSidebarWidth = useRef();
   const userInputRef = useRef();
 
@@ -23,7 +23,9 @@ const GenreInput = ({ genreList, handleOnAdd }) => {
   }, []);
 
   const displayGenres = genreList.map((genre, i) => {
-    return <Genre key={`${genre}${i}`} genreText={genre} />;
+    return (
+      <Genre key={`${genre}${i}`} id={i} genreText={genre} handleOnClick={handleOnRemoveGenre} />
+    );
   });
 
   return (
@@ -31,7 +33,7 @@ const GenreInput = ({ genreList, handleOnAdd }) => {
       <div id="genre-input" className={`${genreInputStyles.inputContainer}`}>
         <label htmlFor="genre-input">Genre</label>
         <span className={`${genreInputStyles.innerInputContainer}`}>
-          <input ref={userInputRef} id="genre-input" />
+          <input maxLength={9} ref={userInputRef} id="genre-input" />
           <button
             type="button"
             onClick={() => {

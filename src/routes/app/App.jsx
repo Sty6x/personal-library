@@ -26,7 +26,7 @@ function App() {
           author: contents.author,
           totalPages: contents.totalPages,
           currentPage: contents.currentPage,
-          genre: [...contents.genre, ...book.genre],
+          genre: [...contents.genre],
         };
         return editedBook;
       }
