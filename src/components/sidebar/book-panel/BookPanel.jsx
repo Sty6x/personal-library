@@ -1,9 +1,28 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import bookPanelStyles from "./bookPanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
+import GenreInput from "../library-panel/genre-input/GenreInput";
 
 const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
+  const [genreList, setGenreList] = useState([...currentBook.genre]);
+
+  function addGenre(input) {
+    if (input.current.value !== "") {
+      setGenreList([input.current.value, ...genreList]);
+      console.log(input.current.value);
+      input.current.value = "";
+      return;
+    }
+  }
+
+  function removeGenre(e) {
+    const currentGenre = e.currentTarget.parentNode.id;
+    const currentGenreIndex = currentGenre.charAt(currentGenre.length - 1);
+    const filterGenres = genreList.filter((genre) => genreList[currentGenreIndex] !== genre);
+    setGenreList(filterGenres);
+  }
+
   useEffect(() => {
     console.log(currentBook);
   }, [window.location.pathname]);
@@ -16,8 +35,8 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           const formData = new FormData(e.currentTarget);
           const formEntries = Object.fromEntries(formData.entries());
           console.log(formEntries);
-          handleButton(formEntries);
-          setIsSidebarActive(false);
+          handleButton({ ...formEntries, genre: genreList });
+          // setIsSidebarActive(false);
         }}
         className={`${bookPanelStyles.editContainer}`}
       >
@@ -57,10 +76,15 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
               type="number"
               name="currentPage"
               id="current-page"
-              defaultValue={currentBook && currentBook.totalPages}
+              defaultValue={currentBook && currentBook.currentPage}
             />
           </div>
         </span>
+        <GenreInput
+          genreList={genreList}
+          handleOnAdd={addGenre}
+          handleOnRemoveGenre={removeGenre}
+        />
         <span id="book-panel-btn" className={`${bookPanelStyles.bookPanelBtnContainer}`}>
           <button>{buttonText}</button>
           <button
