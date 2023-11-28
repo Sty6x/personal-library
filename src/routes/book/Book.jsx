@@ -22,24 +22,26 @@ const Book = () => {
   // }, [window.location.pathname]);
   //
   const draw = useCallback((g) => {
-    g.beginFill(0xffffff);
-    g.drawRect(0, 0, 100, 100);
+    g.beginFill(0x68a5de);
+    g.drawRoundedRect(0, 0, 450, 300, 6);
+
+    // g.drawRect(0, 0, 100, 100);
   }, []);
 
   return (
     <div id="book" ref={bookRef} className={BookStyles.container}>
-      <Stage options={{ antialias: true }}>
-        <Container x={400} y={300}>
+      <Stage options={{ backgroundColor: 0x1a1b1d, antialias: true }}>
+        <Container x={300} y={300}>
           <Graphics draw={draw} />
           <Text
             anchor={{ x: 0, y: 0 }}
-            position={{ x: 0, y: 0 }}
+            position={{ x: 20, y: 10 }}
             eventMode="static"
             onclick={(e) => {
               console.log("clicked");
             }}
-            text="Hello World"
-            style={new PIXI.TextStyle({ fill: "#00ff99" })}
+            text="Word Wrap Width is set to 80px For some reason HEHEHHEAD iawdjamoiwd wdiadj"
+            style={new PIXI.TextStyle({ fill: "#1a1b1d", wordWrapWidth: 400 - 30, wordWrap: true })}
           />
         </Container>
       </Stage>
