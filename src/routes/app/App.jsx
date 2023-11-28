@@ -12,7 +12,7 @@ export const SidebarContext = createContext();
 
 function App() {
   const navigate = useNavigate();
-  const [isSidebarActive, setIsSidebarActive] = useState(true);
+  const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
 
@@ -50,6 +50,10 @@ function App() {
   useEffect(() => {
     navigate(library[0].link);
   }, [library]);
+
+  useEffect(() => {
+    navigate(library[0].link);
+  }, []);
 
   useEffect(() => {
     console.log(library);

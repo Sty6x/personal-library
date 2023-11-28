@@ -1,7 +1,7 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, useCallback } from "react";
 import BookStyles from "./book.module.css";
 import { LibraryContext } from "../app/App";
-import { Stage, Container, Text } from "@pixi/react";
+import { Stage, Container, Text, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
 
 const Book = () => {
@@ -20,19 +20,26 @@ const Book = () => {
   // useEffect(() => {
   //   setCurrentBook(() => filterCurrentBook(library));
   // }, [window.location.pathname]);
+  //
+  const draw = useCallback((g) => {
+    g.beginFill(0xffffff);
+    g.drawRect(0, 0, 100, 100);
+  }, []);
 
   return (
     <div id="book" ref={bookRef} className={BookStyles.container}>
-      <Stage>
-        <Container x={400} y={330}>
+      <Stage options={{ antialias: true }}>
+        <Container x={400} y={300}>
+          <Graphics draw={draw} />
           <Text
+            anchor={{ x: 0, y: 0 }}
+            position={{ x: 0, y: 0 }}
             eventMode="static"
             onclick={(e) => {
               console.log("clicked");
             }}
             text="Hello World"
-            anchor={{ x: 0.5, y: 0.5 }}
-            style={new PIXI.TextStyle({ fill: ["#ffffff", "#00ff99"] })}
+            style={new PIXI.TextStyle({ fill: "#00ff99" })}
           />
         </Container>
       </Stage>
