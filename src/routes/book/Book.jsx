@@ -13,6 +13,7 @@ const Book = () => {
   const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
 
   function updateCurrentNotePosition(selectedNote) {
+    let isChanged = false;
     const currentNote = filterArrItems(currentBook.notes, (note) => note.id === selectedNote.name);
     const updateNotes = {
       ...currentNote,
@@ -23,22 +24,32 @@ const Book = () => {
     };
     const mappedNotes = currentBook.notes.map((note) => {
       if (note.id === currentNote.id) {
-        return updateNotes;
+        if (
+          note.position.x !== currentNote.position.x &&
+          note.position.x !== currentNote.position.y
+        ) {
+          isChanged = true;
+          return updateNotes;
+        }
       }
       return note;
     });
 
-    setLibrary((prev) =>
-      prev.map((book) => {
-        if (book.link === currentBook.link) {
-          return { ...currentBook, notes: mappedNotes };
-        }
-        return book;
-      }),
-    );
+    if (isChanged) {
+      setLibrary((prev) =>
+        prev.map((book) => {
+          if (book.link === currentBook.link) {
+            return { ...currentBook, notes: mappedNotes };
+          }
+          return book;
+        }),
+      );
+    }
   }
 
   useEffect(() => {
+    // library is rerendering when mouse leaves the container and note position is the same
+    // check if book pos is the same as previous before updating
     console.log(currentBook);
   }, [library]);
 
@@ -48,7 +59,6 @@ const Book = () => {
 
   return (
     <div id="book" ref={bookRef} className={BookStyles.container}>
-      <button>Update something</button>
       <Stage
         width={window.innerWidth}
         height={window.innerHeight}
