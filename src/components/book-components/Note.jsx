@@ -2,8 +2,9 @@ import { Text, Container, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
 import { useCallback } from "react";
 
-const Note = ({}) => {
+const Note = ({ noteData }) => {
   let noteIsClicked = false;
+  console.log(noteData);
 
   function handleOnMouseDrag(pe) {
     if (!noteIsClicked) {
@@ -12,8 +13,8 @@ const Note = ({}) => {
     let distanceX = pe.movementX;
     let distanceY = pe.movementY;
 
-    pe.currentTarget.x += distanceX;
-    pe.currentTarget.y += distanceY;
+    (pe.currentTarget.x += distanceX) * 0.8;
+    (pe.currentTarget.y += distanceY) * 0.8;
   }
 
   function initMouseClicked(pe) {
@@ -22,7 +23,7 @@ const Note = ({}) => {
   }
 
   const draw = useCallback((g) => {
-    g.beginFill(0x68a5de);
+    g.beginFill(noteData.styles.backgroundColor);
     g.drawRoundedRect(0, 0, 450, 300, 6);
   }, []);
   return (
@@ -34,14 +35,14 @@ const Note = ({}) => {
       onmouseleave={() => {
         noteIsClicked = false;
       }}
-      x={300}
-      y={300}
+      x={noteData.position.x}
+      y={noteData.position.y}
     >
       <Graphics draw={draw} />
       <Text
         anchor={{ x: 0, y: 0 }}
         position={{ x: 20, y: 10 }}
-        text="Word Wrap Width is set to 80px For some reason HEHEHHEAD iawdjamoiwd wdiadj"
+        text={noteData.contents}
         style={new PIXI.TextStyle({ fill: "#1a1b1d", wordWrapWidth: 400 - 30, wordWrap: true })}
       />
     </Container>

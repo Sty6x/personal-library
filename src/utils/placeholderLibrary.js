@@ -11,12 +11,18 @@ export const placeholders = [
       {
         contents: "This is the contents \nof the current note of \nHaruki murakami",
         page: 31,
+        styles: {
+          backgroundColor: "#DF7868",
+        },
         position: { x: 100, y: 250 },
       },
       {
         contents: "Somethin something \nhe said to \nmr something",
         page: 152,
         position: { x: 120, y: 320 },
+        styles: {
+          backgroundColor: "#68A5DE",
+        },
       },
     ],
   },
