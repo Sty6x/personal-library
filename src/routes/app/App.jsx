@@ -16,6 +16,14 @@ function App() {
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
 
+  function queryCurrentBook() {
+    const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
+    const currentLibraryState = library.filter(
+      (book) => `/${book.link}` !== window.location.pathname,
+    );
+    return currentBook;
+  }
+
   function editBook(contents) {
     const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
     const currentLibraryState = library.filter(
@@ -49,10 +57,38 @@ function App() {
 
   function addNote(e) {
     e.preventDefault();
+    const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
     const formData = new FormData(e.currentTarget);
-    const formEntries = Object.fromEntries(formData.entries());
-    console.log(formEntries);
-    console.log(e.target);
+    const newNote = Object.fromEntries(formData.entries());
+    console.log(newNote);
+    const updatedBook = {
+      ...currentBook,
+      notes: [
+        {
+          id: uid(16),
+          ...newNote,
+          position: { x: 100, y: 100 },
+          styles: {
+            backgroundColor: newNote.pickedColorBackground,
+            textStyles: {
+              fill: newNote.pickedColorText,
+              wordWrapWidth: 400 - 30,
+              wordWrap: true,
+            },
+          },
+        },
+        ...currentBook.notes,
+      ],
+    };
+    setLibrary((prev) =>
+      prev.map((book) => {
+        if (`/${book.link}` === window.location.pathname) {
+          console.log(updatedBook);
+          return updatedBook;
+        }
+        return book;
+      }),
+    );
   }
 
   useEffect(() => {

@@ -4,7 +4,6 @@ import { useCallback } from "react";
 
 const Note = ({ noteData }) => {
   let noteIsClicked = false;
-  console.log(noteData);
 
   function handleOnMouseDrag(pe) {
     if (!noteIsClicked) {
