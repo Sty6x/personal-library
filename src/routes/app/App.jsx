@@ -66,7 +66,8 @@ function App() {
       notes: [
         {
           id: uid(16),
-          ...newNote,
+          // ...newNote,
+          contents: newNote.contents,
           position: { x: 100, y: 100 },
           styles: {
             backgroundColor: newNote.pickedColorBackground,
@@ -98,10 +99,6 @@ function App() {
   useEffect(() => {
     navigate(library[0].link);
   }, []);
-
-  useEffect(() => {
-    console.log(library);
-  }, [library]);
 
   function returnSidebarBtn(e) {
     e.stopPropagation();

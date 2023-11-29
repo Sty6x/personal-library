@@ -24,33 +24,24 @@ const Book = () => {
     };
     const mappedNotes = currentBook.notes.map((note) => {
       if (note.id === currentNote.id) {
-        if (
-          note.position.x !== currentNote.position.x &&
-          note.position.x !== currentNote.position.y
-        ) {
-          isChanged = true;
-          return updateNotes;
-        }
+        isChanged = true;
+        return updateNotes;
       }
       return note;
     });
 
-    if (isChanged) {
-      setLibrary((prev) =>
-        prev.map((book) => {
-          if (book.link === currentBook.link) {
-            return { ...currentBook, notes: mappedNotes };
-          }
-          return book;
-        }),
-      );
-    }
+    setLibrary((prev) =>
+      prev.map((book) => {
+        if (book.link === currentBook.link) {
+          return { ...currentBook, notes: mappedNotes };
+        }
+        return book;
+      }),
+    );
   }
 
   useEffect(() => {
-    // library is rerendering when mouse leaves the container and note position is the same
-    // check if book pos is the same as previous before updating
-    console.log(currentBook);
+    // console.log(currentBook);
   }, [library]);
 
   const renderNotes = currentBook.notes.map((note) => {

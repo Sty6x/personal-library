@@ -49,6 +49,7 @@ export const placeholders = [
     isFinished: false,
     genre: ["Epic", "Nautical", "Adventure Fiction"],
     link: "book2",
+    notes: [],
   },
 
   {
@@ -59,6 +60,7 @@ export const placeholders = [
     isFinished: false,
     genre: ["Novel", "Psychological", "Crime", "Philosophical"],
     link: "book3",
+    notes: [],
   },
 
   {
@@ -69,6 +71,8 @@ export const placeholders = [
     isFinished: false,
     genre: ["Biography", "Autobiography", "Diary", "Personal Narrative"],
     link: "book4",
+
+    notes: [],
   },
   {
     author: "Viktor Frankl",
@@ -78,6 +82,8 @@ export const placeholders = [
     isFinished: false,
     genre: ["Biography", "Autobiography", "Personal Narrative"],
     link: "book5",
+
+    notes: [],
   },
   {
     author: "Niccolo Machiavelli",
@@ -87,6 +93,8 @@ export const placeholders = [
     isFinished: false,
     genre: ["Autobiography", "History"],
     link: "book6",
+
+    notes: [],
   },
   {
     author: "Osamu Dazai",
@@ -96,5 +104,7 @@ export const placeholders = [
     isFinished: false,
     genre: ["Novel", "Fiction"],
     link: "book7",
+
+    notes: [],
   },
 ];

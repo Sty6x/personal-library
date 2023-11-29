@@ -6,6 +6,7 @@ const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
   let noteIsClicked = false;
 
   function handleOnMouseDrag(pe) {
+    pe.stopPropagation();
     if (!noteIsClicked) {
       return;
     }
@@ -21,17 +22,29 @@ const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
     !noteIsClicked && handleUpdateCurrentPosition(pe.currentTarget);
   }
 
+  function noteSelection(pe) {
+    const container = pe.currentTarget;
+    const graphicsComponent = container.children[0];
+    graphicsComponent.clear();
+    graphicsComponent.beginFill("#DF786850");
+    graphicsComponent.drawRect(-10, -10, 470, 320);
+    graphicsComponent.endFill();
+
+    graphicsComponent.beginFill(noteData.styles.backgroundColor);
+    graphicsComponent.drawRoundedRect(0, 0, 450, 300, 6);
+    graphicsComponent.endFill();
+    console.log(graphicsComponent);
+  }
   const draw = useCallback((g) => {
     g.beginFill(noteData.styles.backgroundColor);
     g.drawRoundedRect(0, 0, 450, 300, 6);
+    g.endFill();
   }, []);
   return (
     <Container
       name={noteData.id}
       eventMode="static"
-      onclick={(pe) => {
-        console.log(pe.currentTarget);
-      }}
+      // onclick={noteSelection}
       onmousemove={handleOnMouseDrag}
       onmousedown={initMouseClicked}
       onmouseup={initMouseClicked}
