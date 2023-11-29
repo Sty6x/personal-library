@@ -21,14 +21,11 @@ function App() {
     const currentLibraryState = library.filter(
       (book) => `/${book.link}` !== window.location.pathname,
     );
-    return currentBook;
+    return [currentBook, currentLibraryState];
   }
 
   function editBook(contents) {
-    const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
-    const currentLibraryState = library.filter(
-      (book) => `/${book.link}` !== window.location.pathname,
-    );
+    const [currentBook, currentLibraryState] = queryCurrentBook();
     const updatedBook = {
       ...currentBook,
       title: contents.title,
@@ -55,9 +52,14 @@ function App() {
     setIsSidebarActive(false);
   }
 
+  function openEditNotePanelOnClick(e) {
+    setSidebarBtn("edit-note-panel");
+    setIsSidebarActive(true);
+  }
+
   function addNote(e) {
     e.preventDefault();
-    const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
+    const [currentBook] = queryCurrentBook();
     const formData = new FormData(e.currentTarget);
     const newNote = Object.fromEntries(formData.entries());
     console.log(newNote);
@@ -109,7 +111,7 @@ function App() {
 
   return (
     <main id="main-contents" className={AppStyles.main}>
-      <LibraryContext.Provider value={{ library, setLibrary }}>
+      <LibraryContext.Provider value={{ library, setLibrary, openEditNotePanelOnClick }}>
         <TopBarContext.Provider value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}>
           <Topbar />
         </TopBarContext.Provider>

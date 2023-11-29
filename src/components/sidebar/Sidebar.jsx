@@ -11,10 +11,18 @@ const Sidebar = () => {
   function revealSidebar() {
     if (currentPanel === "library-panel") {
       return <LibraryPanel />;
-    } else if (currentPanel === "note-panel") {
+    } else if (currentPanel === "add-note-panel") {
       return (
         <NotePanel
           title={"Add Note"}
+          handleOnAdd={addNote}
+          // handleButton={editBook}
+        />
+      );
+    } else if (currentPanel === "edit-note-panel") {
+      return (
+        <NotePanel
+          title={"Edit Note"}
           handleOnAdd={addNote}
           // handleButton={editBook}
         />

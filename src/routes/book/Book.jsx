@@ -9,7 +9,7 @@ import filterArrItems from "../../utils/filterArray";
 // needs to update but is delayed
 const Book = () => {
   const bookRef = useRef();
-  const { library, setLibrary } = useContext(LibraryContext);
+  const { library, setLibrary, openEditNotePanelOnClick } = useContext(LibraryContext);
   const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
 
   function updateCurrentNotePosition(selectedNote) {
@@ -45,7 +45,13 @@ const Book = () => {
   }, [library]);
 
   const renderNotes = currentBook.notes.map((note) => {
-    return <Note handleUpdateCurrentPosition={updateCurrentNotePosition} noteData={note} />;
+    return (
+      <Note
+        handleEditPanelOnSelect={openEditNotePanelOnClick}
+        handleUpdateCurrentPosition={updateCurrentNotePosition}
+        noteData={note}
+      />
+    );
   });
 
   return (

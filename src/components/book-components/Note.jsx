@@ -2,7 +2,7 @@ import { Text, Container, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
 import { forwardRef, useCallback, useContext } from "react";
 
-const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
+const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }, ref) => {
   let noteIsClicked = false;
 
   function initMouseClicked(pe) {
@@ -13,15 +13,17 @@ const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
   }
   function handleOnMouseDrag(pe) {
     pe.stopPropagation();
+    const container = pe.currentTarget;
     if (!noteIsClicked) {
       return;
     }
-    noteSelection(pe);
+    const setContainerIndex = noteIsClicked ? 999 : 1;
+    container.zIndex = setContainerIndex;
     let distanceX = pe.movementX;
     let distanceY = pe.movementY;
 
-    (pe.currentTarget.x += distanceX) * 0.8;
-    (pe.currentTarget.y += distanceY) * 0.8;
+    (container.x += distanceX) * 0.8;
+    (container.y += distanceY) * 0.8;
   }
 
   function redrawRectSelection(container) {
@@ -40,10 +42,11 @@ const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
     graphicsComponent.endFill();
   }
   function noteSelection(pe) {
+    console.log("clicked");
     const container = pe.currentTarget;
-    redrawRectSelection(container);
-    const setContainerIndex = noteIsClicked && 999;
-    container.zIndex = setContainerIndex;
+    // redrawRectSelection(container);
+
+    handleEditPanelOnSelect(pe);
   }
 
   const draw = useCallback((g) => {
