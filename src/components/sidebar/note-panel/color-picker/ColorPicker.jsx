@@ -21,7 +21,6 @@ const ColorPicker = ({ title }) => {
     let tmpColors = [];
     for (let i = 0; i < colorNumbers; i++) {
       const randomizeColors = Math.floor(Math.random() * defaultColors.length);
-      console.log(randomizeColors);
       tmpColors.push(
         <span
           id={defaultColors[randomizeColors]}
