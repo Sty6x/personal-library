@@ -9,21 +9,20 @@ const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }
     pe.stopPropagation();
     const container = pe.currentTarget;
     noteIsClicked = noteIsClicked ? false : true;
+    const setContainerIndex = noteIsClicked ? 999 : 1;
+    container.zIndex = setContainerIndex;
     !noteIsClicked && handleUpdateCurrentPosition(container);
   }
   function handleOnMouseDrag(pe) {
     pe.stopPropagation();
-    const container = pe.currentTarget;
     if (!noteIsClicked) {
       return;
     }
-    const setContainerIndex = noteIsClicked ? 999 : 1;
-    container.zIndex = setContainerIndex;
     let distanceX = pe.movementX;
     let distanceY = pe.movementY;
 
-    (container.x += distanceX) * 0.8;
-    (container.y += distanceY) * 0.8;
+    (pe.currentTarget.x += distanceX) * 0.8;
+    (pe.currentTarget.y += distanceY) * 0.8;
   }
 
   function redrawRectSelection(container) {
@@ -44,8 +43,10 @@ const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }
   function noteSelection(pe) {
     console.log("clicked");
     const container = pe.currentTarget;
-    // redrawRectSelection(container);
+    redrawRectSelection(container);
 
+    const setContainerIndex = noteIsClicked ? 999 : 1;
+    container.zIndex = setContainerIndex;
     handleEditPanelOnSelect(pe);
   }
 
