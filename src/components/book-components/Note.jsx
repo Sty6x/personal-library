@@ -35,8 +35,9 @@ const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
       onmousemove={handleOnMouseDrag}
       onmousedown={initMouseClicked}
       onmouseup={initMouseClicked}
-      onmouseleave={() => {
+      onmouseleave={(pe) => {
         noteIsClicked = false;
+        handleUpdateCurrentPosition(pe.currentTarget);
       }}
       x={noteData.position.x}
       y={noteData.position.y}

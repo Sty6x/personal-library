@@ -4,17 +4,13 @@ import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
 import Note from "../../components/book-components/Note";
+import filterArrItems from "../../utils/filterArray";
 
 // needs to update but is delayed
 const Book = () => {
   const bookRef = useRef();
   const { library, setLibrary } = useContext(LibraryContext);
   const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
-
-  function filterArrItems(arr, cb) {
-    const [item] = arr.filter(cb);
-    return item;
-  }
 
   function updateCurrentNotePosition(selectedNote) {
     const currentNote = filterArrItems(currentBook.notes, (note) => note.id === selectedNote.name);
@@ -25,10 +21,8 @@ const Book = () => {
         y: selectedNote.position.y,
       },
     };
-    console.log(updateNotes);
     const mappedNotes = currentBook.notes.map((note) => {
       if (note.id === currentNote.id) {
-        console.log(updateNotes);
         return updateNotes;
       }
       return note;
@@ -37,7 +31,6 @@ const Book = () => {
     setLibrary((prev) =>
       prev.map((book) => {
         if (book.link === currentBook.link) {
-          console.log(currentBook);
           return { ...currentBook, notes: mappedNotes };
         }
         return book;

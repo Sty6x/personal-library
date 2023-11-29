@@ -112,7 +112,7 @@ function App() {
 
   return (
     <main id="main-contents" className={AppStyles.main}>
-      <LibraryContext.Provider value={{ library }}>
+      <LibraryContext.Provider value={{ library, setLibrary }}>
         <TopBarContext.Provider value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}>
           <Topbar />
         </TopBarContext.Provider>
