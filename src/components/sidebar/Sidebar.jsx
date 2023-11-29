@@ -24,6 +24,7 @@ const Sidebar = () => {
         <NotePanel
           title={"Edit Note"}
           handleOnAdd={addNote}
+          currentNote={"dwa"}
           // handleButton={editBook}
         />
       );

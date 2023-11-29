@@ -5,6 +5,7 @@ import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
 import { placeholders } from "../../utils/placeholderLibrary.js";
+import filterArrItems from "../../utils/filterArray.js";
 
 export const TopBarContext = createContext();
 export const LibraryContext = createContext();
@@ -52,9 +53,15 @@ function App() {
     setIsSidebarActive(false);
   }
 
-  function openEditNotePanelOnClick(e) {
+  function openEditNotePanelOnClick(pe) {
+    const [currentBook] = queryCurrentBook();
+    const selectedNote = e.currentTarget;
     setSidebarBtn("edit-note-panel");
     setIsSidebarActive(true);
+    const currentNote = filterArrItems(
+      currentBook.notes,
+      (note) => note.id.toString().localeCompare(selectedNote.name) === 0,
+    );
   }
 
   function addNote(e) {
