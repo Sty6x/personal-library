@@ -18,7 +18,6 @@ const Note = ({ noteData }) => {
   }
 
   function initMouseClicked(pe) {
-    console.log(pe.currentTarget);
     noteIsClicked = noteIsClicked ? false : true;
   }
 
@@ -28,7 +27,11 @@ const Note = ({ noteData }) => {
   }, []);
   return (
     <Container
+      name={noteData.id}
       eventMode="static"
+      onclick={(pe) => {
+        console.log(pe.currentTarget);
+      }}
       onmousemove={handleOnMouseDrag}
       onmousedown={initMouseClicked}
       onmouseup={initMouseClicked}
@@ -43,7 +46,7 @@ const Note = ({ noteData }) => {
         anchor={{ x: 0, y: 0 }}
         position={{ x: 20, y: 10 }}
         text={noteData.contents}
-        style={new PIXI.TextStyle({ fill: "#1a1b1d", wordWrapWidth: 400 - 30, wordWrap: true })}
+        style={new PIXI.TextStyle(noteData.styles.textStyles)}
       />
     </Container>
   );

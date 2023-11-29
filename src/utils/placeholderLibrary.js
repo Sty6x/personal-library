@@ -1,3 +1,5 @@
+import { uid } from "uid";
+
 export const placeholders = [
   {
     author: "Haruki Murakami",
@@ -9,18 +11,30 @@ export const placeholders = [
     link: "book1",
     notes: [
       {
-        contents: "This is the contents \nof the current note of \nHaruki murakami",
+        id: uid(16),
+        contents: "This is the contents of the current note on Haruki murakami",
         page: 31,
         styles: {
           backgroundColor: "#DF7868",
+          textStyles: {
+            fill: "#1a1b1d",
+            wordWrapWidth: 400 - 30,
+            wordWrap: true,
+          },
         },
         position: { x: 100, y: 250 },
       },
       {
-        contents: "Somethin something \nhe said to \nmr something",
+        id: uid(16),
+        contents: "Somethin something he said to mr something",
         page: 152,
         position: { x: 120, y: 320 },
         styles: {
+          textStyles: {
+            fill: "#1a1b1d",
+            wordWrapWidth: 400 - 30,
+            wordWrap: true,
+          },
           backgroundColor: "#68A5DE",
         },
       },
