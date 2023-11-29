@@ -8,17 +8,49 @@ import Note from "../../components/book-components/Note";
 // needs to update but is delayed
 const Book = () => {
   const bookRef = useRef();
-
-  const { library } = useContext(LibraryContext);
+  const { library, setLibrary } = useContext(LibraryContext);
   const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
 
-  function filterCurrentBook(arr) {
-    const [book] = arr.filter((book) => `/${book.link}` === window.location.pathname);
-    return book;
+  function filterArrItems(arr, cb) {
+    const [item] = arr.filter(cb);
+    return item;
   }
 
+  function updateCurrentNotePosition(selectedNote) {
+    const currentNote = filterArrItems(currentBook.notes, (note) => note.id === selectedNote.name);
+    const updateNotes = {
+      ...currentNote,
+      position: {
+        x: selectedNote.position.x,
+        y: selectedNote.position.y,
+      },
+    };
+    console.log(updateNotes);
+    const mappedNotes = currentBook.notes.map((note) => {
+      if (note.id === currentNote.id) {
+        console.log(updateNotes);
+        return updateNotes;
+      }
+      return note;
+    });
+
+    setLibrary((prev) =>
+      prev.map((book) => {
+        if (book.link === currentBook.link) {
+          console.log(currentBook);
+          return { ...currentBook, notes: mappedNotes };
+        }
+        return book;
+      }),
+    );
+  }
+
+  useEffect(() => {
+    console.log(currentBook);
+  }, [library]);
+
   const renderNotes = currentBook.notes.map((note) => {
-    return <Note noteData={note} />;
+    return <Note handleUpdateCurrentPosition={updateCurrentNotePosition} noteData={note} />;
   });
 
   return (

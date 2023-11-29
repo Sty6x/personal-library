@@ -1,8 +1,8 @@
 import { Text, Container, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
-import { useCallback } from "react";
+import { forwardRef, useCallback, useContext } from "react";
 
-const Note = ({ noteData }) => {
+const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
   let noteIsClicked = false;
 
   function handleOnMouseDrag(pe) {
@@ -18,6 +18,7 @@ const Note = ({ noteData }) => {
 
   function initMouseClicked(pe) {
     noteIsClicked = noteIsClicked ? false : true;
+    !noteIsClicked && handleUpdateCurrentPosition(pe.currentTarget);
   }
 
   const draw = useCallback((g) => {
