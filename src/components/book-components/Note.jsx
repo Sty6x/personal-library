@@ -5,11 +5,18 @@ import { forwardRef, useCallback, useContext } from "react";
 const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
   let noteIsClicked = false;
 
+  function initMouseClicked(pe) {
+    pe.stopPropagation();
+    const container = pe.currentTarget;
+    noteIsClicked = noteIsClicked ? false : true;
+    !noteIsClicked && handleUpdateCurrentPosition(container);
+  }
   function handleOnMouseDrag(pe) {
     pe.stopPropagation();
     if (!noteIsClicked) {
       return;
     }
+    noteSelection(pe);
     let distanceX = pe.movementX;
     let distanceY = pe.movementY;
 
@@ -17,24 +24,28 @@ const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
     (pe.currentTarget.y += distanceY) * 0.8;
   }
 
-  function initMouseClicked(pe) {
-    noteIsClicked = noteIsClicked ? false : true;
-    !noteIsClicked && handleUpdateCurrentPosition(pe.currentTarget);
-  }
-
-  function noteSelection(pe) {
-    const container = pe.currentTarget;
+  function redrawRectSelection(container) {
     const graphicsComponent = container.children[0];
     graphicsComponent.clear();
-    graphicsComponent.beginFill("#DF786850");
-    graphicsComponent.drawRect(-10, -10, 470, 320);
+    graphicsComponent.beginFill("#ffffff");
+    graphicsComponent.drawRect(-12, -12, 474, 324);
+    graphicsComponent.endFill();
+
+    graphicsComponent.beginFill("#1a1b1d");
+    graphicsComponent.drawRect(-8, -8, 465, 315);
     graphicsComponent.endFill();
 
     graphicsComponent.beginFill(noteData.styles.backgroundColor);
     graphicsComponent.drawRoundedRect(0, 0, 450, 300, 6);
     graphicsComponent.endFill();
-    console.log(graphicsComponent);
   }
+  function noteSelection(pe) {
+    const container = pe.currentTarget;
+    redrawRectSelection(container);
+    const setContainerIndex = noteIsClicked && 999;
+    container.zIndex = setContainerIndex;
+  }
+
   const draw = useCallback((g) => {
     g.beginFill(noteData.styles.backgroundColor);
     g.drawRoundedRect(0, 0, 450, 300, 6);
@@ -44,7 +55,7 @@ const Note = ({ noteData, handleUpdateCurrentPosition }, ref) => {
     <Container
       name={noteData.id}
       eventMode="static"
-      // onclick={noteSelection}
+      onclick={noteSelection}
       onmousemove={handleOnMouseDrag}
       onmousedown={initMouseClicked}
       onmouseup={initMouseClicked}

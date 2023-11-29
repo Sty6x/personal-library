@@ -55,7 +55,7 @@ const Book = () => {
         height={window.innerHeight}
         options={{ backgroundColor: 0x1a1b1d, antialias: true }}
       >
-        {renderNotes}
+        <Container sortableChildren={true}>{renderNotes}</Container>
       </Stage>
     </div>
   );
