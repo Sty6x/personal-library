@@ -47,6 +47,14 @@ function App() {
     setIsSidebarActive(false);
   }
 
+  function addNote(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const formEntries = Object.fromEntries(formData.entries());
+    console.log(formEntries);
+    console.log(e.target);
+  }
+
   useEffect(() => {
     navigate(library[0].link);
   }, [library]);
@@ -75,6 +83,7 @@ function App() {
         <SidebarContext.Provider
           value={{
             addBook,
+            addNote,
             currentPanel: sidebarBtn,
             editBook,
             setIsSidebarActive,

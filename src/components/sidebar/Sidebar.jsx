@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { SidebarContext } from "../../routes/app/App";
 import NotePanel from "./note-panel/NotePanel";
 const Sidebar = () => {
-  const { currentPanel, editBook, library } = useContext(SidebarContext);
+  const { currentPanel, editBook, library, addNote } = useContext(SidebarContext);
   const panel = revealSidebar();
 
   function revealSidebar() {
@@ -15,8 +15,7 @@ const Sidebar = () => {
       return (
         <NotePanel
           title={"Add Note"}
-          panelTitle={"Edit book"}
-          buttonText={"Edit book"}
+          handleOnAdd={addNote}
           // handleButton={editBook}
         />
       );

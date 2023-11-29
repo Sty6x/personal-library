@@ -3,14 +3,14 @@ import ColorPicker from "./color-picker/ColorPicker";
 import notePanelStyles from "./notePanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
 
-const NotePanel = ({ title }) => {
+const NotePanel = ({ title, handleOnAdd }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
   return (
-    <div id="edit-panel" className={`${notePanelStyles.container}`}>
+    <form onSubmit={handleOnAdd} id="edit-panel" className={`${notePanelStyles.container}`}>
       <div id="edit-contents-container" className={`${notePanelStyles.editContainer}`}>
         <div className={`${notePanelStyles.inputsContainer}`}>
           <label htmlFor="note-contents">{title}</label>
-          <textarea type="text" id="note-contents" />
+          <textarea type="text" id="note-contents" name="contents" />
         </div>
       </div>
       <div id="color-progress-container" className={`${notePanelStyles.colorProgressContainer}`}>
@@ -21,6 +21,7 @@ const NotePanel = ({ title }) => {
       <div id="note-panel-btns" className={`${notePanelStyles.notePanelBtnsContainer}`}>
         <button>{title}</button>
         <button
+          type="button"
           onClick={() => {
             setIsSidebarActive((prev) => (prev ? false : true));
           }}
@@ -28,7 +29,7 @@ const NotePanel = ({ title }) => {
           Cancel
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

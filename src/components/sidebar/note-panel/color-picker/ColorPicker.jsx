@@ -49,7 +49,7 @@ const ColorPicker = ({ title }) => {
         </div>
         <input
           type="color"
-          name="pickedColor"
+          name={`pickedColor${title}`}
           defaultValue={defaultColors[Math.floor(Math.random() * defaultColors.length)]}
         />
       </div>
