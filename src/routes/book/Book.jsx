@@ -5,14 +5,12 @@ import { Stage, Container, Text, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
 import Note from "../../components/book-components/Note";
 
+// needs to update but is delayed
 const Book = () => {
   const bookRef = useRef();
 
   const { library } = useContext(LibraryContext);
-  const [currentBook, setCurrentBook] = useState(() => {
-    const [book] = library.filter((book) => `/${book.link}` === window.location.pathname);
-    return book;
-  });
+  const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
 
   function filterCurrentBook(arr) {
     const [book] = arr.filter((book) => `/${book.link}` === window.location.pathname);
@@ -20,13 +18,8 @@ const Book = () => {
   }
 
   const renderNotes = currentBook.notes.map((note) => {
-    console.log(note.contents);
     return <Note noteData={note} />;
   });
-
-  useEffect(() => {
-    setCurrentBook(() => filterCurrentBook(library));
-  }, [window.location.pathname]);
 
   return (
     <div id="book" ref={bookRef} className={BookStyles.container}>
