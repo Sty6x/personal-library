@@ -55,7 +55,7 @@ const SidebarBtns = () => {
               returnSidebarBtn(e);
               setCurrentActivePanel(e.currentTarget.id);
             }}
-            id="note-panel"
+            id="add-note-panel"
             className={`${sidebarBtnStyles.sidebarBtn}  ${sidebarBtnStyles.btns}`}
           >
             <svg
