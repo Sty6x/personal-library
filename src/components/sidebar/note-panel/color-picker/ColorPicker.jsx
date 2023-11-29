@@ -21,7 +21,6 @@ const ColorPicker = ({ title }) => {
     let tmpColors = [];
     for (let i = 0; i < colorNumbers; i++) {
       const randomizeColors = Math.floor(Math.random() * defaultColors.length);
-      console.log(randomizeColors);
       tmpColors.push(
         <span
           id={defaultColors[randomizeColors]}
@@ -49,7 +48,7 @@ const ColorPicker = ({ title }) => {
         </div>
         <input
           type="color"
-          name="pickedColor"
+          name={`pickedColor${title}`}
           defaultValue={defaultColors[Math.floor(Math.random() * defaultColors.length)]}
         />
       </div>
