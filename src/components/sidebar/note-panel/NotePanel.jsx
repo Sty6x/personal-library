@@ -1,16 +1,39 @@
-import { useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ColorPicker from "./color-picker/ColorPicker";
 import notePanelStyles from "./notePanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
 
-const NotePanel = ({ title, handleOnAdd }) => {
+const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
+  const [newContents, setNewContents] = useState(currentNote.contents);
+  const formRef = useRef();
+  useEffect(() => {
+    setNewContents(currentNote.contents);
+    console.log(newContents);
+  }, [currentNote]);
+
   return (
-    <form onSubmit={handleOnAdd} id="edit-panel" className={`${notePanelStyles.container}`}>
+    <form
+      ref={formRef}
+      onSubmit={(e) => {
+        handleOnSubmit(e, textContent);
+      }}
+      id="edit-panel"
+      className={`${notePanelStyles.container}`}
+    >
       <div id="edit-contents-container" className={`${notePanelStyles.editContainer}`}>
         <div className={`${notePanelStyles.inputsContainer}`}>
           <label htmlFor="note-contents">{title}</label>
-          <textarea type="text" id="note-contents" name="contents" />
+          <textarea
+            onChange={(e) => {
+              setNewContents(e.currentTarget.value);
+            }}
+            className="inputs"
+            type="text"
+            id="note-contents"
+            name="contents"
+            value={newContents}
+          />
         </div>
       </div>
       <div id="color-progress-container" className={`${notePanelStyles.colorProgressContainer}`}>

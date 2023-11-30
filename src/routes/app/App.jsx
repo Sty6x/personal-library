@@ -16,6 +16,7 @@ function App() {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
+  const [selectedNote, setSelectedNote] = useState({});
 
   function queryCurrentBook() {
     const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
@@ -55,13 +56,14 @@ function App() {
 
   function openEditNotePanelOnClick(pe) {
     const [currentBook] = queryCurrentBook();
-    const selectedNote = e.currentTarget;
+    const selectedNote = pe.currentTarget;
     setSidebarBtn("edit-note-panel");
     setIsSidebarActive(true);
     const currentNote = filterArrItems(
       currentBook.notes,
       (note) => note.id.toString().localeCompare(selectedNote.name) === 0,
     );
+    setSelectedNote(currentNote);
   }
 
   function addNote(e) {
@@ -126,6 +128,7 @@ function App() {
           value={{
             addBook,
             addNote,
+            currentNote: selectedNote,
             currentPanel: sidebarBtn,
             editBook,
             setIsSidebarActive,

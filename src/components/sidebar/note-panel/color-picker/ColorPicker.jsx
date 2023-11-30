@@ -1,7 +1,9 @@
+import { useMemo, useState } from "react";
 import colorPickerStyles from "./colorPicker.module.css";
 const ColorPicker = ({ title }) => {
   // if the local storage for pickedColors array is empty
   // then use default colors state
+  const [currentColor, setCurrentColor] = useState("#ffffff");
   const colorNumbers = 6;
   const defaultColors = [
     "#C7A2DE",
@@ -17,12 +19,18 @@ const ColorPicker = ({ title }) => {
     "#CA68DE",
   ];
 
+  const randomizeColors = useMemo(() => {
+    return Math.floor(Math.random() * defaultColors.length);
+  }, []);
+
   const displayDefaultColors = () => {
     let tmpColors = [];
     for (let i = 0; i < colorNumbers; i++) {
-      const randomizeColors = Math.floor(Math.random() * defaultColors.length);
       tmpColors.push(
         <span
+          onClick={(e) => {
+            setCurrentColor(e.currentTarget.dataset.color);
+          }}
           id={defaultColors[randomizeColors]}
           data-color={defaultColors[randomizeColors]}
           className={`${colorPickerStyles.colors}`}
@@ -47,8 +55,14 @@ const ColorPicker = ({ title }) => {
           {colors}
         </div>
         <input
+          className="inputs"
           type="color"
           name={`pickedColor${title}`}
+          onChange={(e) => {
+            const target = e.target;
+            target.value = currentColor;
+          }}
+          value={currentColor}
           // defaultValue={defaultColors[Math.floor(Math.random() * defaultColors.length)]}
         />
       </div>
