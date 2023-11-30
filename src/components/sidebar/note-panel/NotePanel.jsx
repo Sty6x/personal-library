@@ -5,10 +5,10 @@ import { SidebarContext } from "../../../routes/app/App";
 
 const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
-  const [newContents, setNewContents] = useState(currentNote.contents);
+  const [newContents, setNewContents] = useState();
   const formRef = useRef();
   useEffect(() => {
-    setNewContents(currentNote.contents);
+    setNewContents(currentNote === undefined ? "" : currentNote.contents);
     console.log(newContents);
   }, [currentNote]);
 
