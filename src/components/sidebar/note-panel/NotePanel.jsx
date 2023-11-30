@@ -16,7 +16,8 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
     <form
       ref={formRef}
       onSubmit={(e) => {
-        handleOnSubmit(e, textContent);
+        e.preventDefault();
+        handleOnSubmit(e, newContents);
       }}
       id="edit-panel"
       className={`${notePanelStyles.container}`}

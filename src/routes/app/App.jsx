@@ -66,6 +66,11 @@ function App() {
     setSelectedNote(currentNote);
   }
 
+  function editNote(e, textContent) {
+    console.log(e.currentTarget);
+    console.log(textContent);
+  }
+
   function addNote(e) {
     e.preventDefault();
     const [currentBook] = queryCurrentBook();
@@ -128,6 +133,7 @@ function App() {
           value={{
             addBook,
             addNote,
+            editNote,
             currentNote: selectedNote,
             currentPanel: sidebarBtn,
             editBook,
