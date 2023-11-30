@@ -11,6 +11,10 @@ export const TopBarContext = createContext();
 export const LibraryContext = createContext();
 export const SidebarContext = createContext();
 
+// what updates the app?
+// adding, editing, deleting, selecting a note, sidebar activities
+// outlets (book routes) are not supposed to update when sidebar states are changed.
+
 function App() {
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(false);
@@ -19,9 +23,11 @@ function App() {
   const [selectedNote, setSelectedNote] = useState({});
 
   function queryCurrentBook() {
-    const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
+    const [currentBook] = library.filter(
+      (book) => `/${book.link}` === window.location.pathname
+    );
     const currentLibraryState = library.filter(
-      (book) => `/${book.link}` !== window.location.pathname,
+      (book) => `/${book.link}` !== window.location.pathname
     );
     return [currentBook, currentLibraryState];
   }
@@ -61,14 +67,41 @@ function App() {
     setIsSidebarActive(true);
     const currentNote = filterArrItems(
       currentBook.notes,
-      (note) => note.id.toString().localeCompare(selectedNote.name) === 0,
+      (note) => note.id.toString().localeCompare(selectedNote.name) === 0
     );
     setSelectedNote(currentNote);
   }
 
   function editNote(e, textContent) {
-    console.log(e.currentTarget);
-    console.log(textContent);
+    const target = e.currentTarget;
+    const formData = new FormData(e.currentTarget);
+    const updatedNoteData = Object.fromEntries(formData.entries());
+    const [currentBook] = queryCurrentBook();
+    const currentNote = filterArrItems(
+      currentBook.notes,
+      (note) => note.id === selectedNote.id
+    );
+    const updateNotes = currentBook.notes.map((note) => {
+      if (note.id !== selectedNote.id) return note;
+      const updatedEdittedNote = {
+        ...note,
+        contents: textContent,
+        styles: {
+          ...note.styles,
+          backgroundColor: updatedNoteData.pickedColorBackground,
+          textStyles: {
+            fill: updatedNoteData.pickedColorText,
+            ...note.styles.textStyles,
+          }
+        }
+      }
+      return updatedEdittedNote;
+    });
+    setLibrary(prev => prev.map(book => {
+      if (book.link !== currentBook.link) return book
+      return { ...currentBook, notes: [...updateNotes] }
+    }))
+
   }
 
   function addNote(e) {
@@ -82,7 +115,6 @@ function App() {
       notes: [
         {
           id: uid(16),
-          // ...newNote,
           contents: newNote.contents,
           position: { x: 100, y: 100 },
           styles: {
@@ -104,7 +136,7 @@ function App() {
           return updatedBook;
         }
         return book;
-      }),
+      })
     );
   }
 
@@ -125,8 +157,12 @@ function App() {
 
   return (
     <main id="main-contents" className={AppStyles.main}>
-      <LibraryContext.Provider value={{ library, setLibrary, openEditNotePanelOnClick }}>
-        <TopBarContext.Provider value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}>
+      <LibraryContext.Provider
+        value={{ library, setLibrary, openEditNotePanelOnClick }}
+      >
+        <TopBarContext.Provider
+          value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}
+        >
           <Topbar />
         </TopBarContext.Provider>
         <SidebarContext.Provider
