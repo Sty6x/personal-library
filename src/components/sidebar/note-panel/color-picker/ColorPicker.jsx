@@ -59,11 +59,10 @@ const ColorPicker = ({ title, currentColor }) => {
           type="color"
           name={`pickedColor${title}`}
           onChange={(e) => {
-            const target = e.target;
-            target.value = defaultColor;
+            const target = e.currentTarget;
+            setdefaultColor(target.value)
           }}
           value={defaultColor}
-        // defaultValue={defaultColors[Math.floor(Math.random() * defaultColors.length)]}
         />
       </div>
     </div>

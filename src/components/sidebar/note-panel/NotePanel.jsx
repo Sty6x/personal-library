@@ -38,9 +38,9 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         </div>
       </div>
       <div id="color-progress-container" className={`${notePanelStyles.colorProgressContainer}`}>
-        <ColorPicker currentColor={currentNote.styles.backgroundColor} title={"Background"} />
+        <ColorPicker currentColor={currentNote !== undefined ? currentNote.styles.backgroundColor : "#DF7868"} title={"Background"} />
         {/* <ColorPicker title={"Stroke"} /> */}
-        <ColorPicker currentColor={currentNote.styles.textStyles.fill} title={"Text"} />
+        <ColorPicker currentColor={currentNote !== undefined ? currentNote.styles.textStyles.fill : "#1a1b1d"} title={"Text"} />
       </div>
       <div id="note-panel-btns" className={`${notePanelStyles.notePanelBtnsContainer}`}>
         <button>{title}</button>
