@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import colorPickerStyles from "./colorPicker.module.css";
 const ColorPicker = ({ title, currentColor }) => {
   // if the local storage for pickedColors array is empty
@@ -18,6 +18,11 @@ const ColorPicker = ({ title, currentColor }) => {
     "#DE6868",
     "#CA68DE",
   ];
+
+  useEffect(() => {
+    setdefaultColor(currentColor);
+  }, [currentColor]);
+
 
   const randomizeColors = useMemo(() => {
     return Math.floor(Math.random() * defaultColors.length);

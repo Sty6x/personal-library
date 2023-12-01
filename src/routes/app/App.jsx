@@ -20,7 +20,7 @@ function App() {
   const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
-  const [selectedNote, setSelectedNote] = useState({});
+  const [selectedNote, setSelectedNote] = useState(undefined);
 
   function queryCurrentBook() {
     const [currentBook] = library.filter(
@@ -72,22 +72,23 @@ function App() {
     setSelectedNote(currentNote);
   }
 
-  function editNote(e, textContent) {
+  function editNote(e, noteData) {
     const target = e.currentTarget;
     const formData = new FormData(e.currentTarget);
-    const updatedNoteData = Object.fromEntries(formData.entries());
+    const updatedNoteDataInputs = Object.fromEntries(formData.entries());
     const [currentBook] = queryCurrentBook();
     const updateNotes = currentBook.notes.map((note) => {
       if (note.id !== selectedNote.id) return note;
       const updatedEdittedNote = {
         ...note,
-        contents: textContent,
+        contents: noteData.contents,
+        page: noteData.page,
         styles: {
           ...note.styles,
-          backgroundColor: updatedNoteData.pickedColorBackground,
+          backgroundColor: updatedNoteDataInputs.pickedColorBackground,
           textStyles: {
             ...note.styles.textStyles,
-            fill: updatedNoteData.pickedColorText,
+            fill: updatedNoteDataInputs.pickedColorText,
           }
         }
       }

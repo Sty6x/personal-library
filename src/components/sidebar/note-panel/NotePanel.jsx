@@ -5,11 +5,10 @@ import { SidebarContext } from "../../../routes/app/App";
 
 const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
-  const [newContents, setNewContents] = useState();
+  const [noteContents, setNoteContents] = useState({ contents: "", page: 0 });
   const formRef = useRef();
   useEffect(() => {
-    setNewContents(currentNote === undefined ? "" : currentNote.contents);
-    console.log(newContents);
+    currentNote !== undefined && setNoteContents(currentNote);
   }, [currentNote]);
 
   return (
@@ -17,29 +16,44 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
       ref={formRef}
       onSubmit={(e) => {
         e.preventDefault();
-        handleOnSubmit(e, newContents);
+        handleOnSubmit(e, noteContents);
+        setIsSidebarActive(false)
       }}
       id="edit-panel"
       className={`${notePanelStyles.container}`}
     >
       <div id="edit-contents-container" className={`${notePanelStyles.editContainer}`}>
+        {currentNote !== undefined &&
+          <div className={`${notePanelStyles.inputsContainer}`}>
+            <label htmlFor="page">{title}</label>
+            <input
+              onChange={(e) => {
+                setNoteContents({ ...noteContents, page: e.currentTarget.value })
+              }}
+              className="inputs"
+              type="number"
+              id="note-page"
+              name="page"
+              value={noteContents.page}
+            />
+
+          </div>}
         <div className={`${notePanelStyles.inputsContainer}`}>
           <label htmlFor="note-contents">{title}</label>
           <textarea
             onChange={(e) => {
-              setNewContents(e.currentTarget.value);
+              setNoteContents({ ...noteContents, contents: e.currentTarget.value });
             }}
             className="inputs"
             type="text"
             id="note-contents"
             name="contents"
-            value={newContents}
+            value={noteContents.contents}
           />
         </div>
       </div>
       <div id="color-progress-container" className={`${notePanelStyles.colorProgressContainer}`}>
         <ColorPicker currentColor={currentNote !== undefined ? currentNote.styles.backgroundColor : "#DF7868"} title={"Background"} />
-        {/* <ColorPicker title={"Stroke"} /> */}
         <ColorPicker currentColor={currentNote !== undefined ? currentNote.styles.textStyles.fill : "#1a1b1d"} title={"Text"} />
       </div>
       <div id="note-panel-btns" className={`${notePanelStyles.notePanelBtnsContainer}`}>

@@ -1,89 +1,85 @@
-
-.container{
+.container {
   background-color: var(--shade-dark);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
   height: 100%;
-  padding:2em 1.5em;
-  gap:1.2em;
-
+  padding: 2em 1.5em;
+  gap: 1.2em;
 }
-.editContainer{
-  display:flex;
-  flex-direction:column;
-  gap:1em;
+.editContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
-.inputsContainer{
+.inputsContainer {
   /* Labels */
-  & > :first-child{
-    display:block;
-    margin-bottom:.6em;
-    color:var(--text-white);
-    font-weight:600;
-    font-size:1.2rem;
+  & > :first-child {
+    display: block;
+    margin-bottom: 0.6em;
+    color: var(--text-white);
+    font-weight: 600;
+    font-size: 1.2rem;
   }
 
   /* Inputs */
-  & > :last-child{
-    box-sizing:border-box;
-    padding:.8em;
-    appearance:none;
-    border:none;
+  & > :last-child {
+    box-sizing: border-box;
+    padding: 0.8em;
+    appearance: none;
+    border: none;
     border-radius: 5px;
-    color:var(--text-white);
-    background-color:var(--bg);
-    display:block;
-    width:100%;
-    max-width:100%;
+    color: var(--text-white);
+    background-color: var(--bg);
+    display: block;
+    width: 100%;
+    max-width: 100%;
   }
-  
 }
 
-.pagesCountContainer{
-  display:flex;
-  gap:1em;
+.pagesCountContainer {
+  display: flex;
+  gap: 1em;
 }
-.colorProgressContainer{
-  display:flex;
-  flex-direction:column;
-  gap:1em;
-  position:relative;
+.colorProgressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: relative;
 }
 
-.notePanelBtnsContainer{
-
-  display:flex;
-  gap:.6em;
-  & > button{
-    margin-top:.6em;
-    border-radius:4px;
-    padding:.5em .7em;
-    font-weight:600;
+.notePanelBtnsContainer {
+  display: flex;
+  gap: 0.6em;
+  & > button {
+    margin-top: 0.6em;
+    border-radius: 4px;
+    padding: 0.5em 0.7em;
+    font-weight: 600;
   }
 
-  & > :first-child{
-    color:var(--bg);
-    font-size:.9rem;
-    background-color:var(--accent1);
+  & > :first-child {
+    color: var(--bg);
+    font-size: 0.9rem;
+    background-color: var(--accent1);
     transition: outline 150ms ease-in;
-    outline:transparent 1px solid;
-    outline-offset:2px;
+    outline: transparent 1px solid;
+    outline-offset: 2px;
   }
-  & > :first-child:hover{
+  & > :first-child:hover {
     transition: outline 150ms ease-in;
-    outline:var(--accent1) 1px solid;
-    outline-offset:2px;
+    outline: var(--accent1) 1px solid;
+    outline-offset: 2px;
   }
 
-  & > :last-child{
-    background-color:transparent;
-    font-size:.8rem;
-    color:var(--text-white);
-    font-weight:500;
+  & > :last-child {
+    background-color: transparent;
+    font-size: 0.8rem;
+    color: var(--text-white);
+    font-weight: 500;
   }
-  & > :last-child:hover{
-    text-decoration:underline;
+  & > :last-child:hover {
+    text-decoration: underline;
   }
 }
