@@ -23,6 +23,11 @@ const ColorPicker = ({ title, currentColor }) => {
     return Math.floor(Math.random() * defaultColors.length);
   }, []);
 
+  function handleColorChange(e) {
+    const target = e.currentTarget;
+    setdefaultColor(target.value)
+  }
+
   const displayDefaultColors = () => {
     let tmpColors = [];
     for (let i = 0; i < colorNumbers; i++) {
@@ -58,10 +63,8 @@ const ColorPicker = ({ title, currentColor }) => {
           className="inputs"
           type="color"
           name={`pickedColor${title}`}
-          onChange={(e) => {
-            const target = e.currentTarget;
-            setdefaultColor(target.value)
-          }}
+          style={{ backgroundColor: defaultColor }}
+          onChange={handleColorChange}
           value={defaultColor}
         />
       </div>

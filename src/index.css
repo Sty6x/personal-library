@@ -1,67 +1,146 @@
-
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 :root {
   font-family: poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  --bg: #1A1B1D;
-  --text-white: #FFFFFF;
-  --text-dark: #1A1B1D;
-  --shade-dark:#2B2C31;
-  --shade-dark2:#5E6269;
-  --accent1:#DF7868;
-  --accent2:#68DE8C;
-  --accent3:#68A5DE;
-  --accent4:#DE6868;
-  
+  --bg: #1a1b1d;
+  --text-white: #ffffff;
+  --text-dark: #1a1b1d;
+  --shade-dark: #2b2c31;
+  --shade-dark2: #5e6269;
+  --accent1: #df7868;
+  --accent2: #68de8c;
+  --accent3: #68a5de;
+  --accent4: #de6868;
 
   color: var(--text-white);
   background-color: var(--bg);
@@ -73,125 +152,124 @@ table {
   -webkit-text-size-adjust: 100%;
 }
 
+@font-face {
+  font-family: "poppins";
+  font-weight: 300;
+  src: url("./assets/fonts/poppins-light-webfont.woff2") format("woff2"),
+    url("./assets/fonts/poppins-light-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: "poppins";
+  font-weight: 400;
+  src: url("./assets/fonts/poppins-regular-webfont.woff2") format("woff2"),
+    url("./assets/fonts/poppins-regular-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: "poppins";
+  font-weight: 500;
+  src: url("./assets/fonts/poppins-medium-webfont.woff2") format("woff2"),
+    url("./assets/fonts/poppins-medium-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: "poppins";
+  font-weight: 600;
+  src: url("./assets/fonts/poppins-semibold-webfont.woff2") format("woff2"),
+    url("./assets/fonts/poppins-semibold-webfont.woff") format("woff");
+}
+@font-face {
+  font-family: "poppins";
+  font-weight: 700;
+  src: url("./assets/fonts/poppins-bold-webfont.woff2") format("woff2"),
+    url("./assets/fonts/poppins-bold-webfont.woff") format("woff");
+}
 
-	@font-face {
-		font-family: "poppins";
-		font-weight: 300;
-		src:
-			url("./assets/fonts/poppins-light-webfont.woff2") format("woff2"),
-			url("./assets/fonts/poppins-light-webfont.woff") format("woff");
-	}
-	@font-face {
-		font-family: "poppins";
-		font-weight: 400;
-		src:
-			url("./assets/fonts/poppins-regular-webfont.woff2") format("woff2"),
-			url("./assets/fonts/poppins-regular-webfont.woff") format("woff");
-	}
-	@font-face {
-		font-family: "poppins";
-		font-weight: 500;
-		src:
-			url("./assets/fonts/poppins-medium-webfont.woff2") format("woff2"),
-			url("./assets/fonts/poppins-medium-webfont.woff") format("woff");
-	}
-	@font-face {
-		font-family: "poppins";
-		font-weight: 600;
-		src:
-			url("./assets/fonts/poppins-semibold-webfont.woff2") format("woff2"),
-			url("./assets/fonts/poppins-semibold-webfont.woff") format("woff");
-	}
-	@font-face {
-		font-family: "poppins";
-		font-weight:  700;
-		src:
-			url("./assets/fonts/poppins-bold-webfont.woff2") format("woff2"),
-			url("./assets/fonts/poppins-bold-webfont.woff") format("woff");
-	}
-
-
-body,html{
-  overflow:hidden;
+body,
+html {
+  overflow: hidden;
   height: 100vh;
 }
-#root{
+#root {
   height: 100%;
   /* display:flex; */
   /* flex-direction:column; */
 }
 
-button{
-  appearance:none;
-  border:none;
-  background-color:transparent;
-  cursor:pointer;
+button {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-li{
-  list-style:none;
+li {
+  list-style: none;
 }
 
-
-a{
-  cursor:pointer;
+a {
+  cursor: pointer;
 }
 
-a:link,a:visited,a:hover,a:active{
-  color:var(--text-white);
-  text-decoration:none;
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--text-white);
+  text-decoration: none;
 }
-a{
+a {
 }
-input,textarea,button{
+input,
+textarea,
+button {
   font-family: poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-	color: white;
-	-webkit-text-fill-color: white;
-	-webkit-box-shadow: none;
-	transition: background-color 10000s ease-in-out 0s;
+  color: white;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: none;
+  transition: background-color 10000s ease-in-out 0s;
 }
 
-input,textarea{
-  border:none;
-  appearance:none;
-  -webkit-appearance:none;
-  outline:1px solid transparent;
-  transition:outline 150ms ease-in-out;
+input,
+textarea {
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: 1px solid transparent;
+  transition: outline 150ms ease-in-out;
 }
 
-label{
-
-    display:block;
-    margin-bottom:.6em;
-    font-weight:600;
-    font-size:1rem;
+label {
+  display: block;
+  margin-bottom: 0.6em;
+  font-weight: 600;
+  font-size: 1rem;
 }
-input{
-    box-sizing:border-box;
-    padding:.8em;
-    appearance:none;
-    border:none;
-    border-radius: 5px;
-    color:var(--text-white);
-    background-color:var(--bg);
-    display:block;
-    width:100%;
-    max-width:100%;
-}
-
-input:focus,textarea:focus{
-  transition:outline 150ms ease-in-out;
-  outline:1px solid var(--accent1);
+input {
+  box-sizing: border-box;
+  padding: 0.8em;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  color: var(--text-white);
+  background-color: var(--bg);
+  display: block;
+  width: 100%;
+  max-width: 100%;
 }
 
-textarea{
-  min-height:15em;
-  resize:none;
+input:focus,
+textarea:focus {
+  transition: outline 150ms ease-in-out;
+  outline: 1px solid var(--accent1);
+}
+
+textarea {
+  min-height: 15em;
+  resize: none;
 }
 
 ::-webkit-scrollbar {
@@ -205,23 +283,34 @@ textarea{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  border-radius:5px;
+  border-radius: 5px;
   background: var(--accent1);
-  transition:background 150ms ease-in;
+  transition: background 150ms ease-in;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  transition:background 150ms ease-in;
+  transition: background 150ms ease-in;
 }
 
-a.active{
+a.active {
   transition: background-color 150ms ease-in;
-  background-color:#ffffff20;
+  background-color: #ffffff20;
 }
 
-canvas{
--webkit-user-select: none; /* Safari */
+canvas {
+  -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */}
+  user-select: none; /* Standard syntax */
+}
 
+input[type="color"]::-moz-color-swatch {
+  border: none;
+}
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+  border-radius: 8px;
+}
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+}
