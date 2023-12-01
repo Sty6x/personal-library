@@ -74,7 +74,7 @@ function App() {
 
   function editNote(e, noteData) {
     const target = e.currentTarget;
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(target);
     const updatedNoteDataInputs = Object.fromEntries(formData.entries());
     const [currentBook] = queryCurrentBook();
     const updateNotes = currentBook.notes.map((note) => {

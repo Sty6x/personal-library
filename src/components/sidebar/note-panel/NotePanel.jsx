@@ -8,16 +8,13 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const [noteContents, setNoteContents] = useState({ contents: "", page: 0 });
   const formRef = useRef();
 
-  function resetInputFields() {
-    // if(title)
-  }
   useEffect(() => {
-    resetInputFields()
-  }, [currentNote])
-
+    title === "Add" && setNoteContents({ contents: "", page: 0 });
+  }, [title]);
 
   useEffect(() => {
-    currentNote !== undefined && setNoteContents(currentNote);
+    if (currentNote === undefined) return
+    setNoteContents(currentNote)
   }, [currentNote]);
 
   return (
