@@ -57,7 +57,6 @@ function App() {
       isFinished: false,
     };
     setLibrary((prev) => [newBook, ...prev]);
-    setIsSidebarActive(false);
   }
 
   function openEditNotePanelOnClick(pe) {

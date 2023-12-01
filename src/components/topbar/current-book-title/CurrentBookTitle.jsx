@@ -8,7 +8,7 @@ const CurrentBookTitle = () => {
 
   useEffect(() => {
     setCurrentBook((prevState) => {
-      const [newState] = library.filter((book) => `/${book.link}` == window.location.pathname);
+      const [newState] = library.filter((book) => `/${book.link}` === window.location.pathname);
       return newState;
     });
   }, [window.location.pathname, library]);

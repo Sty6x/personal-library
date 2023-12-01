@@ -8,7 +8,8 @@ const Topbar = () => {
   return (
     <nav id="top-bar" className={TopbarStyles.navbar}>
       <SidebarBtns />
-      <CurrentBookTitle />
+      {window.location.pathname !== "/" && <CurrentBookTitle />}
+
       <ZoomBtns />
     </nav>
   );
