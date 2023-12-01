@@ -73,9 +73,16 @@ const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }
       <Graphics draw={draw} />
       <Text
         anchor={{ x: 0, y: 0 }}
-        position={{ x: 20, y: 10 }}
+        position={{ x: 20, y: 50 }}
         text={noteData.contents}
-        style={new PIXI.TextStyle(noteData.styles.textStyles)}
+        style={new PIXI.TextStyle({ ...noteData.styles.textStyles })}
+      />
+
+      <Text
+        anchor={{ x: 0, y: 0 }}
+        position={{ x: 20, y: 10 }}
+        text={`Page:${noteData.page}`}
+        style={new PIXI.TextStyle({ ...noteData.styles.textStyles, fontWeight: "600" })}
       />
     </Container>
   );

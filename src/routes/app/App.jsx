@@ -114,6 +114,7 @@ function App() {
           id: uid(16),
           contents: newNote.contents,
           position: { x: 100, y: 100 },
+          page: currentBook.currentPage,
           styles: {
             backgroundColor: newNote.pickedColorBackground,
             textStyles: {
