@@ -1,5 +1,5 @@
 import { uid } from "uid";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
@@ -139,9 +139,6 @@ function App() {
     );
   }
 
-  useEffect(() => {
-    navigate(library[0].link);
-  }, [library]);
 
   useEffect(() => {
     navigate(library[0].link);
