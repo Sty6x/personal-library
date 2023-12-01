@@ -35,13 +35,21 @@ const BookItem = ({
             </svg>
           </div>
           <div id="book-item-info" className={`${bookItemStyles.bookInfoContainer}`}>
-            <p>{title}</p>
+            <p>{title === "" ? "New book" : title}</p>
             <span className={`${bookItemStyles.metaBookInfo}`}>
-              <p>Author: {author}</p>
-              <p>
-                Pages: {totalPages} | Page: {currentPage}
-              </p>
-              <p>Genre: {genre.join(", ")}</p>
+              <p>Author: {author === "" ? "Book author" : author}</p>
+              {
+                totalPages === "" && currentPage === "" ?
+                  <p>
+                    Pages: 0 | Page: 0
+                  </p>
+                  :
+                  <p>
+                    Pages: {totalPages} | Page: {currentPage}
+                  </p>
+
+              }
+              <p>Genre: {genre.length === 0 ? "Book genres" : genre.join(", ")}</p>
             </span>
           </div>
         </div>
