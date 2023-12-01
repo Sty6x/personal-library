@@ -54,7 +54,7 @@ const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }
     g.beginFill(noteData.styles.backgroundColor);
     g.drawRoundedRect(0, 0, 450, 300, 6);
     g.endFill();
-  }, []);
+  }, [noteData]);
   return (
     <Container
       name={noteData.id}

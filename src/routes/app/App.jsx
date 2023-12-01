@@ -77,10 +77,6 @@ function App() {
     const formData = new FormData(e.currentTarget);
     const updatedNoteData = Object.fromEntries(formData.entries());
     const [currentBook] = queryCurrentBook();
-    const currentNote = filterArrItems(
-      currentBook.notes,
-      (note) => note.id === selectedNote.id
-    );
     const updateNotes = currentBook.notes.map((note) => {
       if (note.id !== selectedNote.id) return note;
       const updatedEdittedNote = {
@@ -90,11 +86,12 @@ function App() {
           ...note.styles,
           backgroundColor: updatedNoteData.pickedColorBackground,
           textStyles: {
-            fill: updatedNoteData.pickedColorText,
             ...note.styles.textStyles,
+            fill: updatedNoteData.pickedColorText,
           }
         }
       }
+      console.log(updatedEdittedNote)
       return updatedEdittedNote;
     });
     setLibrary(prev => prev.map(book => {
