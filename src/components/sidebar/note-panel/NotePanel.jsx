@@ -7,6 +7,15 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
   const [noteContents, setNoteContents] = useState({ contents: "", page: 0 });
   const formRef = useRef();
+
+  function resetInputFields() {
+    // if(title)
+  }
+  useEffect(() => {
+    resetInputFields()
+  }, [currentNote])
+
+
   useEffect(() => {
     currentNote !== undefined && setNoteContents(currentNote);
   }, [currentNote]);
@@ -22,10 +31,11 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
       id="edit-panel"
       className={`${notePanelStyles.container}`}
     >
-      <div id="edit-contents-container" className={`${notePanelStyles.editContainer}`}>
+      <div id="contents-container" className={`${notePanelStyles.editContainer}`}>
+        <h3>{title} Note</h3>
         {currentNote !== undefined &&
           <div className={`${notePanelStyles.inputsContainer}`}>
-            <label htmlFor="page">{title}</label>
+            <label htmlFor="page">Page</label>
             <input
               onChange={(e) => {
                 setNoteContents({ ...noteContents, page: e.currentTarget.value })
@@ -39,7 +49,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
 
           </div>}
         <div className={`${notePanelStyles.inputsContainer}`}>
-          <label htmlFor="note-contents">{title}</label>
+          <label htmlFor="note-contents">Note Text</label>
           <textarea
             onChange={(e) => {
               setNoteContents({ ...noteContents, contents: e.currentTarget.value });
@@ -57,7 +67,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         <ColorPicker currentColor={currentNote !== undefined ? currentNote.styles.textStyles.fill : "#1a1b1d"} title={"Text"} />
       </div>
       <div id="note-panel-btns" className={`${notePanelStyles.notePanelBtnsContainer}`}>
-        <button>{title}</button>
+        <button>Confirm</button>
         <button
           type="button"
           onClick={() => {

@@ -15,18 +15,18 @@ const Sidebar = () => {
     } else if (currentPanel === "add-note-panel") {
       return (
         <NotePanel
-          title={"Add Note"}
+          title={"Add"}
           handleOnSubmit={addNote}
-          // handleButton={editBook}
+        // handleButton={editBook}
         />
       );
     } else if (currentPanel === "edit-note-panel") {
       return (
         <NotePanel
-          title={"Edit Note"}
+          title={"Edit"}
           handleOnSubmit={editNote}
           currentNote={currentNote}
-          // handleButton={editBook}
+        // handleButton={editBook}
         />
       );
     } else if (currentPanel === "edit-book-panel") {
