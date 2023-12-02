@@ -174,6 +174,15 @@ function App() {
     }
   }, [popupItems]);
 
+  // if popup is added means that the user did an action
+  // eg: adding updating deleting
+  // close if actions are invoked
+  useEffect(() => {
+    if (popupItems.length > 0) {
+      setIsSidebarActive(false);
+    }
+  }, [popupItems]);
+
   return (
     <main id="main-contents" className={AppStyles.main}>
       <LibraryContext.Provider
