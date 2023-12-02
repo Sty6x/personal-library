@@ -1,16 +1,16 @@
 import PopupItem from "./popup-item/PopupItem.jsx";
 import popupContainerStyles from "./popupContainer.module.css";
 const PopupContainer = () => {
-  const popupStrings = [
-    { string: "New Book added", action: "add" },
-    { string: "Book deleted", action: "delete" },
-    { string: "Note deleted", action: "delete" },
-    { string: "New Note added", action: "add" },
-    { string: "Note updated", action: "update" },
+  const popupTexts = [
+    { text: "New Book added", action: "add" },
+    { text: "Book deleted", action: "delete" },
+    { text: "Note deleted", action: "delete" },
+    { text: "New Note added", action: "add" },
+    { text: "Note updated", action: "update" },
   ];
 
-  const mapPopupItems = popupStrings.map((item) => {
-    return <PopupItem />;
+  const mapPopupItems = popupTexts.map(({ text, action }) => {
+    return <PopupItem text={text} action={action} />;
   });
 
   return (
