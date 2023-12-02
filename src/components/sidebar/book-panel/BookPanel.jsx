@@ -19,7 +19,9 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
   function removeGenre(e) {
     const currentGenre = e.currentTarget.parentNode.id;
     const currentGenreIndex = currentGenre.charAt(currentGenre.length - 1);
-    const filterGenres = genreList.filter((genre) => genreList[currentGenreIndex] !== genre);
+    const filterGenres = genreList.filter(
+      (genre) => genreList[currentGenreIndex] !== genre
+    );
     setGenreList(filterGenres);
   }
 
@@ -66,7 +68,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
               type="number"
               name="totalPages"
               id="book-pages"
-              defaultValue={currentBook && currentBook.totalPages}
+              defaultValue={currentBook ? currentBook.totalPages : 0}
             />
           </div>
           <div className={`${bookPanelStyles.inputsContainer}`}>
@@ -76,7 +78,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
               type="number"
               name="currentPage"
               id="current-page"
-              defaultValue={currentBook && currentBook.currentPage}
+              defaultValue={currentBook ? currentBook.totalPages : 0}
             />
           </div>
         </span>
@@ -85,7 +87,10 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           handleOnAdd={addGenre}
           handleOnRemoveGenre={removeGenre}
         />
-        <span id="book-panel-btn" className={`${bookPanelStyles.bookPanelBtnContainer}`}>
+        <span
+          id="book-panel-btn"
+          className={`${bookPanelStyles.bookPanelBtnContainer}`}
+        >
           <button>{buttonText}</button>
           <button
             onClick={() => {
