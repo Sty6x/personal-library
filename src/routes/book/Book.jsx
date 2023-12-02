@@ -1,4 +1,11 @@
-import { useContext, useEffect, useRef, useState, useCallback, useMemo } from "react";
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+} from "react";
 import BookStyles from "./book.module.css";
 import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
@@ -9,12 +16,18 @@ import filterArrItems from "../../utils/filterArray";
 // needs to update but is delayed
 const Book = () => {
   const bookRef = useRef();
-  const { library, setLibrary, openEditNotePanelOnClick } = useContext(LibraryContext);
-  const [currentBook] = library.filter((book) => `/${book.link}` === window.location.pathname);
+  const { library, setLibrary, openEditNotePanelOnClick } =
+    useContext(LibraryContext);
+  const [currentBook] = library.filter(
+    (book) => `/${book.link}` === window.location.pathname
+  );
 
   function updateCurrentNotePosition(selectedNote) {
     let isChanged = false;
-    const currentNote = filterArrItems(currentBook.notes, (note) => note.id === selectedNote.name);
+    const currentNote = filterArrItems(
+      currentBook.notes,
+      (note) => note.id === selectedNote.name
+    );
     const updateNotes = {
       ...currentNote,
       position: {
@@ -36,7 +49,7 @@ const Book = () => {
           return { ...currentBook, notes: mappedNotes };
         }
         return book;
-      }),
+      })
     );
   }
 
