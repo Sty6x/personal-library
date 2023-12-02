@@ -21,6 +21,7 @@ function App() {
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
   const [selectedNote, setSelectedNote] = useState(undefined);
+  const [popupItems, setPopupItems] = useState([]);
 
   function queryCurrentBook() {
     const [currentBook] = library.filter(
@@ -43,6 +44,7 @@ function App() {
       genre: [...contents.genre],
     };
     setLibrary([updatedBook, ...currentLibraryState]);
+    addPopupItems("Book Updated!", "update");
   }
 
   function addBook() {
@@ -57,6 +59,7 @@ function App() {
       isFinished: false,
     };
     setLibrary((prev) => [newBook, ...prev]);
+    addPopupItems("Added New Book!", "add");
   }
 
   function openEditNotePanelOnClick(pe) {
@@ -88,17 +91,19 @@ function App() {
           textStyles: {
             ...note.styles.textStyles,
             fill: updatedNoteDataInputs.pickedColorText,
-          }
-        }
-      }
-      console.log(updatedEdittedNote)
+          },
+        },
+      };
+      console.log(updatedEdittedNote);
       return updatedEdittedNote;
     });
-    setLibrary(prev => prev.map(book => {
-      if (book.link !== currentBook.link) return book
-      return { ...currentBook, notes: [...updateNotes] }
-    }))
-
+    setLibrary((prev) =>
+      prev.map((book) => {
+        if (book.link !== currentBook.link) return book;
+        return { ...currentBook, notes: [...updateNotes] };
+      })
+    );
+    addPopupItems("Note Updated!", "update");
   }
 
   function addNote(e) {
@@ -136,12 +141,21 @@ function App() {
         return book;
       })
     );
+    addPopupItems("New Note Added!", "add");
   }
 
+  function removepopupItems() {
+    setTimeout(() => {
+      setPopupItems((prev) =>
+        prev.filter((item, i) => i === popupItems.length)
+      );
+    }, 1500);
+  }
 
-  useEffect(() => {
-    navigate(library[0].link);
-  }, []);
+  function addPopupItems(text, action) {
+    const newpopupItems = { text, action };
+    setPopupItems([newpopupItems, ...popupItems]);
+  }
 
   function returnSidebarBtn(e) {
     e.stopPropagation();
@@ -150,10 +164,20 @@ function App() {
     console.log(target.id);
   }
 
+  useEffect(() => {
+    navigate(library[0].link);
+  }, []);
+
+  useEffect(() => {
+    if (popupItems.length > 0 && popupItems.length < 2) {
+      removepopupItems();
+    }
+  }, [popupItems]);
+
   return (
     <main id="main-contents" className={AppStyles.main}>
       <LibraryContext.Provider
-        value={{ library, setLibrary, openEditNotePanelOnClick }}
+        value={{ library, setLibrary, openEditNotePanelOnClick, popupItems }}
       >
         <TopBarContext.Provider
           value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}
