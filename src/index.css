@@ -314,3 +314,35 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
   border: none;
 }
+
+@keyframes show-popup {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes hide-popup {
+  from {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+.hide-popup {
+  border: red solid 1px;
+  /* animation: hide-popup forwards normal 100ms ease-in-out; */
+}
+.show-popup {
+  animation: show-popup forwards normal 200ms ease-in-out;
+}

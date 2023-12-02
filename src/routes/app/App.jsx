@@ -6,6 +6,7 @@ import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
 import { placeholders } from "../../utils/placeholderLibrary.js";
 import filterArrItems from "../../utils/filterArray.js";
+import PopupItem from "../../components/popup-ui/popup-item/PopupItem.jsx";
 
 export const TopBarContext = createContext();
 export const LibraryContext = createContext();
@@ -14,6 +15,7 @@ export const SidebarContext = createContext();
 // what updates the app?
 // adding, editing, deleting, selecting a note, sidebar activities
 // outlets (book routes) are not supposed to update when sidebar states are changed.
+// mouse hovering over notes rerenders the app
 
 function App() {
   const navigate = useNavigate();
@@ -21,7 +23,9 @@ function App() {
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
   const [selectedNote, setSelectedNote] = useState(undefined);
-  const [popupItems, setPopupItems] = useState([]);
+  const [popupItems, setPopupItems] = useState([
+    { text: "Add Animation", action: "add" },
+  ]);
 
   function queryCurrentBook() {
     const [currentBook] = library.filter(
