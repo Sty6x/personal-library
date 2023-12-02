@@ -144,12 +144,13 @@ function App() {
     addPopupItems("New Note Added!", "add");
   }
 
-  function removepopupItems() {
-    setTimeout(() => {
-      setPopupItems((prev) =>
-        prev.filter((item, i) => i === popupItems.length)
-      );
-    }, 1500);
+  async function removePopupItems() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        setPopupItems((prev) => prev.filter((item, i) => i === prev.length));
+        return resolve("remove");
+      }, 1500);
+    });
   }
 
   function addPopupItems(text, action) {
@@ -170,7 +171,9 @@ function App() {
 
   useEffect(() => {
     if (popupItems.length > 0 && popupItems.length < 2) {
-      removepopupItems();
+      removePopupItems().then((result) => {
+        console.log(result);
+      });
     }
   }, [popupItems]);
 
