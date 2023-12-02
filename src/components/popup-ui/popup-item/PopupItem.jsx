@@ -9,7 +9,9 @@ const PopupItem = ({ text, action }) => {
         <span
           style={{
             backgroundImage: `url(${
-              action === "add" ? successItemIcon : deleteItemIcon
+              action === "add" || action === "update"
+                ? successItemIcon
+                : deleteItemIcon
             }) `,
           }}
         />

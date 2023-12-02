@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: end;
   gap: 1em;
   position: fixed;
