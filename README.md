@@ -1,8 +1,13 @@
-# React + Vite
+# PerLib
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Personal Library for all of your books
 
-Currently, two official plugins are available:
+#### What is PerLib
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+PerLib is your online personal library where you can store, keep track of your progress and add notes to each pages of your books.
+
+#### Why Did I Build It
+
+Reading is a hobby of mine and I love to jot down notes on my books whenever there are things that are interesting on the page that I'm currently reading, but the problem with this approach is that there isn't enough real estate to write long paragraphs, as if you're conversing with the author and how the page's contents correlates with other books.
+
+#### Tools used

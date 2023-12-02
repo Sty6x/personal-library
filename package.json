@@ -1,5 +1,9 @@
 {
   "name": "personal-library",
+  "author": {
+    "name": "Franz Diaz",
+    "url": "https://github.com/Sty6x"
+  },
   "private": true,
   "version": "0.0.0",
   "type": "module",
