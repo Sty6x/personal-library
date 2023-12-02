@@ -12,6 +12,7 @@ import { Stage, Container, Text, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
 import Note from "../../components/book-components/Note";
 import filterArrItems from "../../utils/filterArray";
+import PopupContainer from "../../components/popup-ui/PopupContainer";
 
 // needs to update but is delayed
 const Book = () => {
@@ -69,6 +70,7 @@ const Book = () => {
 
   return (
     <div id="book" ref={bookRef} className={BookStyles.container}>
+      <PopupContainer />
       <Stage
         width={window.innerWidth}
         height={window.innerHeight}

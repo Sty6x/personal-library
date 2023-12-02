@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  padding: 1em 1.2em;
+  background-color: var(--shade-dark);
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.contentsContainer {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 15em;
+  & > :last-child {
+    margin-left: 1em;
+    width: 30px;
+    height: 30px;
+    background-size: 28px 28px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.text {
+}
