@@ -140,7 +140,7 @@ table {
   --accent1: #df7868;
   --affirm-color: #68de8c;
   --accent3: #68a5de;
-  --error-color: #de6868;
+  --error-color: #e95858;
 
   color: var(--text-white);
   background-color: var(--bg);

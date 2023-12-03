@@ -1,0 +1,56 @@
+.container {
+  color: white;
+  background-color: var(--shade-dark);
+  padding: 1.4em;
+  box-shadow: 2px 5px 10px 5px #00000020;
+  border-radius: 5px;
+  border: none;
+  gap: 0.7em;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6rem;
+
+  & > :first-child {
+    color: var(--error-color);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
+
+.bookTitle {
+  font-size: 1.2rem;
+  color: var(--accent1);
+  font-weight: 600;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 0.6em;
+  & > button {
+    color: white;
+    margin-top: 0.6em;
+    border-radius: 4px;
+    font-size: 1rem;
+    /* padding: 0; */
+    padding: 0.5em 0.7em;
+  }
+  & > :first-child {
+    color: var(--text-dark);
+    /* color: #fffff0; */
+    font-weight: 500;
+    background-color: var(--error-color);
+    /* font-size: 1.2rem; */
+    transition: outline 150ms ease-in;
+    outline: transparent 1px solid;
+    outline-offset: 2px;
+  }
+
+  & > :first-child:hover {
+    transition: outline 150ms ease-in;
+    outline: var(--accent1) 1px solid;
+    outline-offset: 2px;
+  }
+  & > *:hover {
+    text-decoration: underline;
+  }
+}
