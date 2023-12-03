@@ -6,7 +6,6 @@ import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
 import { placeholders } from "../../utils/placeholderLibrary.js";
 import filterArrItems from "../../utils/filterArray.js";
-import PopupItem from "../../components/popup-ui/popup-item/PopupItem.jsx";
 import DialogBox from "../../components/book-components/dialog-box/DialogBox.jsx";
 
 export const TopBarContext = createContext();
@@ -68,6 +67,7 @@ function App() {
     addPopupItems("Added New Book!", "add");
   }
 
+  // selecting a note means that it needs to set all of the other notes' zIndex to 0
   function openEditNotePanelOnClick(pe) {
     const [currentBook] = queryCurrentBook();
     const selectedNote = pe.currentTarget;

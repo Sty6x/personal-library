@@ -14,6 +14,7 @@ export const placeholders = [
         id: uid(16),
         contents: "This is the contents of the current note on Haruki murakami",
         page: 31,
+        zIndex: 0,
         styles: {
           backgroundColor: "#DF7868",
           textStyles: {
@@ -29,6 +30,7 @@ export const placeholders = [
         contents: "Somethin something he said to mr something",
         page: 152,
         position: { x: 120, y: 320 },
+        zIndex: 0,
         styles: {
           textStyles: {
             fill: "#1a1b1d",

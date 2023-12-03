@@ -2,15 +2,17 @@ import { Text, Container, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
 import { forwardRef, useCallback, useContext } from "react";
 
-const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }, ref) => {
+const Note = (
+  { noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect },
+  ref
+) => {
   let noteIsClicked = false;
 
   function initMouseClicked(pe) {
     pe.stopPropagation();
     const container = pe.currentTarget;
     noteIsClicked = noteIsClicked ? false : true;
-    const setContainerIndex = noteIsClicked ? 999 : 1;
-    container.zIndex = setContainerIndex;
+    container.zIndex = 999;
     !noteIsClicked && handleUpdateCurrentPosition(container);
   }
   function handleOnMouseDrag(pe) {
@@ -44,19 +46,20 @@ const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }
     console.log("clicked");
     const container = pe.currentTarget;
     redrawRectSelection(container);
-
-    const setContainerIndex = noteIsClicked ? 999 : 1;
-    container.zIndex = setContainerIndex;
     handleEditPanelOnSelect(pe);
   }
 
-  const draw = useCallback((g) => {
-    g.beginFill(noteData.styles.backgroundColor);
-    g.drawRoundedRect(0, 0, 450, 300, 6);
-    g.endFill();
-  }, [noteData]);
+  const draw = useCallback(
+    (g) => {
+      g.beginFill(noteData.styles.backgroundColor);
+      g.drawRoundedRect(0, 0, 450, 300, 6);
+      g.endFill();
+    },
+    [noteData]
+  );
   return (
     <Container
+      zIndex={noteData.zIndex}
       name={noteData.id}
       eventMode="static"
       onclick={noteSelection}
@@ -82,7 +85,12 @@ const Note = ({ noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect }
         anchor={{ x: 0, y: 0 }}
         position={{ x: 20, y: 10 }}
         text={`Page:${noteData.page}`}
-        style={new PIXI.TextStyle({ ...noteData.styles.textStyles, fontWeight: "600" })}
+        style={
+          new PIXI.TextStyle({
+            ...noteData.styles.textStyles,
+            fontWeight: "600",
+          })
+        }
       />
     </Container>
   );

@@ -29,6 +29,7 @@ const Book = () => {
     ) {
       const updateNotes = {
         ...currentNote,
+        zIndex: selectedNote.zIndex,
         position: {
           x: selectedNote.x,
           y: selectedNote.y,
