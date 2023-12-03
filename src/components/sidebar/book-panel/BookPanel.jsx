@@ -87,20 +87,31 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           handleOnAdd={addGenre}
           handleOnRemoveGenre={removeGenre}
         />
-        <span
-          id="book-panel-btn"
-          className={`${bookPanelStyles.bookPanelBtnContainer}`}
-        >
-          <button>{buttonText}</button>
+        <div className={`${bookPanelStyles.bookPanelBtnContainer}`}>
+          <span
+            id="book-panel-btn"
+            className={`${bookPanelStyles.confirmCancelBtns}`}
+          >
+            <button>{buttonText}</button>
+            <button
+              onClick={() => {
+                setIsSidebarActive((prev) => (prev ? false : true));
+              }}
+              type="button"
+            >
+              Cancel
+            </button>
+          </span>
+
           <button
             onClick={() => {
               setIsSidebarActive((prev) => (prev ? false : true));
             }}
             type="button"
           >
-            Cancel
+            Remove
           </button>
-        </span>
+        </div>
       </form>
     </div>
   );

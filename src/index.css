@@ -138,9 +138,9 @@ table {
   --shade-dark: #2b2c31;
   --shade-dark2: #5e6269;
   --accent1: #df7868;
-  --accent2: #68de8c;
+  --affirm-color: #68de8c;
   --accent3: #68a5de;
-  --accent4: #de6868;
+  --error-color: #de6868;
 
   color: var(--text-white);
   background-color: var(--bg);

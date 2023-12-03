@@ -1,65 +1,75 @@
-.container{
+.container {
   background-color: var(--shade-dark);
   display: flex;
-  gap:1.2em;
+  gap: 1.2em;
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
   height: 100%;
-  padding:2em 1.5em;
-   color:var(--text-white);
-  & > :first-child{
-    font-weight:600;
-    font-size:1.2rem;
+  padding: 2em 1.5em;
+  color: var(--text-white);
+  & > :first-child {
+    font-weight: 600;
+    font-size: 1.2rem;
   }
 }
-.editContainer{
-  display:flex;
-  flex-direction:column;
-  gap:1em;
+.editContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
-.inputsContainer{
-
-}
-
-.pagesCountContainer{
-  display:flex;
-  gap:1em;
+.inputsContainer {
 }
 
-.bookPanelBtnContainer{
-  display:flex;
-  gap:.6em;
-  & > button{
-    margin-top:.6em;
-    border-radius:4px;
-    padding:.5em .7em;
-    font-weight:600;
+.pagesCountContainer {
+  display: flex;
+  gap: 1em;
+}
+
+.bookPanelBtnContainer {
+  display: flex;
+  & > :last-child {
+    margin-left: auto;
+    color: var(--error-color);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  & > :last-child:hover {
+    text-decoration: underline;
+  }
+}
+
+.confirmCancelBtns {
+  display: flex;
+  gap: 0.6em;
+  & > button {
+    margin-top: 0.6em;
+    border-radius: 4px;
+    padding: 0.5em 0.7em;
+    font-weight: 600;
   }
 
-  & > :first-child{
-    color:var(--bg);
-    font-size:.9rem;
-    background-color:var(--accent1);
+  & > :first-child {
+    color: var(--bg);
+    font-size: 0.9rem;
+    background-color: var(--accent1);
     transition: outline 150ms ease-in;
-    outline:transparent 1px solid;
-    outline-offset:2px;
+    outline: transparent 1px solid;
+    outline-offset: 2px;
   }
-  & > :first-child:hover{
+  & > :first-child:hover {
     transition: outline 150ms ease-in;
-    outline:var(--accent1) 1px solid;
-    outline-offset:2px;
+    outline: var(--accent1) 1px solid;
+    outline-offset: 2px;
   }
 
-  & > :last-child{
-    background-color:transparent;
-    font-size:.8rem;
-    color:var(--text-white);
-    font-weight:500;
+  & > :last-child {
+    background-color: transparent;
+    font-size: 0.8rem;
+    color: var(--text-white);
+    font-weight: 500;
   }
-  & > :last-child:hover{
-    text-decoration:underline;
+  & > :last-child:hover {
+    text-decoration: underline;
   }
 }
-
-
