@@ -178,10 +178,13 @@ function App() {
   }
 
   useEffect(() => {
-    dialogRef.current.showModal();
     console.log(window.location.pathname);
     navigate(library[0].link);
-  }, [window.location.pathname, library]);
+  }, []);
+
+  useEffect(() => {
+    console.log("RERENDERED");
+  }, [library]);
 
   useEffect(() => {
     if (popupItems.length > 0 && popupItems.length < 2) {
