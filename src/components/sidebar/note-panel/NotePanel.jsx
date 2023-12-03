@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import ColorPicker from "./color-picker/ColorPicker";
 import notePanelStyles from "./notePanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
+import PanelBtn from "../../book-components/panel-btn/PanelBtn";
 
 const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
@@ -89,30 +90,10 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
           title={"Text"}
         />
       </div>
-      <div
-        id="note-panel-btns"
-        className={`${notePanelStyles.notePanelBtnsContainer}`}
-      >
-        <span className={`${notePanelStyles.confirmCancelBtns}`}>
-          <button>Confirm</button>
-          <button
-            type="button"
-            onClick={() => {
-              setIsSidebarActive((prev) => (prev ? false : true));
-            }}
-          >
-            Cancel
-          </button>
-        </span>
-        <button
-          type="button"
-          onClick={() => {
-            setIsSidebarActive((prev) => (prev ? false : true));
-          }}
-        >
-          Remove
-        </button>
-      </div>
+      <PanelBtn
+        buttonText={`${title} Note`}
+        handleOnCancel={setIsSidebarActive}
+      />
     </form>
   );
 };
