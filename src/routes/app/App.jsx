@@ -7,6 +7,7 @@ import AppStyles from "./app.module.css";
 import { placeholders } from "../../utils/placeholderLibrary.js";
 import filterArrItems from "../../utils/filterArray.js";
 import DialogBox from "../../components/book-components/dialog-box/DialogBox.jsx";
+import usePrevState from "../../utils/hooks/usePrevState.jsx";
 
 export const TopBarContext = createContext();
 export const LibraryContext = createContext();
@@ -23,6 +24,7 @@ function App() {
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState([...placeholders]);
   const [selectedNote, setSelectedNote] = useState(undefined);
+  const prevState = usePrevState(library.length);
   const [popupItems, setPopupItems] = useState([
     { text: "Add Animation", action: "add" },
   ]);
@@ -178,12 +180,14 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(window.location.pathname);
     navigate(library[0].link);
   }, []);
 
   useEffect(() => {
     console.log("RERENDERED");
+    if (prevState !== library.length) {
+      navigate(library[0].link);
+    }
   }, [library]);
 
   useEffect(() => {
@@ -205,13 +209,6 @@ function App() {
 
   return (
     <main id="main-contents" className={AppStyles.main}>
-      <button
-        onClick={(e) => {
-          dialogRef.current.showModal();
-        }}
-      >
-        Open dialog
-      </button>
       <DialogBox
         ref={dialogRef}
         handleOnConfirm={removeCurrentBook}
