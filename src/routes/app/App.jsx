@@ -150,6 +150,12 @@ function App() {
     addPopupItems("New Note Added!", "add");
   }
 
+  function removeCurrentBook() {
+    const [currentBook, currentLibraryState] = queryCurrentBook();
+    console.log(currentLibraryState);
+    setLibrary(currentLibraryState);
+  }
+
   async function removePopupItems() {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -172,9 +178,10 @@ function App() {
   }
 
   useEffect(() => {
-    navigate(library[0].link);
     dialogRef.current.showModal();
-  }, []);
+    console.log(window.location.pathname);
+    navigate(library[0].link);
+  }, [window.location.pathname, library]);
 
   useEffect(() => {
     if (popupItems.length > 0 && popupItems.length < 2) {
@@ -204,9 +211,8 @@ function App() {
       </button>
       <DialogBox
         ref={dialogRef}
-        currentItem={
-          selectedNote === undefined ? queryCurrentBook()[0] : selectedNote
-        }
+        handleOnConfirm={removeCurrentBook}
+        currentBook={queryCurrentBook()[0]}
       />
       <LibraryContext.Provider
         value={{ library, setLibrary, openEditNotePanelOnClick, popupItems }}
