@@ -7,6 +7,7 @@ import Note from "../../components/book-components/Note";
 import filterArrItems from "../../utils/filterArray";
 import PopupContainer from "../../components/popup-ui/PopupContainer";
 import PopupItem from "../../components/popup-ui/popup-item/PopupItem";
+import { uid } from "uid";
 
 // needs to update but is delayed
 const Book = () => {
@@ -48,7 +49,7 @@ const Book = () => {
   }
 
   const mapPopupItems = popupItems.map(({ text, action }, i) => {
-    return <PopupItem text={text} action={action} />;
+    return <PopupItem key={uid(6)} text={text} action={action} />;
   });
 
   const renderNotes = currentBook.notes.map((note) => {

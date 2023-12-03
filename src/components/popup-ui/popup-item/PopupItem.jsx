@@ -3,7 +3,7 @@ import deleteItemIcon from "../../../assets/icons/personal-library/delete-icon.s
 import successItemIcon from "../../../assets/icons/personal-library/success-icon.svg";
 const PopupItem = ({ text, action }) => {
   return (
-    <li className={`popup-item ${popupItemStyles.container}`}>
+    <li className={`show-popup popup-item ${popupItemStyles.container}`}>
       <span className={`popup-contents ${popupItemStyles.contentsContainer}`}>
         <p className={`${popupItemStyles.text}`}>{text}</p>
         <span

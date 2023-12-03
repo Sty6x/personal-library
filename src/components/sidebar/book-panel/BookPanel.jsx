@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import bookPanelStyles from "./bookPanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
 import GenreInput from "../library-panel/genre-input/GenreInput";
+import PanelBtn from "../../book-components/panel-btn/PanelBtn";
 
 const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
   const { setIsSidebarActive } = useContext(SidebarContext);
@@ -87,20 +88,7 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           handleOnAdd={addGenre}
           handleOnRemoveGenre={removeGenre}
         />
-        <span
-          id="book-panel-btn"
-          className={`${bookPanelStyles.bookPanelBtnContainer}`}
-        >
-          <button>{buttonText}</button>
-          <button
-            onClick={() => {
-              setIsSidebarActive((prev) => (prev ? false : true));
-            }}
-            type="button"
-          >
-            Cancel
-          </button>
-        </span>
+        <PanelBtn handleOnCancel={setIsSidebarActive} buttonText={buttonText} />
       </form>
     </div>
   );
