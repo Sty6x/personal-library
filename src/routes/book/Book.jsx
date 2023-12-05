@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BookStyles from "./book.module.css";
 import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
@@ -19,6 +19,12 @@ const Book = () => {
     popupItems,
     currentBook,
   } = useContext(LibraryContext);
+
+  const [openedBook, setOpenedBook] = useState(currentBook);
+
+  useEffect(() => {
+    setOpenedBook(currentBook);
+  }, [currentBook]);
 
   function updateCurrentNotePosition(selectedNote) {
     const currentNote = filterArrItems(
@@ -52,6 +58,7 @@ const Book = () => {
           return book;
         })
       );
+      setOpenedBook((prev) => ({ ...prev, notes: mappedNotes }));
       return;
     }
     console.log("dont update");
@@ -61,7 +68,7 @@ const Book = () => {
     return <PopupItem key={uid(6)} text={text} action={action} />;
   });
 
-  const renderNotes = currentBook.notes.map((note) => {
+  const renderNotes = openedBook.notes.map((note) => {
     return (
       <Note
         key={note.id}
