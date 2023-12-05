@@ -13,13 +13,20 @@ const Sidebar = () => {
     if (currentPanel === "library-panel") {
       return <LibraryPanel />;
     } else if (currentPanel === "add-note-panel") {
-      return <NotePanel title={"Add"} handleOnSubmit={addNote} />;
+      return (
+        <NotePanel
+          title={"Add"}
+          handleOnSubmit={addNote}
+        // handleButton={editBook}
+        />
+      );
     } else if (currentPanel === "edit-note-panel") {
       return (
         <NotePanel
           title={"Edit"}
           handleOnSubmit={editNote}
           currentNote={currentNote}
+        // handleButton={editBook}
         />
       );
     } else if (currentPanel === "edit-book-panel") {
@@ -28,11 +35,7 @@ const Sidebar = () => {
           panelTitle={"Edit book"}
           buttonText={"Edit book"}
           handleButton={editBook}
-          currentBook={
-            library.filter(
-              (book) => `/${book.link}` === window.location.pathname
-            )[0]
-          }
+          currentBook={library.filter((book) => `/${book.link}` === window.location.pathname)[0]}
         />
       );
     }

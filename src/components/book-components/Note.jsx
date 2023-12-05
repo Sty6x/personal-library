@@ -45,7 +45,7 @@ const Note = (
   function noteSelection(pe) {
     console.log("clicked");
     const container = pe.currentTarget;
-    // redrawRectSelection(container);
+    redrawRectSelection(container);
     handleEditPanelOnSelect(pe);
   }
 

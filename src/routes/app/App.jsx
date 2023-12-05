@@ -163,14 +163,6 @@ function App() {
     setLibrary(currentLibraryState);
   }
 
-  function removeCurrentNote() {
-    const filteredNotes = filterArrItems(
-      currentBook.notes,
-      (note) => note.id !== selectedNote.id
-    );
-    console.log(filteredNotes);
-  }
-
   async function removePopupItems() {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -263,7 +255,6 @@ function App() {
             addBook,
             addNote,
             editNote,
-            removeCurrentNote,
             openDialogBox,
             currentNote: selectedNote,
             currentPanel: sidebarBtn,

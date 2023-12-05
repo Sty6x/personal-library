@@ -5,7 +5,7 @@ import { SidebarContext } from "../../../routes/app/App";
 import PanelBtn from "../../book-components/panel-btn/PanelBtn";
 
 const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
-  const { setIsSidebarActive, removeCurrentNote } = useContext(SidebarContext);
+  const { setIsSidebarActive } = useContext(SidebarContext);
   const [noteContents, setNoteContents] = useState({ contents: "", page: 0 });
   const formRef = useRef();
 
@@ -95,7 +95,6 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
       <PanelBtn
         buttonText={`${title} Note`}
         handleOnCancel={setIsSidebarActive}
-        handleOnRemove={removeCurrentNote}
       />
     </form>
   );
