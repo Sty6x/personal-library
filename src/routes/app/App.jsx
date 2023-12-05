@@ -1,6 +1,6 @@
 import { uid } from "uid";
 import { createContext, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useParams } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
@@ -235,6 +235,7 @@ function App() {
       <LibraryContext.Provider
         value={{
           currentBook,
+          setCurrentBook,
           library,
           prevState,
           setLibrary,
