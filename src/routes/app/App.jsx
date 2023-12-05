@@ -156,6 +156,7 @@ function App() {
   }
 
   function removeCurrentBook() {
+    dialogRef.current.close();
     setIsSidebarActive(false);
     const [currentBook, currentLibraryState] = queryCurrentBook();
     console.log(currentLibraryState);
@@ -204,6 +205,10 @@ function App() {
   }, [window.location.pathname]);
 
   useEffect(() => {
+    setCurrentBook(queryCurrentBook()[0]);
+  }, [library]);
+
+  useEffect(() => {
     if (popupItems.length > 0 && popupItems.length < 2) {
       removePopupItems().then((result) => {
         console.log(result);
@@ -225,7 +230,7 @@ function App() {
       <DialogBox
         ref={dialogRef}
         handleOnConfirm={removeCurrentBook}
-        currentBook={{ title: "lol", notes: [] }}
+        currentBook={currentBook}
       />
       <LibraryContext.Provider
         value={{
