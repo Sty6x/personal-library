@@ -12,11 +12,13 @@ import { uid } from "uid";
 // needs to update but is delayed
 const Book = () => {
   const bookRef = useRef();
-  const { library, setLibrary, openEditNotePanelOnClick, popupItems } =
-    useContext(LibraryContext);
-  const [currentBook] = library.filter(
-    (book) => `/${book.link}` === window.location.pathname
-  );
+  const {
+    library,
+    setLibrary,
+    openEditNotePanelOnClick,
+    popupItems,
+    currentBook,
+  } = useContext(LibraryContext);
 
   function updateCurrentNotePosition(selectedNote) {
     const currentNote = filterArrItems(
@@ -62,6 +64,7 @@ const Book = () => {
   const renderNotes = currentBook.notes.map((note) => {
     return (
       <Note
+        key={note.id}
         handleEditPanelOnSelect={openEditNotePanelOnClick}
         handleUpdateCurrentPosition={updateCurrentNotePosition}
         noteData={note}

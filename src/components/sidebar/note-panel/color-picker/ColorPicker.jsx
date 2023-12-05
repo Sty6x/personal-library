@@ -23,14 +23,13 @@ const ColorPicker = ({ title, currentColor }) => {
     setdefaultColor(currentColor);
   }, [currentColor]);
 
-
   const randomizeColors = useMemo(() => {
     return Math.floor(Math.random() * defaultColors.length);
   }, []);
 
   function handleColorChange(e) {
     const target = e.currentTarget;
-    setdefaultColor(target.value)
+    setdefaultColor(target.value);
   }
 
   const displayDefaultColors = () => {
@@ -38,6 +37,7 @@ const ColorPicker = ({ title, currentColor }) => {
     for (let i = 0; i < colorNumbers; i++) {
       tmpColors.push(
         <span
+          key={i}
           onClick={(e) => {
             setdefaultColor(e.currentTarget.dataset.color);
           }}
@@ -48,7 +48,7 @@ const ColorPicker = ({ title, currentColor }) => {
             backgroundColor: `${defaultColors[randomizeColors]}`,
             ":hover": { outline: `2px solid red` },
           }}
-        />,
+        />
       );
     }
     return tmpColors;
@@ -57,7 +57,10 @@ const ColorPicker = ({ title, currentColor }) => {
   return (
     <div className={`${colorPickerStyles.container}`}>
       <p>{title}</p>
-      <div id="color-picker-container" className={`${colorPickerStyles.colorInputContainer}`}>
+      <div
+        id="color-picker-container"
+        className={`${colorPickerStyles.colorInputContainer}`}
+      >
         <div
           id={`prev-${title.toLowerCase()}-colors`}
           className={`${colorPickerStyles.colorContainer}`}

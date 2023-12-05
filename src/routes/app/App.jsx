@@ -28,6 +28,9 @@ function App() {
   const [popupItems, setPopupItems] = useState([
     { text: "Add Animation", action: "add" },
   ]);
+  const [currentBook, setCurrentBook] = useState(
+    library.filter((book) => `/${book.link}` === window.location.pathname)[0]
+  );
   const dialogRef = useRef();
 
   function queryCurrentBook() {
@@ -153,9 +156,9 @@ function App() {
   }
 
   function removeCurrentBook() {
+    setIsSidebarActive(false);
     const [currentBook, currentLibraryState] = queryCurrentBook();
     console.log(currentLibraryState);
-    // dialogRef.current.showModal();
     setLibrary(currentLibraryState);
   }
 
@@ -197,6 +200,10 @@ function App() {
   }, [library]);
 
   useEffect(() => {
+    setCurrentBook(queryCurrentBook()[0]);
+  }, [window.location.pathname]);
+
+  useEffect(() => {
     if (popupItems.length > 0 && popupItems.length < 2) {
       removePopupItems().then((result) => {
         console.log(result);
@@ -218,10 +225,11 @@ function App() {
       <DialogBox
         ref={dialogRef}
         handleOnConfirm={removeCurrentBook}
-        currentBook={queryCurrentBook()[0]}
+        currentBook={{ title: "lol", notes: [] }}
       />
       <LibraryContext.Provider
         value={{
+          currentBook,
           library,
           prevState,
           setLibrary,
