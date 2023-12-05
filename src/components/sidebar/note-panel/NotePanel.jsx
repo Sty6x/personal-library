@@ -74,6 +74,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         className={`${notePanelStyles.colorProgressContainer}`}
       >
         <ColorPicker
+          key={"pick-background"}
           currentColor={
             currentNote !== undefined
               ? currentNote.styles.backgroundColor
@@ -82,6 +83,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
           title={"Background"}
         />
         <ColorPicker
+          key={"pick-text"}
           currentColor={
             currentNote !== undefined
               ? currentNote.styles.textStyles.fill

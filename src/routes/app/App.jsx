@@ -155,6 +155,7 @@ function App() {
   function removeCurrentBook() {
     const [currentBook, currentLibraryState] = queryCurrentBook();
     console.log(currentLibraryState);
+    // dialogRef.current.showModal();
     setLibrary(currentLibraryState);
   }
 
@@ -172,6 +173,10 @@ function App() {
     setPopupItems([newpopupItems, ...popupItems]);
   }
 
+  function openDialogBox() {
+    dialogRef.current.showModal();
+  }
+
   function returnSidebarBtn(e) {
     e.stopPropagation();
     const target = e.currentTarget;
@@ -187,6 +192,7 @@ function App() {
     console.log("RERENDERED");
     if (prevState !== library.length) {
       navigate(library[0].link);
+      console.log("not the same");
     }
   }, [library]);
 
@@ -215,7 +221,13 @@ function App() {
         currentBook={queryCurrentBook()[0]}
       />
       <LibraryContext.Provider
-        value={{ library, setLibrary, openEditNotePanelOnClick, popupItems }}
+        value={{
+          library,
+          prevState,
+          setLibrary,
+          openEditNotePanelOnClick,
+          popupItems,
+        }}
       >
         <TopBarContext.Provider
           value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}
@@ -227,6 +239,7 @@ function App() {
             addBook,
             addNote,
             editNote,
+            openDialogBox,
             currentNote: selectedNote,
             currentPanel: sidebarBtn,
             editBook,

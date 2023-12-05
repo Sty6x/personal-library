@@ -13,7 +13,7 @@ import { useEffect, useRef } from "react";
 const usePrevState = (currentState) => {
   const prevState = useRef(currentState);
   useEffect(() => {
-    if (currentState !== prevState) prevState.current = currentState;
+    prevState.current = currentState;
   }, [currentState]);
   return prevState.current;
 };

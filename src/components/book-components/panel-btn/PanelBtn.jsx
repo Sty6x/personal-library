@@ -17,13 +17,7 @@ const PanelBtn = ({ handleOnCancel, handleOnRemove, buttonText }) => {
           Cancel
         </button>
       </span>
-
-      <button
-        onClick={() => {
-          handleOnCancel((prev) => (prev ? false : true));
-        }}
-        type="button"
-      >
+      <button onClick={handleOnRemove} type="button">
         Remove
       </button>
     </div>

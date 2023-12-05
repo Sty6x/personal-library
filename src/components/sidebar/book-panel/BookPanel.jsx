@@ -5,7 +5,7 @@ import GenreInput from "../library-panel/genre-input/GenreInput";
 import PanelBtn from "../../book-components/panel-btn/PanelBtn";
 
 const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
-  const { setIsSidebarActive } = useContext(SidebarContext);
+  const { setIsSidebarActive, openDialogBox } = useContext(SidebarContext);
   const [genreList, setGenreList] = useState([...currentBook.genre]);
 
   function addGenre(input) {
@@ -88,7 +88,11 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
           handleOnAdd={addGenre}
           handleOnRemoveGenre={removeGenre}
         />
-        <PanelBtn handleOnCancel={setIsSidebarActive} buttonText={buttonText} />
+        <PanelBtn
+          handleOnRemove={openDialogBox}
+          handleOnCancel={setIsSidebarActive}
+          buttonText={buttonText}
+        />
       </form>
     </div>
   );
