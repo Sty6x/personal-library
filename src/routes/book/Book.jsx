@@ -26,10 +26,32 @@ const Book = () => {
   const [openedBook, setOpenedBook] = useState(currentBook);
 
   // only update the currentBook or library if the openedBook is updated
+  // currentBooks state from app component is used to update the static UI for the book component.
+  // the currentBook's state is updated when the windows param is changed.
+  // currentBook is passed in to the book as prop.
+  // book component has its own state to update UI while the currentBook is used as an initial
+  // to render the book.
+  // first we update the state of the openedBook to synchronize the book component's UI
+  // instead of relying on currentBook that has to wait for the library state to update.
+  // (currentBook is updated if library is updated),
+  // since book component does not need to update the text in real time, the openedBook can rely on the update
+  // of the currentBook state which is updated when the books in the library state is updated (editing note text)
+
   useEffect(() => {
     console.log(bookId);
-    // setLibrary()
+    setLibrary((prev) =>
+      prev.map((book) => {
+        if (book.link === openedBook.link) {
+          return openedBook;
+        }
+        return book;
+      })
+    );
   }, [openedBook]);
+
+  useEffect(() => {
+    setOpenedBook(currentBook);
+  }, [currentBook]);
 
   function updateCurrentNotePosition(selectedNote) {
     const currentNote = filterArrItems(
