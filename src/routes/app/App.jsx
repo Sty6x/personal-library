@@ -164,8 +164,7 @@ function App() {
   }
 
   function removeCurrentNote() {
-    const filteredNotes = filterArrItems(
-      currentBook.notes,
+    const filteredNotes = currentBook.notes.filter(
       (note) => note.id !== selectedNote.id
     );
     console.log(filteredNotes);
