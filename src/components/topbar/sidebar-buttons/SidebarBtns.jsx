@@ -3,7 +3,8 @@ import sidebarBtnStyles from "./sidebarBtns.module.css";
 import { TopBarContext } from "../../../routes/app/App";
 
 const SidebarBtns = () => {
-  const { returnSidebarBtn, setIsSidebarActive, isSidebarActive } = useContext(TopBarContext);
+  const { returnSidebarBtn, setIsSidebarActive, isSidebarActive } =
+    useContext(TopBarContext);
   const [currentActivePanel, setCurrentActivePanel] = useState("library-panel");
   function activateSidebar() {
     // return isSidebarActive ? setIsSidebarActive(false) : setIsSidebarActive(true);
@@ -11,7 +12,10 @@ const SidebarBtns = () => {
   }
 
   return (
-    <div id="sidebar-btns-container" className={`topbar-actions ${sidebarBtnStyles.container}`}>
+    <div
+      id="sidebar-btns-container"
+      className={`topbar-actions ${sidebarBtnStyles.container}`}
+    >
       <span
         id="sidebar-btns"
         className={`topbarActionContainers ${sidebarBtnStyles.buttonsContainer}`}
@@ -50,6 +54,7 @@ const SidebarBtns = () => {
         </span>
         <span>
           <button
+            disabled={window.location.pathname !== "/" ? false : true}
             onClick={(e) => {
               activateSidebar();
               returnSidebarBtn(e);
@@ -83,6 +88,7 @@ const SidebarBtns = () => {
         </span>
       </span>
       <button
+        disabled={window.location.pathname !== "/" ? false : true}
         onClick={(e) => {
           activateSidebar();
           returnSidebarBtn(e);

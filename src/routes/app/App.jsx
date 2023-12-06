@@ -22,7 +22,7 @@ function App() {
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
-  const [library, setLibrary] = useState([...placeholders]);
+  const [library, setLibrary] = useState([]);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
   const [popupItems, setPopupItems] = useState([]);
@@ -202,14 +202,19 @@ function App() {
   }
 
   useEffect(() => {
-    navigate(library[0].link);
+    if (library.length !== 0) {
+      return navigate(library[0].link);
+    }
   }, []);
 
   // checking if the library state has changed (deleted or added)
   // then routes users to the first book in the library
   useEffect(() => {
     if (prevState !== library.length) {
-      navigate(library[0].link);
+      if (library.length !== 0) {
+        return navigate(library[0].link);
+      }
+      navigate("/");
     }
   }, [library]);
 
@@ -242,11 +247,13 @@ function App() {
 
   return (
     <main id="main-contents" className={AppStyles.main}>
-      <DialogBox
-        ref={dialogRef}
-        handleOnConfirm={removeCurrentBook}
-        currentBook={currentBook}
-      />
+      {window.location.pathname !== "/" && (
+        <DialogBox
+          ref={dialogRef}
+          handleOnConfirm={removeCurrentBook}
+          currentBook={currentBook}
+        />
+      )}
       <LibraryContext.Provider
         value={{
           currentBook,
@@ -279,7 +286,7 @@ function App() {
         >
           {isSidebarActive && <Sidebar />}
         </SidebarContext.Provider>
-        <Outlet />
+        {library.length !== 0 && <Outlet />}
       </LibraryContext.Provider>
     </main>
   );
