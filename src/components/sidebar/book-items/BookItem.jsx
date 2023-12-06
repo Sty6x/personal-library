@@ -2,14 +2,31 @@ import { Link, NavLink } from "react-router-dom";
 import bookItemStyles from "./bookItem.module.css";
 
 const BookItem = ({
-  book: { link, author, title, totalPages, currentPage, genre, isFinished },
+  book: {
+    link,
+    author,
+    title,
+    totalPages,
+    currentPage,
+    genre,
+    isFinished,
+    lastUpdated,
+  },
 }) => {
   return (
     <li className={`book-item ${bookItemStyles.container}`}>
       <NavLink to={`/${link}`} className={`${bookItemStyles.linkContainer}`}>
         <div id="contents" className={`${bookItemStyles.contentsContainer}`}>
-          <div id="book-item-progress-container" className={`${bookItemStyles.progressContainer}`}>
-            <svg version="1.1" width="60" height="60" xmlns="http://www.w3.org/2000/svg">
+          <div
+            id="book-item-progress-container"
+            className={`${bookItemStyles.progressContainer}`}
+          >
+            <svg
+              version="1.1"
+              width="60"
+              height="60"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <ellipse
                 stroke="#DF7868"
                 strokeWidth="3"
@@ -27,33 +44,34 @@ const BookItem = ({
                 textAnchor="middle"
                 fill="white"
               >
-                {currentPage === 0 || totalPages === 0
+                {currentPage === 0 && totalPages === 0
                   ? 0
                   : Math.round((currentPage / totalPages) * 100)}
                 %
               </text>
             </svg>
           </div>
-          <div id="book-item-info" className={`${bookItemStyles.bookInfoContainer}`}>
+          <div
+            id="book-item-info"
+            className={`${bookItemStyles.bookInfoContainer}`}
+          >
             <p>{title === "" ? "New book" : title}</p>
             <span className={`${bookItemStyles.metaBookInfo}`}>
               <p>Author: {author === "" ? "Book author" : author}</p>
-              {
-                totalPages === "" && currentPage === "" ?
-                  <p>
-                    Pages: 0 | Page: 0
-                  </p>
-                  :
-                  <p>
-                    Pages: {totalPages} | Page: {currentPage}
-                  </p>
-
-              }
-              <p>Genre: {genre.length === 0 ? "Book genres" : genre.join(", ")}</p>
+              {totalPages === "" && currentPage === "" ? (
+                <p>Pages: 0 | Page: 0</p>
+              ) : (
+                <p>
+                  Pages: {totalPages} | Page: {currentPage}
+                </p>
+              )}
+              <p>
+                Genre: {genre.length === 0 ? "Book genres" : genre.join(", ")}
+              </p>
             </span>
           </div>
         </div>
-        <div>Updated 1 week ago</div>
+        <div>{lastUpdated < 60000 ? "Just now " : lastUpdated.toString()}</div>
       </NavLink>
     </li>
   );

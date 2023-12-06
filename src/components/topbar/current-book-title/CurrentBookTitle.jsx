@@ -8,23 +8,32 @@ const CurrentBookTitle = () => {
 
   useEffect(() => {
     setCurrentBook((prevState) => {
-      const [newState] = library.filter((book) => `/${book.link}` === window.location.pathname);
+      const [newState] = library.filter(
+        (book) => `/${book.link}` === window.location.pathname
+      );
       return newState;
     });
   }, [window.location.pathname, library]);
 
   return (
-    <div id="center-nav" className={`topbarActionContainers ${currentBookTitleStyles.container}`}>
+    <div
+      id="center-nav"
+      className={`topbarActionContainers ${currentBookTitleStyles.container}`}
+    >
       <span id="book-center-title">
-        {currentBook.title === "" || currentBook.author === "" ? (
+        {currentBook.title === "" && currentBook.author === "" ? (
           "New book"
         ) : (
           <>
-            {currentBook.title} by {currentBook.author}
+            {currentBook.title === "" ? "Book title" : currentBook.title} by{" "}
+            {currentBook.author === "" ? "Book author" : currentBook.author}
           </>
         )}
       </span>
-      <div id="book-center-props" className={`${currentBookTitleStyles.bookProps}`}>
+      <div
+        id="book-center-props"
+        className={`${currentBookTitleStyles.bookProps}`}
+      >
         <span>
           <p>{currentBook.totalPages}</p>
         </span>
@@ -33,9 +42,11 @@ const CurrentBookTitle = () => {
         </span>
         <span>
           <p>
-            {currentBook.currentPage === 0 || currentBook.totalPages === 0
+            {currentBook.currentPage === 0 && currentBook.totalPages === 0
               ? 0
-              : Math.round((currentBook.currentPage / currentBook.totalPages) * 100)}
+              : Math.round(
+                  (currentBook.currentPage / currentBook.totalPages) * 100
+                )}
             %
           </p>
         </span>

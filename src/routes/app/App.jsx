@@ -47,10 +47,12 @@ function App() {
       ...currentBook,
       title: contents.title,
       author: contents.author,
-      totalPages: contents.totalPages,
-      currentPage: contents.currentPage,
+      totalPages: Number(contents.totalPages),
+      currentPage: Number(contents.currentPage),
       genre: [...contents.genre],
+      lastUpdated: new Date().getUTCMilliseconds(),
     };
+    console.log(updatedBook);
     setLibrary([updatedBook, ...currentLibraryState]);
     addPopupItems("Book Updated!", "update");
   }
@@ -65,6 +67,8 @@ function App() {
       currentPage: 0,
       link: uid(16),
       isFinished: false,
+      dateCreated: new Date().getUTCMilliseconds(),
+      lastUpdated: 0,
     };
     setLibrary((prev) => [newBook, ...prev]);
     addPopupItems("Added New Book!", "add");
