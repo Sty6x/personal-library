@@ -25,9 +25,7 @@ function App() {
   const [library, setLibrary] = useState([...placeholders]);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
-  const [popupItems, setPopupItems] = useState([
-    { text: "Add Animation", action: "add" },
-  ]);
+  const [popupItems, setPopupItems] = useState([]);
   const [currentBook, setCurrentBook] = useState(
     library.filter((book) => `/${book.link}` === window.location.pathname)[0]
   );
@@ -161,6 +159,7 @@ function App() {
     const [currentBook, currentLibraryState] = queryCurrentBook();
     console.log(currentLibraryState);
     setLibrary(currentLibraryState);
+    addPopupItems("Book Removed!", "remove");
   }
 
   function removeCurrentNote() {
@@ -174,6 +173,7 @@ function App() {
         return { ...book, notes: filteredNotes };
       });
     });
+    addPopupItems("Note Removed!", "remove");
   }
 
   async function removePopupItems() {

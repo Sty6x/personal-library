@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { useContext, useEffect, useRef, useState } from "react";
 import BookStyles from "./book.module.css";
 import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
@@ -62,6 +61,9 @@ const Book = () => {
           return book;
         })
       );
+      // updating openedbook so that the openedBook state does not have to rely
+      // on the currentBook to wait for the new state update of library when
+      // updating the position of the note.
       setOpenedBook((prev) => ({ ...prev, notes: mappedNotes }));
       return;
     }
