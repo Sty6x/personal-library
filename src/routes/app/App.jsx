@@ -169,6 +169,12 @@ function App() {
       (note) => note.id !== selectedNote.id
     );
     console.log(filteredNotes);
+    setLibrary((prev) => {
+      return prev.map((book) => {
+        if (currentBook.link !== book.link) return book;
+        return { ...book, notes: filteredNotes };
+      });
+    });
   }
 
   async function removePopupItems() {
