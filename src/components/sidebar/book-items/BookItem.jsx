@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import bookItemStyles from "./bookItem.module.css";
+import { formatDistance } from "date-fns";
 
 const BookItem = ({
   book: {
@@ -71,7 +72,9 @@ const BookItem = ({
             </span>
           </div>
         </div>
-        <div>{lastUpdated < 60000 ? "Just now " : lastUpdated.toString()}</div>
+        <div className={bookItemStyles.updateTime}>
+          <p>{formatDistance(new Date(), lastUpdated)} ago</p>
+        </div>
       </NavLink>
     </li>
   );

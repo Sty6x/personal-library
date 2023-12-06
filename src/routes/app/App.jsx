@@ -50,7 +50,7 @@ function App() {
       totalPages: Number(contents.totalPages),
       currentPage: Number(contents.currentPage),
       genre: [...contents.genre],
-      lastUpdated: new Date().getUTCMilliseconds(),
+      lastUpdated: new Date(),
     };
     console.log(updatedBook);
     setLibrary([updatedBook, ...currentLibraryState]);
@@ -58,6 +58,7 @@ function App() {
   }
 
   function addBook() {
+    const bookTime = new Date();
     const newBook = {
       title: "",
       author: "",
@@ -67,8 +68,8 @@ function App() {
       currentPage: 0,
       link: uid(16),
       isFinished: false,
-      dateCreated: new Date().getUTCMilliseconds(),
-      lastUpdated: 0,
+      dateCreated: bookTime,
+      lastUpdated: bookTime,
     };
     setLibrary((prev) => [newBook, ...prev]);
     addPopupItems("Added New Book!", "add");
