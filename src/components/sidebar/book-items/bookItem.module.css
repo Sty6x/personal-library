@@ -3,10 +3,18 @@
   color: white;
   transition: background-color 150ms ease-in;
   border-bottom: 2px solid var(--bg);
+  /* display: flex;
+  flex-direction: column; */
 }
 .container:hover {
   transition: background-color 150ms ease-in;
   background-color: #ffffff10;
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .linkContainer {
@@ -14,7 +22,8 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  display: inline-block;
+  display: flex;
+  gap: 1.4em;
   & > :last-child {
     text-align: end;
     margin-top: 0.6em;
@@ -23,16 +32,18 @@
     color: #ffffff50;
   }
 }
-
 .contentsContainer {
   display: flex;
-  align-items: center;
-  gap: 1em;
+  /* align-items: center; */
+  flex-direction: column;
+  flex: 1;
+  /* gap: 1em; */
   & > :first-child {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 4em;
+    /* align-items: center; */
+    text-align: start;
+    /* justify-content: start; */
+    width: 100%;
   }
 }
 
