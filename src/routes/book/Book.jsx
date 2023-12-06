@@ -1,4 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BookStyles from "./book.module.css";
 import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
@@ -8,16 +9,19 @@ import filterArrItems from "../../utils/filterArray";
 import PopupContainer from "../../components/popup-ui/PopupContainer";
 import PopupItem from "../../components/popup-ui/popup-item/PopupItem";
 import { uid } from "uid";
+import { useParams } from "react-router-dom";
 
 // needs to update but is delayed
 const Book = () => {
   const bookRef = useRef();
+  const { bookId } = useParams();
   const {
     library,
     setLibrary,
     openEditNotePanelOnClick,
     popupItems,
     currentBook,
+    setCurrentBook,
   } = useContext(LibraryContext);
 
   const [openedBook, setOpenedBook] = useState(currentBook);

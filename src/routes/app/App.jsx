@@ -1,6 +1,6 @@
 import { uid } from "uid";
 import { createContext, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useParams } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
@@ -205,18 +205,20 @@ function App() {
     navigate(library[0].link);
   }, []);
 
+  // checking if the library state has changed (deleted or added)
+  // then routes users to the first book in the library
   useEffect(() => {
-    console.log("RERENDERED");
     if (prevState !== library.length) {
       navigate(library[0].link);
-      console.log("not the same");
     }
   }, [library]);
 
+  // updates the currentBook when user opens different books
   useEffect(() => {
     setCurrentBook(queryCurrentBook()[0]);
   }, [window.location.pathname]);
 
+  // updates the currentBook when something changed within the library state
   useEffect(() => {
     setCurrentBook(queryCurrentBook()[0]);
   }, [library]);
@@ -231,7 +233,7 @@ function App() {
 
   // if popup is added means that the user did an action
   // eg: adding updating deleting
-  // close if actions are invoked
+  // close if actions are emitted
   useEffect(() => {
     if (popupItems.length > 0) {
       setIsSidebarActive(false);
@@ -248,6 +250,7 @@ function App() {
       <LibraryContext.Provider
         value={{
           currentBook,
+          setCurrentBook,
           library,
           prevState,
           setLibrary,
