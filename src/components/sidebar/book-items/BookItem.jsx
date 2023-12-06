@@ -46,7 +46,9 @@ const BookItem = ({
             >
               {currentPage === 0 && totalPages === 0
                 ? 0
-                : Math.round((currentPage / totalPages) * 100)}
+                : currentPage < totalPages
+                ? Math.round((currentPage / totalPages) * 100)
+                : 0}
               %
             </text>
           </svg>

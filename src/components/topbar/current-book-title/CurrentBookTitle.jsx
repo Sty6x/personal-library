@@ -44,9 +44,11 @@ const CurrentBookTitle = () => {
           <p>
             {currentBook.currentPage === 0 && currentBook.totalPages === 0
               ? 0
-              : Math.round(
+              : currentBook.currentPage < currentBook.totalPages
+              ? Math.round(
                   (currentBook.currentPage / currentBook.totalPages) * 100
-                )}
+                )
+              : 0}
             %
           </p>
         </span>

@@ -76,7 +76,6 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
             <label htmlFor="current-page">Current page</label>
             <input
               min={0}
-              max={currentBook.totalPages}
               type="number"
               name="currentPage"
               id="current-page"
