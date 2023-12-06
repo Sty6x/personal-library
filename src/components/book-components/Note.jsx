@@ -12,7 +12,7 @@ const Note = (
     pe.stopPropagation();
     const container = pe.currentTarget;
     noteIsClicked = noteIsClicked ? false : true;
-    container.zIndex = 999;
+    container.zIndex = noteIsClicked ? 999 : 1;
     !noteIsClicked && handleUpdateCurrentPosition(container);
   }
   function handleOnMouseDrag(pe) {
@@ -45,8 +45,9 @@ const Note = (
   function noteSelection(pe) {
     console.log("clicked");
     const container = pe.currentTarget;
-    redrawRectSelection(container);
-    handleEditPanelOnSelect(pe);
+    // redrawRectSelection(container);
+
+    handleEditPanelOnSelect(container);
   }
 
   const draw = useCallback(

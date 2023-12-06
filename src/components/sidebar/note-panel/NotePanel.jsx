@@ -45,6 +45,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
                 });
               }}
               className="inputs"
+              min={0}
               type="number"
               id="note-page"
               name="page"

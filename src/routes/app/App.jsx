@@ -76,14 +76,13 @@ function App() {
   }
 
   // selecting a note means that it needs to set all of the other notes' zIndex to 0
-  function openEditNotePanelOnClick(pe) {
+  function openEditNotePanelOnClick(clickedNote) {
     const [currentBook] = queryCurrentBook();
-    const selectedNote = pe.currentTarget;
     setSidebarBtn("edit-note-panel");
     setIsSidebarActive(true);
     const currentNote = filterArrItems(
       currentBook.notes,
-      (note) => note.id.toString().localeCompare(selectedNote.name) === 0
+      (note) => note.id.toString().localeCompare(clickedNote.name) === 0
     );
     setSelectedNote(currentNote);
   }
@@ -99,6 +98,7 @@ function App() {
         ...note,
         contents: noteData.contents,
         page: noteData.page,
+        zIndex: 999,
         styles: {
           ...note.styles,
           backgroundColor: updatedNoteDataInputs.pickedColorBackground,
@@ -134,6 +134,7 @@ function App() {
           contents: newNote.contents,
           position: { x: 100, y: 100 },
           page: currentBook.currentPage,
+          zIndex: 999,
           styles: {
             backgroundColor: newNote.pickedColorBackground,
             textStyles: {
@@ -256,7 +257,7 @@ function App() {
       className={AppStyles.main}
       onClick={(e) => {
         const target = e.target;
-        if (target.id === "canvas" || target.id === "main-contents") {
+        if (target.id === "main-contents") {
           setIsSidebarActive(false);
         }
       }}
