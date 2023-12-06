@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  width:30em;
+  width: 30em;
   /* border-radius:9px; */
   overflow: hidden;
   height: 100%;
@@ -12,18 +12,18 @@
 .actionsContainer {
   box-sizing: content-box;
   display: flex;
-  padding:0em 2em;
+  padding: 0em 2em;
   justify-content: space-between;
   align-items: center;
-  gap:1em;
+  gap: 1em;
   border-bottom: 2px solid var(--bg);
   height: 4em;
   position: relative;
   box-shadow: 0px 2px 20px 5px rgba(0, 0, 0, 0.2);
 }
 
-.searchContainer{
-  width:100%;
+.searchContainer {
+  width: 100%;
 }
 .searchInput {
   display: inline-block;
@@ -38,7 +38,7 @@
   background-color: var(--bg);
   color: var(--text-white);
 }
-.searchContainer{
+.searchContainer {
   box-sizing: content-box;
 }
 
@@ -61,25 +61,33 @@
   max-height: 70vh;
 }
 
-.addBookBtn{
-  padding:0;
-  display:inline-block;
-  & > svg circle{
+.addBookBtn {
+  padding: 0;
+  display: inline-block;
+  & > svg circle {
     transition: fill 150ms 200ms ease-in;
     fill: var(--accent1);
   }
-  & > svg path{
+  & > svg path {
     transition: fill 150ms ease-in;
     fill: var(--bg);
   }
 }
-.addBookBtn:hover{
-  & > svg circle{
+.addBookBtn:hover {
+  & > svg circle {
     transition: fill 150ms ease-in;
     fill: none;
   }
-  & > svg path{
+  & > svg path {
     transition: fill 150ms 50ms ease-in;
     fill: var(--accent1);
   }
+}
+
+.placeholderBookItem {
+  height: 6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff40;
 }

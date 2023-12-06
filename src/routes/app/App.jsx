@@ -22,7 +22,7 @@ function App() {
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(true);
   const [sidebarBtn, setSidebarBtn] = useState("library-panel");
-  const [library, setLibrary] = useState([...placeholders]);
+  const [library, setLibrary] = useState([]);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
   const [popupItems, setPopupItems] = useState([]);

@@ -38,8 +38,14 @@ const LibraryPanel = () => {
 
   return (
     <div id="library-panel" className={`${libraryPanelStyles.container}`}>
-      <div id="library-actions-container" className={`${libraryPanelStyles.actionsContainer}`}>
-        <div id="search-library-container" className={`${libraryPanelStyles.searchContainer}`}>
+      <div
+        id="library-actions-container"
+        className={`${libraryPanelStyles.actionsContainer}`}
+      >
+        <div
+          id="search-library-container"
+          className={`${libraryPanelStyles.searchContainer}`}
+        >
           <form onSubmit={searchQuery}>
             <input
               onChange={restoreBooks}
@@ -65,7 +71,13 @@ const LibraryPanel = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <circle cx="12.5" cy="12.5" r="11.5" stroke="#DF7868" strokeWidth="2" />
+            <circle
+              cx="12.5"
+              cy="12.5"
+              r="11.5"
+              stroke="#DF7868"
+              strokeWidth="2"
+            />
             <path
               d="M17.3238 12.8191H13.2667V16.9333H11.6477V12.8191H7.60956V11.3524H11.6477V7.21906H13.2667V11.3524H17.3238V12.8191Z"
               fill="#DF7868"
@@ -74,8 +86,18 @@ const LibraryPanel = () => {
         </button>
       </div>
       {/* contain mapped book items separately  */}
-      <div id="library-panel-book-container" className={`${libraryPanelStyles.bookItemsContainer}`}>
-        {searchBooks.length === 0 ? <p> You dont have any books in here. </p> : displayBookItems}
+      <div
+        id="library-panel-book-container"
+        className={`${libraryPanelStyles.bookItemsContainer}`}
+      >
+        {searchBooks.length === 0 ? (
+          <li className={`${libraryPanelStyles.placeholderBookItem}`}>
+            {" "}
+            You dont have any books in here, Click on the "+" icon.{" "}
+          </li>
+        ) : (
+          displayBookItems
+        )}
       </div>
     </div>
   );
