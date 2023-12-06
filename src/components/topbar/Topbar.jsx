@@ -7,7 +7,9 @@ import CurrentBookTitle from "./current-book-title/CurrentBookTitle";
 const Topbar = () => {
   return (
     <nav id="top-bar" className={TopbarStyles.navbar}>
-      <SidebarBtns />
+      <SidebarBtns
+        disableButtons={window.location.pathname !== "/" ? false : true}
+      />
       {window.location.pathname !== "/" && <CurrentBookTitle />}
 
       <ZoomBtns />

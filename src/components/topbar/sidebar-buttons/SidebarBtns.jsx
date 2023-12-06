@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import sidebarBtnStyles from "./sidebarBtns.module.css";
 import { TopBarContext } from "../../../routes/app/App";
 
-const SidebarBtns = () => {
+const SidebarBtns = ({ disableButtons }) => {
   const { returnSidebarBtn, setIsSidebarActive, isSidebarActive } =
     useContext(TopBarContext);
   const [currentActivePanel, setCurrentActivePanel] = useState("library-panel");
@@ -54,7 +54,7 @@ const SidebarBtns = () => {
         </span>
         <span>
           <button
-            disabled={window.location.pathname !== "/" ? false : true}
+            disabled={disableButtons}
             onClick={(e) => {
               activateSidebar();
               returnSidebarBtn(e);
@@ -88,7 +88,7 @@ const SidebarBtns = () => {
         </span>
       </span>
       <button
-        disabled={window.location.pathname !== "/" ? false : true}
+        disabled={disableButtons}
         onClick={(e) => {
           activateSidebar();
           returnSidebarBtn(e);
