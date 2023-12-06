@@ -251,7 +251,16 @@ function App() {
   }, [popupItems]);
 
   return (
-    <main id="main-contents" className={AppStyles.main}>
+    <main
+      id="main-contents"
+      className={AppStyles.main}
+      onClick={(e) => {
+        const target = e.target;
+        if (target.id === "canvas" || target.id === "main-contents") {
+          setIsSidebarActive(false);
+        }
+      }}
+    >
       {window.location.pathname !== "/" && (
         <DialogBox
           ref={dialogRef}

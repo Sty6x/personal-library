@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import BookStyles from "./book.module.css";
 import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
@@ -12,7 +12,6 @@ import { useParams } from "react-router-dom";
 
 // needs to update but is delayed
 const Book = () => {
-  const bookRef = useRef();
   const { bookId } = useParams();
   const {
     library,
@@ -86,11 +85,12 @@ const Book = () => {
   });
 
   return (
-    <div id="book" ref={bookRef} className={BookStyles.container}>
+    <div id="book" className={BookStyles.container}>
       {popupItems.length > 0 && (
         <PopupContainer>{mapPopupItems}</PopupContainer>
       )}
       <Stage
+        id="canvas"
         width={window.innerWidth}
         height={window.innerHeight}
         options={{ backgroundColor: 0x1a1b1d, antialias: true }}
