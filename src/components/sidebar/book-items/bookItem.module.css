@@ -18,57 +18,47 @@
 }
 
 .linkContainer {
-  padding: 1em 2em;
+  padding: 1.4em 2em;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   display: flex;
   gap: 1.4em;
-  & > :last-child {
-    text-align: end;
-    margin-top: 0.6em;
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: #ffffff50;
-  }
 }
 .contentsContainer {
   display: flex;
-  /* align-items: center; */
   flex-direction: column;
   flex: 1;
-  /* gap: 1em; */
+  gap: 0.4em;
+  width: 100%;
   & > :first-child {
     display: flex;
-    /* align-items: center; */
     text-align: start;
-    /* justify-content: start; */
-    width: 100%;
   }
 }
 
 .bookInfoContainer {
   display: flex;
   flex-direction: column;
-  gap: 0.3em;
+  gap: 0.2em;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 1.4rem;
   & > :first-child {
-    font-weight: 700;
-    font-size: 1.2rem;
-    max-width: 350px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+    color: var(--text-white);
   }
 }
 
 .metaBookInfo {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #ffffff50;
-  line-height: 1rem;
-  & > :last-child {
-    max-width: 270px;
-    display: block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #ffffff60;
+  line-height: 1.1rem;
+  max-width: 300px;
+  display: block;
+  & > * {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -80,12 +70,16 @@
   display: flex;
   align-items: center;
   justify-content: end;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #ffffff50;
 }
 .updateTime::before {
   /* position: fixed; */
   content: "";
   background: url("../../../assets/icons/personal-library/updated-icon.svg");
-  background-size: 20px 20px;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
   width: 20px;
   height: 20px;
   background-position: center;
