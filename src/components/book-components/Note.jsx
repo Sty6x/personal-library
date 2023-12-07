@@ -1,12 +1,25 @@
 import { Text, Container, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
-import { forwardRef, useCallback, useContext } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 const Note = (
   { noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect },
   ref
 ) => {
   let noteIsClicked = false;
+  let scaleState;
+
+  const [currentNote, setCurrentNote] = useState(noteData);
+
+  useEffect(() => {
+    console.log(currentNote.styles);
+  }, [currentNote]);
 
   function initMouseClicked(pe) {
     pe.stopPropagation();
@@ -14,7 +27,13 @@ const Note = (
 
     noteIsClicked = noteIsClicked ? false : true;
     container.zIndex = noteIsClicked ? 999 : 1;
-    const graphicsComponent = pe.currentTarget.children[0];
+    scaleState = noteIsClicked && getScalingState(pe);
+    !noteIsClicked && handleUpdateCurrentPosition(container);
+  }
+
+  function getScalingState(pe) {
+    const container = pe.currentTarget;
+    const graphicsComponent = container.children[0];
     const containerBounds = container.getBounds();
     const threshold = 10;
     const rightScale = containerBounds.width - threshold;
@@ -28,28 +47,43 @@ const Note = (
     };
     if (calculateCurrentMousePos.x >= rightScale) {
       console.log("INIT WIDTH SCALING");
-      return;
+      return "right";
     } else if (calculateCurrentMousePos.x <= originScale) {
       console.log("INIT WIDTH SCALING");
-      return;
+      return "left";
     } else if (calculateCurrentMousePos.y >= bottomScale) {
       console.log("INIT HEIGHT SCALING");
+      return "bottom";
     } else if (calculateCurrentMousePos.y <= originScale) {
       console.log("INIT HEIGHT SCALING");
-    } else {
-      !noteIsClicked && handleUpdateCurrentPosition(container);
+      return "top";
     }
   }
+
   function handleOnMouseDrag(pe) {
     pe.stopPropagation();
-    if (!noteIsClicked) {
-      return;
-    }
+    const container = pe.currentTarget;
+    if (!noteIsClicked) return;
     let distanceX = pe.movementX;
     let distanceY = pe.movementY;
 
-    (pe.currentTarget.x += distanceX) * 0.8;
-    (pe.currentTarget.y += distanceY) * 0.8;
+    if (scaleState === undefined) {
+      (pe.currentTarget.x += distanceX) * 0.8;
+      (pe.currentTarget.y += distanceY) * 0.8;
+      return;
+    }
+
+    const graphics = container.children[0];
+    console.log(graphics.width);
+    const minWidth = 300;
+    const minheight = 300;
+    if (scaleState === "right") {
+      graphics.width += distanceX;
+    } else if (scaleState === "bottom") {
+      graphics.height += distanceY;
+    } else if (scaleState === "left") {
+      graphics.x = graphics.width + distanceX;
+    }
   }
 
   function redrawRectSelection(container) {
