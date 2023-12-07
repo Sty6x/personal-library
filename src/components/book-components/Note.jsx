@@ -11,9 +11,28 @@ const Note = (
   function initMouseClicked(pe) {
     pe.stopPropagation();
     const container = pe.currentTarget;
+
     noteIsClicked = noteIsClicked ? false : true;
     container.zIndex = noteIsClicked ? 999 : 1;
-    !noteIsClicked && handleUpdateCurrentPosition(container);
+    const graphicsComponent = pe.currentTarget.children[0];
+    const containerBounds = container.getBounds();
+    const threshold = 10;
+    const right = containerBounds.width - threshold;
+    const left = 0 + threshold; // 0 for origin of the container
+    const currentMousePos = {
+      x: Math.floor(pe.clientX - containerBounds.x),
+      y: 0,
+    };
+    if (currentMousePos.x >= right) {
+      console.log("INIT WIDTH SCALING");
+      return;
+    } else if (currentMousePos.x <= left) {
+      console.log(currentMousePos.x);
+      console.log("INIT WIDTH SCALING");
+      return;
+    } else {
+      !noteIsClicked && handleUpdateCurrentPosition(container);
+    }
   }
   function handleOnMouseDrag(pe) {
     pe.stopPropagation();
@@ -43,7 +62,6 @@ const Note = (
     graphicsComponent.endFill();
   }
   function noteSelection(pe) {
-    console.log("clicked");
     const container = pe.currentTarget;
     handleEditPanelOnSelect(container);
   }

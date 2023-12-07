@@ -9,6 +9,7 @@ export const placeholders = [
     isFinished: false,
     genre: ["Physchological", "Fantasy", "History", "Novel"],
     link: "book1",
+    lastUpdated: new Date(),
     notes: [
       {
         id: uid(16),
@@ -51,6 +52,8 @@ export const placeholders = [
     isFinished: false,
     genre: ["Epic", "Nautical", "Adventure Fiction"],
     link: "book2",
+
+    lastUpdated: new Date(),
     notes: [],
   },
 
@@ -62,6 +65,8 @@ export const placeholders = [
     isFinished: false,
     genre: ["Novel", "Psychological", "Crime", "Philosophical"],
     link: "book3",
+
+    lastUpdated: new Date(),
     notes: [],
   },
 
@@ -72,6 +77,8 @@ export const placeholders = [
     currentPage: 250,
     isFinished: false,
     genre: ["Biography", "Autobiography", "Diary", "Personal Narrative"],
+
+    lastUpdated: new Date(),
     link: "book4",
 
     notes: [],
@@ -85,6 +92,7 @@ export const placeholders = [
     genre: ["Biography", "Autobiography", "Personal Narrative"],
     link: "book5",
 
+    lastUpdated: new Date(),
     notes: [],
   },
   {
@@ -96,6 +104,7 @@ export const placeholders = [
     genre: ["Autobiography", "History"],
     link: "book6",
 
+    lastUpdated: new Date(),
     notes: [],
   },
   {
@@ -107,6 +116,7 @@ export const placeholders = [
     genre: ["Novel", "Fiction"],
     link: "book7",
 
+    lastUpdated: new Date(),
     notes: [],
   },
 ];

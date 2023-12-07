@@ -22,7 +22,7 @@ function App() {
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(true);
   const [sidebarBtn, setSidebarBtn] = useState("library-panel");
-  const [library, setLibrary] = useState([]);
+  const [library, setLibrary] = useState([...placeholders]);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
   const [popupItems, setPopupItems] = useState([]);
@@ -160,7 +160,6 @@ function App() {
   }
 
   function removeCurrentNote() {
-    console.log(filteredNotes);
     setLibrary((prev) => {
       return prev.map((book) => {
         if (currentBook.link !== book.link) return book;
