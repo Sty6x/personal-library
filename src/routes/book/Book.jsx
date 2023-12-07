@@ -50,7 +50,7 @@ const Book = () => {
 
       setLibrary((prev) =>
         prev.map((book) => {
-          if (book.link === currentBook.link) {
+          if (book.id === currentBook.id) {
             return { ...currentBook, notes: mappedNotes };
           }
           return book;
@@ -81,7 +81,7 @@ const Book = () => {
     });
     setLibrary((prev) =>
       prev.map((book) => {
-        if (book.link === currentBook.link) {
+        if (book.id === currentBook.id) {
           return { ...currentBook, notes: mappedNotes };
         }
         return book;

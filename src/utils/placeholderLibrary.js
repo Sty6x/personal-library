@@ -8,7 +8,7 @@ export const placeholders = [
     currentPage: 0,
     isFinished: false,
     genre: ["Physchological", "Fantasy", "History", "Novel"],
-    link: "book1",
+    id: "book1",
     lastUpdated: new Date(),
     notes: [
       {
@@ -16,7 +16,6 @@ export const placeholders = [
         contents: "This is the contents of the current note on Haruki murakami",
         page: 31,
         zIndex: 0,
-
         width: 450,
         height: 300,
         styles: {
@@ -56,7 +55,7 @@ export const placeholders = [
     currentPage: 263,
     isFinished: false,
     genre: ["Epic", "Nautical", "Adventure Fiction"],
-    link: "book2",
+    id: "book2",
 
     lastUpdated: new Date(),
     notes: [],
@@ -69,7 +68,7 @@ export const placeholders = [
     currentPage: 461,
     isFinished: false,
     genre: ["Novel", "Psychological", "Crime", "Philosophical"],
-    link: "book3",
+    id: "book3",
 
     lastUpdated: new Date(),
     notes: [],
@@ -84,7 +83,7 @@ export const placeholders = [
     genre: ["Biography", "Autobiography", "Diary", "Personal Narrative"],
 
     lastUpdated: new Date(),
-    link: "book4",
+    id: "book4",
 
     notes: [],
   },
@@ -95,7 +94,7 @@ export const placeholders = [
     currentPage: 461,
     isFinished: false,
     genre: ["Biography", "Autobiography", "Personal Narrative"],
-    link: "book5",
+    id: "book5",
 
     lastUpdated: new Date(),
     notes: [],
@@ -107,7 +106,7 @@ export const placeholders = [
     currentPage: 51,
     isFinished: false,
     genre: ["Autobiography", "History"],
-    link: "book6",
+    id: "book6",
 
     lastUpdated: new Date(),
     notes: [],
@@ -119,7 +118,7 @@ export const placeholders = [
     currentPage: 152,
     isFinished: false,
     genre: ["Novel", "Fiction"],
-    link: "book7",
+    id: "book7",
 
     lastUpdated: new Date(),
     notes: [],

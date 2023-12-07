@@ -33,7 +33,7 @@ const LibraryPanel = () => {
     setSearchBooks([...library]);
   }, [library]);
   const displayBookItems = searchBooks.map((book) => {
-    return <BookItem key={book.link} book={book} />;
+    return <BookItem key={book.id} book={book} />;
   });
 
   return (

@@ -5,8 +5,15 @@ import { useContext } from "react";
 import { SidebarContext } from "../../routes/app/App";
 import NotePanel from "./note-panel/NotePanel";
 const Sidebar = () => {
-  const { currentPanel, editBook, library, addNote, editNote, currentNote } =
-    useContext(SidebarContext);
+  const {
+    currentPanel,
+    currentBook,
+    editBook,
+    library,
+    addNote,
+    editNote,
+    currentNote,
+  } = useContext(SidebarContext);
   const panel = revealSidebar();
 
   function revealSidebar() {
@@ -35,11 +42,7 @@ const Sidebar = () => {
           panelTitle={"Edit book"}
           buttonText={"Edit book"}
           handleButton={editBook}
-          currentBook={
-            library.filter(
-              (book) => `/${book.link}` === window.location.pathname
-            )[0]
-          }
+          currentBook={currentBook}
         />
       );
     }

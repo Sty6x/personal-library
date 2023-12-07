@@ -4,7 +4,7 @@ import { formatDistance } from "date-fns";
 
 const BookItem = ({
   book: {
-    link,
+    id,
     author,
     title,
     totalPages,
@@ -16,7 +16,7 @@ const BookItem = ({
 }) => {
   return (
     <li className={`book-item ${bookItemStyles.container}`}>
-      <NavLink to={`/${link}`} className={`${bookItemStyles.linkContainer}`}>
+      <NavLink to={`/${id}`} className={`${bookItemStyles.linkContainer}`}>
         <div
           id="book-item-progress-container"
           className={`${bookItemStyles.progressContainer}`}

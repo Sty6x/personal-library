@@ -27,16 +27,16 @@ function App() {
   const prevState = usePrevState(library.length);
   const [popupItems, setPopupItems] = useState([]);
   const [currentBook, setCurrentBook] = useState(
-    library.filter((book) => `/${book.link}` === window.location.pathname)[0]
+    library.filter((book) => `/${book.id}` === window.location.pathname)[0]
   );
   const dialogRef = useRef();
 
   function queryCurrentBook() {
     const [currentBook] = library.filter(
-      (book) => `/${book.link}` === window.location.pathname
+      (book) => `/${book.id}` === window.location.pathname
     );
     const currentLibraryState = library.filter(
-      (book) => `/${book.link}` !== window.location.pathname
+      (book) => `/${book.id}` !== window.location.pathname
     );
     return [currentBook, currentLibraryState];
   }
@@ -65,7 +65,7 @@ function App() {
       notes: [],
       totalPages: 0,
       currentPage: 0,
-      link: uid(16),
+      id: uid(16),
       isFinished: false,
       dateCreated: bookTime,
       lastUpdated: bookTime,
@@ -93,7 +93,7 @@ function App() {
     const [currentBook] = queryCurrentBook();
     setLibrary((prev) =>
       prev.map((book) => {
-        if (book.link !== currentBook.link) return book;
+        if (book.id !== currentBook.id) return book;
         const updateNotes = currentBook.notes.map((note) => {
           if (note.id !== selectedNote.id) return note;
           return {
@@ -124,7 +124,7 @@ function App() {
     const newNote = Object.fromEntries(formData.entries());
     setLibrary((prev) =>
       prev.map((book) => {
-        if (book.link !== currentBook.link) return book;
+        if (book.id !== currentBook.id) return book;
         return {
           ...book,
           notes: [
@@ -162,7 +162,7 @@ function App() {
   function removeCurrentNote() {
     setLibrary((prev) => {
       return prev.map((book) => {
-        if (currentBook.link !== book.link) return book;
+        if (currentBook.id !== book.id) return book;
         const filteredNotes = currentBook.notes.filter(
           (note) => note.id !== selectedNote.id
         );
@@ -199,7 +199,7 @@ function App() {
 
   useEffect(() => {
     if (library.length !== 0) {
-      return navigate(library[0].link);
+      return navigate(library[0].id);
     }
   }, []);
 
@@ -208,7 +208,7 @@ function App() {
   useEffect(() => {
     if (prevState !== library.length) {
       if (library.length !== 0) {
-        return navigate(library[0].link);
+        return navigate(library[0].id);
       }
       navigate("/");
     }
@@ -277,6 +277,7 @@ function App() {
         </TopBarContext.Provider>
         <SidebarContext.Provider
           value={{
+            currentBook,
             addBook,
             addNote,
             removeCurrentNote,

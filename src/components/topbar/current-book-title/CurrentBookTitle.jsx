@@ -9,7 +9,7 @@ const CurrentBookTitle = () => {
   useEffect(() => {
     setCurrentBook((prevState) => {
       const [newState] = library.filter(
-        (book) => `/${book.link}` === window.location.pathname
+        (book) => `/${book.id}` === window.location.pathname
       );
       return newState;
     });
