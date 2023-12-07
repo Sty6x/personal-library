@@ -9,17 +9,18 @@ import {
 } from "react";
 
 const Note = (
-  { noteData, handleUpdateCurrentPosition, handleEditPanelOnSelect },
+  {
+    noteData,
+    handleUpdateCurrentPosition,
+    handleEditPanelOnSelect,
+    handleUpdateNoteScale,
+  },
   ref
 ) => {
   let noteIsClicked = false;
   let scaleState;
 
   const [currentNote, setCurrentNote] = useState(noteData);
-
-  useEffect(() => {
-    console.log(currentNote.styles);
-  }, [currentNote]);
 
   function initMouseClicked(pe) {
     pe.stopPropagation();
@@ -109,13 +110,14 @@ const Note = (
   function noteSelection(pe) {
     const container = pe.currentTarget;
     if (scaleState !== undefined) return;
+    handleUpdateNoteScale(container);
     handleEditPanelOnSelect(container);
   }
 
   const draw = useCallback(
     (g) => {
       g.beginFill(noteData.styles.backgroundColor);
-      g.drawRoundedRect(0, 0, 450, 300, 6);
+      g.drawRoundedRect(0, 0, noteData.width, noteData.height, 6);
       g.endFill();
     },
     [noteData]

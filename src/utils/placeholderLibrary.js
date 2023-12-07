@@ -16,9 +16,10 @@ export const placeholders = [
         contents: "This is the contents of the current note on Haruki murakami",
         page: 31,
         zIndex: 0,
+
+        width: 450,
+        height: 300,
         styles: {
-          width: 450,
-          height: 300,
           backgroundColor: "#DF7868",
           textStyles: {
             fill: "#1a1b1d",
@@ -34,9 +35,9 @@ export const placeholders = [
         page: 152,
         position: { x: 120, y: 320 },
         zIndex: 0,
+        width: 450,
+        height: 300,
         styles: {
-          width: 450,
-          height: 300,
           textStyles: {
             fill: "#1a1b1d",
             wordWrapWidth: 400 - 30,
