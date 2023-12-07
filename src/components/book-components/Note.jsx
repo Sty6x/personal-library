@@ -31,9 +31,9 @@ const Note = (
     !noteIsClicked && handleUpdateCurrentPosition(container);
   }
 
+  // To initialize when a note is to be scaled
   function getScalingState(pe) {
     const container = pe.currentTarget;
-    const graphicsComponent = container.children[0];
     const containerBounds = container.getBounds();
     const threshold = 10;
     const rightScale = containerBounds.width - threshold;
@@ -75,21 +75,19 @@ const Note = (
 
     const graphics = container.children[0];
     const graphicsBounds = graphics.getBounds();
-    console.log(graphics.width);
-    const minWidth = 300;
-    const minheight = 300;
+    let calculateMissingSpace;
     if (scaleState === "right") {
       graphics.width += distanceX;
     } else if (scaleState === "bottom") {
       graphics.height += distanceY;
     } else if (scaleState === "left") {
       container.x += distanceX;
-      console.log(container.x);
-
-      // containerBounds.right is the position that
-      // the container occupies(width) relative to the canvas
-      let calculateMissingSpace = graphicsBounds.right - container.x;
+      calculateMissingSpace = graphicsBounds.right - container.x;
       graphics.width = calculateMissingSpace;
+    } else if (scaleState === "top") {
+      container.y += distanceY;
+      calculateMissingSpace = graphicsBounds.bottom - container.y;
+      graphics.height = calculateMissingSpace;
     }
   }
 
