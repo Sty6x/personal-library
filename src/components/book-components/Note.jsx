@@ -17,19 +17,25 @@ const Note = (
     const graphicsComponent = pe.currentTarget.children[0];
     const containerBounds = container.getBounds();
     const threshold = 10;
-    const right = containerBounds.width - threshold;
-    const left = 0 + threshold; // 0 for origin of the container
-    const currentMousePos = {
+    const rightScale = containerBounds.width - threshold;
+    const bottomScale = containerBounds.height - threshold;
+    const originScale = 0 + threshold; // 0 for origin of the container
+
+    //  returns the mouse position relative to the note
+    const calculateCurrentMousePos = {
       x: Math.floor(pe.clientX - containerBounds.x),
-      y: 0,
+      y: Math.floor(pe.clientY - containerBounds.y),
     };
-    if (currentMousePos.x >= right) {
+    if (calculateCurrentMousePos.x >= rightScale) {
       console.log("INIT WIDTH SCALING");
       return;
-    } else if (currentMousePos.x <= left) {
-      console.log(currentMousePos.x);
+    } else if (calculateCurrentMousePos.x <= originScale) {
       console.log("INIT WIDTH SCALING");
       return;
+    } else if (calculateCurrentMousePos.y >= bottomScale) {
+      console.log("INIT HEIGHT SCALING");
+    } else if (calculateCurrentMousePos.y <= originScale) {
+      console.log("INIT HEIGHT SCALING");
     } else {
       !noteIsClicked && handleUpdateCurrentPosition(container);
     }
