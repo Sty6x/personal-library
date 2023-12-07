@@ -27,7 +27,7 @@ const Note = (
 
     noteIsClicked = noteIsClicked ? false : true;
     container.zIndex = noteIsClicked ? 999 : 1;
-    scaleState = noteIsClicked && getScalingState(pe);
+    scaleState = noteIsClicked ? getScalingState(pe) : undefined;
     !noteIsClicked && handleUpdateCurrentPosition(container);
   }
 
@@ -74,6 +74,7 @@ const Note = (
     }
 
     const graphics = container.children[0];
+    const graphicsBounds = graphics.getBounds();
     console.log(graphics.width);
     const minWidth = 300;
     const minheight = 300;
@@ -82,7 +83,13 @@ const Note = (
     } else if (scaleState === "bottom") {
       graphics.height += distanceY;
     } else if (scaleState === "left") {
-      graphics.x = graphics.width + distanceX;
+      container.x += distanceX;
+      console.log(container.x);
+
+      // containerBounds.right is the position that
+      // the container occupies(width) relative to the canvas
+      let calculateMissingSpace = graphicsBounds.right - container.x;
+      graphics.width = calculateMissingSpace;
     }
   }
 
@@ -103,6 +110,7 @@ const Note = (
   }
   function noteSelection(pe) {
     const container = pe.currentTarget;
+    if (scaleState !== undefined) return;
     handleEditPanelOnSelect(container);
   }
 
