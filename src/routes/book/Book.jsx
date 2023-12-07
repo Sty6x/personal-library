@@ -19,7 +19,6 @@ const Book = () => {
     openEditNotePanelOnClick,
     popupItems,
     currentBook,
-    setCurrentBook,
   } = useContext(LibraryContext);
 
   const [openedBook, setOpenedBook] = useState(currentBook);
@@ -35,21 +34,18 @@ const Book = () => {
     );
     if (
       selectedNote.x !== currentNote.position.x &&
-      selectedNote.y !== currentNote.y
+      selectedNote.y !== currentNote.position.y
     ) {
-      const updateNotes = {
-        ...currentNote,
-        zIndex: selectedNote.zIndex,
-        position: {
-          x: selectedNote.x,
-          y: selectedNote.y,
-        },
-      };
       const mappedNotes = currentBook.notes.map((note) => {
-        if (note.id === currentNote.id) {
-          return updateNotes;
-        }
-        return note;
+        if (note.id !== currentNote.id) return note;
+        return {
+          ...note,
+          zIndex: selectedNote.zIndex,
+          position: {
+            x: selectedNote.x,
+            y: selectedNote.y,
+          },
+        };
       });
 
       setLibrary((prev) =>
@@ -66,7 +62,6 @@ const Book = () => {
       setOpenedBook((prev) => ({ ...prev, notes: mappedNotes }));
       return;
     }
-    console.log("dont update");
   }
 
   const mapPopupItems = popupItems.map(({ text, action }, i) => {

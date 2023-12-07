@@ -52,7 +52,6 @@ function App() {
       genre: [...contents.genre],
       lastUpdated: new Date(),
     };
-    console.log(updatedBook);
     setLibrary([updatedBook, ...currentLibraryState]);
     addPopupItems("Book Updated!", "update");
   }
@@ -92,28 +91,26 @@ function App() {
     const formData = new FormData(target);
     const updatedNoteDataInputs = Object.fromEntries(formData.entries());
     const [currentBook] = queryCurrentBook();
-    const updateNotes = currentBook.notes.map((note) => {
-      if (note.id !== selectedNote.id) return note;
-      const updatedEdittedNote = {
-        ...note,
-        contents: noteData.contents,
-        page: noteData.page,
-        zIndex: 999,
-        styles: {
-          ...note.styles,
-          backgroundColor: updatedNoteDataInputs.pickedColorBackground,
-          textStyles: {
-            ...note.styles.textStyles,
-            fill: updatedNoteDataInputs.pickedColorText,
-          },
-        },
-      };
-      console.log(updatedEdittedNote);
-      return updatedEdittedNote;
-    });
     setLibrary((prev) =>
       prev.map((book) => {
         if (book.link !== currentBook.link) return book;
+        const updateNotes = currentBook.notes.map((note) => {
+          if (note.id !== selectedNote.id) return note;
+          return {
+            ...note,
+            contents: noteData.contents,
+            page: noteData.page,
+            zIndex: 999,
+            styles: {
+              ...note.styles,
+              backgroundColor: updatedNoteDataInputs.pickedColorBackground,
+              textStyles: {
+                ...note.styles.textStyles,
+                fill: updatedNoteDataInputs.pickedColorText,
+              },
+            },
+          };
+        });
         return { ...currentBook, notes: [...updateNotes] };
       })
     );
@@ -125,35 +122,30 @@ function App() {
     const [currentBook] = queryCurrentBook();
     const formData = new FormData(e.currentTarget);
     const newNote = Object.fromEntries(formData.entries());
-    console.log(newNote);
-    const updatedBook = {
-      ...currentBook,
-      notes: [
-        {
-          id: uid(16),
-          contents: newNote.contents,
-          position: { x: 100, y: 100 },
-          page: currentBook.currentPage,
-          zIndex: 999,
-          styles: {
-            backgroundColor: newNote.pickedColorBackground,
-            textStyles: {
-              fill: newNote.pickedColorText,
-              wordWrapWidth: 400 - 30,
-              wordWrap: true,
-            },
-          },
-        },
-        ...currentBook.notes,
-      ],
-    };
     setLibrary((prev) =>
       prev.map((book) => {
-        if (`/${book.link}` === window.location.pathname) {
-          console.log(updatedBook);
-          return updatedBook;
-        }
-        return book;
+        if (book.link !== currentBook.link) return book;
+        return {
+          ...book,
+          notes: [
+            {
+              id: uid(16),
+              contents: newNote.contents,
+              position: { x: 100, y: 100 },
+              page: book.currentPage,
+              zIndex: 999,
+              styles: {
+                backgroundColor: newNote.pickedColorBackground,
+                textStyles: {
+                  fill: newNote.pickedColorText,
+                  wordWrapWidth: 400 - 30,
+                  wordWrap: true,
+                },
+              },
+            },
+            ...book.notes,
+          ],
+        };
       })
     );
     addPopupItems("New Note Added!", "add");
@@ -163,19 +155,18 @@ function App() {
     dialogRef.current.close();
     setIsSidebarActive(false);
     const [currentBook, currentLibraryState] = queryCurrentBook();
-    console.log(currentLibraryState);
     setLibrary(currentLibraryState);
     addPopupItems("Book Removed!", "remove");
   }
 
   function removeCurrentNote() {
-    const filteredNotes = currentBook.notes.filter(
-      (note) => note.id !== selectedNote.id
-    );
     console.log(filteredNotes);
     setLibrary((prev) => {
       return prev.map((book) => {
         if (currentBook.link !== book.link) return book;
+        const filteredNotes = currentBook.notes.filter(
+          (note) => note.id !== selectedNote.id
+        );
         return { ...book, notes: filteredNotes };
       });
     });
@@ -244,7 +235,7 @@ function App() {
 
   // if popup is added means that the user did an action
   // eg: adding updating deleting
-  // close if actions are emitted
+  // close sidebar if actions are emitted
   useEffect(() => {
     if (popupItems.length > 0) {
       setIsSidebarActive(false);
