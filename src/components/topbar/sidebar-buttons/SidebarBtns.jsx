@@ -73,7 +73,7 @@ const SidebarBtns = ({ disableButtons }) => {
               <path
                 d="M6.33331 5.79999H31.6666M6.33331 14.5H31.6666M6.33331 23.2H31.6666"
                 stroke={
-                  currentActivePanel === "edit-panel"
+                  currentActivePanel === "add-note-panel"
                     ? isSidebarActive
                       ? "#DF7868"
                       : "white"

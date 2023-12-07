@@ -1,34 +1,32 @@
-.container{
-   display:flex;
+.container {
+  display: flex;
 }
 
-
-.buttonsContainer{
-  padding:0 !important;
-  display:block;
-  height:100%;
-  box-sizing:border-box;
-  overflow:hidden;
-  & > span{
-    display:inline-block;
-    height:100%;
+.buttonsContainer {
+  padding: 0 !important;
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  & > span {
+    display: inline-block;
+    height: 100%;
   }
 }
-.btns{
+.btns {
   transition: background-color 150ms ease-in-out;
   & > svg {
-    fill: #ffffff ;
+    fill: #ffffff;
   }
 }
 
-.btns:hover{
+.btns:hover {
   transition: background-color 150ms ease-in-out;
-  background-color:#ffffff20;
-  /* & > svg { */
-  /*   fill: var(--accent1, #DF7868); */
-  /*   & > path{ */
-  /*     stroke: var(--accent1); */
-  /*   } */
-  /* } */
-
+  background-color: #ffffff20;
+  /* & > svg {
+    fill: var(--accent1);
+    & > path {
+      stroke: var(--accent1);
+    }
+  } */
 }
