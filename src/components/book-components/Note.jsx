@@ -117,7 +117,7 @@ const Note = (
   const draw = useCallback(
     (g) => {
       g.beginFill(noteData.styles.backgroundColor);
-      g.drawRoundedRect(0, 0, noteData.width, noteData.height, 6);
+      g.drawRoundedRect(0, 0, currentNote.width, currentNote.height, 6);
       g.endFill();
     },
     [noteData]
