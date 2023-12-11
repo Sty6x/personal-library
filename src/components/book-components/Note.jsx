@@ -18,7 +18,6 @@ const Note = (
   ref
 ) => {
   let noteIsClicked = false;
-  let scaleState;
 
   const [currentNote, setCurrentNote] = useState(noteData);
 
@@ -28,37 +27,7 @@ const Note = (
 
     noteIsClicked = noteIsClicked ? false : true;
     container.zIndex = noteIsClicked ? 999 : 1;
-    scaleState = noteIsClicked ? getScalingState(pe) : undefined;
     !noteIsClicked && handleUpdateCurrentPosition(container);
-  }
-
-  // To initialize when a note is to be scaled
-  function getScalingState(pe) {
-    const container = pe.currentTarget;
-    const containerBounds = container.getBounds();
-    const threshold = 10;
-    const rightScale = containerBounds.width - threshold;
-    const bottomScale = containerBounds.height - threshold;
-    const originScale = 0 + threshold; // 0 for origin of the container
-
-    //  returns the mouse position relative to the note
-    const calculateCurrentMousePos = {
-      x: Math.floor(pe.clientX - containerBounds.x),
-      y: Math.floor(pe.clientY - containerBounds.y),
-    };
-    if (calculateCurrentMousePos.x >= rightScale) {
-      console.log("INIT WIDTH SCALING");
-      return "right";
-    } else if (calculateCurrentMousePos.x <= originScale) {
-      console.log("INIT WIDTH SCALING");
-      return "left";
-    } else if (calculateCurrentMousePos.y >= bottomScale) {
-      console.log("INIT HEIGHT SCALING");
-      return "bottom";
-    } else if (calculateCurrentMousePos.y <= originScale) {
-      console.log("INIT HEIGHT SCALING");
-      return "top";
-    }
   }
 
   function handleOnMouseDrag(pe) {
@@ -67,29 +36,8 @@ const Note = (
     if (!noteIsClicked) return;
     let distanceX = pe.movementX;
     let distanceY = pe.movementY;
-
-    if (scaleState === undefined) {
-      (pe.currentTarget.x += distanceX) * 0.8;
-      (pe.currentTarget.y += distanceY) * 0.8;
-      return;
-    }
-
-    const graphics = container.children[0];
-    const graphicsBounds = graphics.getBounds();
-    let calculateMissingSpace;
-    if (scaleState === "right") {
-      graphics.width += distanceX;
-    } else if (scaleState === "bottom") {
-      graphics.height += distanceY;
-    } else if (scaleState === "left") {
-      container.x += distanceX;
-      calculateMissingSpace = graphicsBounds.right - container.x;
-      graphics.width = calculateMissingSpace;
-    } else if (scaleState === "top") {
-      container.y += distanceY;
-      calculateMissingSpace = graphicsBounds.bottom - container.y;
-      graphics.height = calculateMissingSpace;
-    }
+    container.x += distanceX;
+    container.y += distanceY;
   }
 
   function redrawRectSelection(container) {
@@ -109,7 +57,6 @@ const Note = (
   }
   function noteSelection(pe) {
     const container = pe.currentTarget;
-    if (scaleState !== undefined) return;
     handleUpdateNoteScale(container);
     handleEditPanelOnSelect(container);
   }
