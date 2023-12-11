@@ -51,21 +51,6 @@ const Note = (
     container.y += distanceY;
   }
 
-  function redrawRectSelection(container) {
-    const graphicsComponent = container.children[0];
-    graphicsComponent.clear();
-    graphicsComponent.beginFill("#ffffff");
-    graphicsComponent.drawRect(-12, -12, 474, 324);
-    graphicsComponent.endFill();
-
-    graphicsComponent.beginFill("#1a1b1d");
-    graphicsComponent.drawRect(-8, -8, 465, 315);
-    graphicsComponent.endFill();
-
-    graphicsComponent.beginFill(noteData.styles.backgroundColor);
-    graphicsComponent.drawRoundedRect(0, 0, 450, 300, 6);
-    graphicsComponent.endFill();
-  }
   function noteSelection(pe) {
     const container = pe.currentTarget;
     console.log(container.children[1]);
@@ -74,7 +59,8 @@ const Note = (
 
   const draw = useCallback(
     (g) => {
-      g.beginFill(noteData.styles.backgroundColor);
+      g.clear();
+      g.beginFill(currentNote.styles.backgroundColor);
       g.drawRoundedRect(
         0,
         0,
@@ -111,7 +97,7 @@ const Note = (
         style={
           new PIXI.TextStyle({
             ...noteData.styles.textStyles,
-            wordWrapWidth: noteData.width,
+            wordWrapWidth: currentNote.width,
             breakWords: true,
           })
         }
