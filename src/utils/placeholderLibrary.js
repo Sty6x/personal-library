@@ -16,13 +16,12 @@ export const placeholders = [
         contents: "This is the contents of the current note on Haruki murakami",
         page: 31,
         zIndex: 0,
-        width: 450,
-        height: 300,
+        width: 400,
+        height: 100,
         styles: {
           backgroundColor: "#DF7868",
           textStyles: {
             fill: "#1a1b1d",
-            wordWrapWidth: 400 - 30,
             wordWrap: true,
           },
         },
@@ -30,16 +29,16 @@ export const placeholders = [
       },
       {
         id: uid(16),
-        contents: "Somethin something he said to mr something",
+        contents:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
         page: 152,
         position: { x: 120, y: 320 },
         zIndex: 0,
-        width: 450,
-        height: 300,
+        height: 100,
+        width: 400,
         styles: {
           textStyles: {
             fill: "#1a1b1d",
-            wordWrapWidth: 400 - 30,
             wordWrap: true,
           },
           backgroundColor: "#68A5DE",

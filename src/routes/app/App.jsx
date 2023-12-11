@@ -77,13 +77,14 @@ function App() {
   // selecting a note means that it needs to set all of the other notes' zIndex to 0
   function openEditNotePanelOnClick(clickedNote) {
     const [currentBook] = queryCurrentBook();
+    const noteText = clickedNote.children[1];
     setSidebarBtn("edit-note-panel");
     setIsSidebarActive(true);
     const currentNote = filterArrItems(
       currentBook.notes,
       (note) => note.id.toString().localeCompare(clickedNote.name) === 0
     );
-    setSelectedNote(currentNote);
+    setSelectedNote({ ...currentNote });
   }
 
   function editNote(e, noteData) {

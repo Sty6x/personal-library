@@ -5,6 +5,8 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -20,6 +22,15 @@ const Note = (
   let noteIsClicked = false;
 
   const [currentNote, setCurrentNote] = useState(noteData);
+  const noteTextRef = useRef();
+  useEffect(() => {
+    const noteText = noteTextRef.current;
+    setCurrentNote({
+      ...noteData,
+      width: noteText.width,
+      height: noteText.height,
+    });
+  }, [noteData]);
 
   function initMouseClicked(pe) {
     pe.stopPropagation();
@@ -57,17 +68,23 @@ const Note = (
   }
   function noteSelection(pe) {
     const container = pe.currentTarget;
-    handleUpdateNoteScale(container);
+    console.log(container.children[1]);
     handleEditPanelOnSelect(container);
   }
 
   const draw = useCallback(
     (g) => {
       g.beginFill(noteData.styles.backgroundColor);
-      g.drawRoundedRect(0, 0, currentNote.width, currentNote.height, 6);
+      g.drawRoundedRect(
+        0,
+        0,
+        currentNote.width + 40,
+        currentNote.height + 80,
+        6
+      );
       g.endFill();
     },
-    [noteData]
+    [currentNote]
   );
   return (
     <Container
@@ -87,10 +104,17 @@ const Note = (
     >
       <Graphics draw={draw} />
       <Text
+        ref={noteTextRef}
         anchor={{ x: 0, y: 0 }}
         position={{ x: 20, y: 50 }}
         text={noteData.contents}
-        style={new PIXI.TextStyle({ ...noteData.styles.textStyles })}
+        style={
+          new PIXI.TextStyle({
+            ...noteData.styles.textStyles,
+            wordWrapWidth: noteData.width,
+            breakWords: true,
+          })
+        }
       />
 
       <Text
