@@ -135,11 +135,12 @@ function App() {
               position: { x: 100, y: 100 },
               page: book.currentPage,
               zIndex: 999,
+              width: 400,
+              height: 0,
               styles: {
                 backgroundColor: newNote.pickedColorBackground,
                 textStyles: {
                   fill: newNote.pickedColorText,
-                  wordWrapWidth: 400 - 30,
                   wordWrap: true,
                 },
               },

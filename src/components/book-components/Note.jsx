@@ -27,10 +27,14 @@ const Note = (
     const noteText = noteTextRef.current;
     setCurrentNote({
       ...noteData,
-      width: noteText.width,
+      // updates the width and height of the graphics if the noteData updates or is edited
+      width: noteText.width < noteData.width ? noteData.width : noteText.width,
       height: noteText.height,
     });
   }, [noteData]);
+  useEffect(() => {
+    console.log(noteTextRef.current);
+  }, []);
 
   function initMouseClicked(pe) {
     pe.stopPropagation();
