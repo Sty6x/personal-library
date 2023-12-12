@@ -1,6 +1,11 @@
 import { uid } from "uid";
 import { createContext, useEffect, useMemo, useRef, useState } from "react";
-import { useNavigate, Outlet, useParams } from "react-router-dom";
+import {
+  useLoaderData,
+  useNavigate,
+  Outlet,
+  useParams,
+} from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
@@ -19,10 +24,11 @@ export const SidebarContext = createContext();
 // mouse hovering over notes rerenders the app
 
 function App() {
+  const { localLibrary } = useLoaderData();
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState("library-panel");
-  const [library, setLibrary] = useState([...placeholders]);
+  const [library, setLibrary] = useState([...localLibrary]);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
   const [popupItems, setPopupItems] = useState([]);
@@ -199,23 +205,8 @@ function App() {
     console.log(target.id);
   }
 
-  function storePlaceholders(placeholders) {
-    placeholders.forEach((tempData) => {
-      localStorage.setItem(`${tempData.id}`, JSON.stringify({ ...tempData }));
-    });
-  }
-
-  function convertLocalStorageDataToArray() {
-    const localStorageEntries = Object.entries(localStorage);
-    const stateArray = localStorageEntries.map((data) => ({
-      ...JSON.parse(data[1]),
-    }));
-
-    console.log(stateArray);
-  }
-
   useEffect(() => {
-    convertLocalStorageDataToArray();
+    console.log(localLibrary);
     if (library.length !== 0) {
       return navigate(library[0].id);
     }
@@ -270,13 +261,13 @@ function App() {
         }
       }}
     >
-      {window.location.pathname !== "/" && (
+      {/* {window.location.pathname !== "/" && (
         <DialogBox
           ref={dialogRef}
           handleOnConfirm={removeCurrentBook}
           currentBook={currentBook}
         />
-      )}
+      )} */}
       <LibraryContext.Provider
         value={{
           currentBook,
