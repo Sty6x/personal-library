@@ -13,7 +13,42 @@ export const placeholders = [
     notes: [
       {
         id: uid(16),
-        contents: "This is the contents of the current note on Haruki murakami",
+        contents:
+          "“None of us are ever finished. Everyone is always a work in progress.”",
+        page: 421,
+        zIndex: 0,
+        width: 400,
+        height: 100,
+        styles: {
+          backgroundColor: "#C7A2DE",
+          textStyles: {
+            fill: "#1a1b1d",
+            wordWrap: true,
+          },
+        },
+        position: { x: 500, y: 150 },
+      },
+      {
+        id: uid(16),
+        contents:
+          "“You can have all the desire and ache inside you want, but what you really need is a concrete starting point.”",
+        page: 145,
+        zIndex: 0,
+        width: 400,
+        height: 100,
+        styles: {
+          backgroundColor: "#68DE8C",
+          textStyles: {
+            fill: "#1a1b1d",
+            wordWrap: true,
+          },
+        },
+        position: { x: 300, y: 550 },
+      },
+      {
+        id: uid(16),
+        contents:
+          "As I gazed at my reflection I wondered, Where am I headed? Before that, though, the question was Where have I come to? Where is this place? No, before that even I needed to ask, Who the hell am I?",
         page: 31,
         zIndex: 0,
         width: 400,
