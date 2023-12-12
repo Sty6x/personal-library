@@ -199,7 +199,23 @@ function App() {
     console.log(target.id);
   }
 
+  function storePlaceholders(placeholders) {
+    placeholders.forEach((tempData) => {
+      localStorage.setItem(`${tempData.id}`, JSON.stringify({ ...tempData }));
+    });
+  }
+
+  function convertLocalStorageDataToArray() {
+    const localStorageEntries = Object.entries(localStorage);
+    const stateArray = localStorageEntries.map((data) => ({
+      ...JSON.parse(data[1]),
+    }));
+
+    console.log(stateArray);
+  }
+
   useEffect(() => {
+    convertLocalStorageDataToArray();
     if (library.length !== 0) {
       return navigate(library[0].id);
     }

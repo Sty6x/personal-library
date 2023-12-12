@@ -32,9 +32,6 @@ const Note = (
       height: noteText.height,
     });
   }, [noteData]);
-  useEffect(() => {
-    console.log(noteTextRef.current);
-  }, []);
 
   function initMouseClicked(pe) {
     pe.stopPropagation();
