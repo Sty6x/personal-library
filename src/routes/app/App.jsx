@@ -13,7 +13,7 @@ import { placeholders } from "../../utils/placeholderLibrary.js";
 import filterArrItems from "../../utils/filterArray.js";
 import DialogBox from "../../components/book-components/dialog-box/DialogBox.jsx";
 import usePrevState from "../../utils/hooks/usePrevState.jsx";
-import { addItem } from "../../utils/localStorage.js";
+import { addItem, removeItem } from "../../utils/localStorage.js";
 
 export const TopBarContext = createContext();
 export const LibraryContext = createContext();
@@ -29,7 +29,7 @@ function App() {
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(false);
   const [sidebarBtn, setSidebarBtn] = useState("library-panel");
-  const [library, setLibrary] = useState([...localLibrary]);
+  const [library, setLibrary] = useState(localLibrary);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
   const [popupItems, setPopupItems] = useState([]);
@@ -161,10 +161,11 @@ function App() {
     addPopupItems("New Note Added!", "add");
   }
 
-  function removeCurrentBook() {
+  async function removeCurrentBook() {
     dialogRef.current.close();
     setIsSidebarActive(false);
     const [currentBook, currentLibraryState] = queryCurrentBook();
+    await removeItem(currentBook);
     setLibrary(currentLibraryState);
     addPopupItems("Book Removed!", "remove");
   }
@@ -263,13 +264,13 @@ function App() {
         }
       }}
     >
-      {/* {window.location.pathname !== "/" && (
+      {window.location.pathname !== "/" && (
         <DialogBox
           ref={dialogRef}
           handleOnConfirm={removeCurrentBook}
           currentBook={currentBook}
         />
-      )} */}
+      )}
       <LibraryContext.Provider
         value={{
           currentBook,

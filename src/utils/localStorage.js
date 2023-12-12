@@ -9,10 +9,17 @@ export function getLocalStorage() {
   return { localLibrary: library };
 }
 
-export async function addItem(item, cb) {
+export async function addItem(item) {
   try {
     localStorage.setItem(item.id, JSON.stringify(item));
-    cb = 0 || cb(item);
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function removeItem(item) {
+  try {
+    localStorage.removeItem(item.id);
   } catch (err) {
     throw err;
   }
