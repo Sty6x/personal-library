@@ -1,4 +1,6 @@
-function getLocalStorage() {
+import { uid } from "uid";
+
+export function getLocalStorage() {
   const convertLocalStorage = Object.entries(localStorage);
   const library = convertLocalStorage.map((item) => {
     const parsedItem = { ...JSON.parse(item[1]) };
@@ -7,4 +9,11 @@ function getLocalStorage() {
   return { localLibrary: library };
 }
 
-export default getLocalStorage;
+export async function addItem(item, cb) {
+  try {
+    localStorage.setItem(item.id, JSON.stringify(item));
+    cb = 0 || cb(item);
+  } catch (err) {
+    throw err;
+  }
+}
