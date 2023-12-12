@@ -13,7 +13,7 @@ import { placeholders } from "../../utils/placeholderLibrary.js";
 import filterArrItems from "../../utils/filterArray.js";
 import DialogBox from "../../components/book-components/dialog-box/DialogBox.jsx";
 import usePrevState from "../../utils/hooks/usePrevState.jsx";
-import { addItem, removeItem } from "../../utils/localStorage.js";
+import { addItem, removeItem, updateItem } from "../../utils/localStorage.js";
 
 export const TopBarContext = createContext();
 export const LibraryContext = createContext();
@@ -59,6 +59,7 @@ function App() {
       genre: [...contents.genre],
       lastUpdated: new Date(),
     };
+    updateItem(updatedBook);
     setLibrary([updatedBook, ...currentLibraryState]);
     addPopupItems("Book Updated!", "update");
   }

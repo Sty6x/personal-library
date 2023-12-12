@@ -24,3 +24,11 @@ export async function removeItem(item) {
     throw err;
   }
 }
+
+export async function updateItem(item) {
+  try {
+    localStorage.setItem(item.id, JSON.stringify(item));
+  } catch (err) {
+    throw err;
+  }
+}
