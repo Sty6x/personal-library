@@ -1,11 +1,19 @@
-import { uid } from "uid";
+function removeGlobalState() {
+  const convertLocalStorage = Object.entries(localStorage);
+  const filteredItems = convertLocalStorage.filter((item, i) => {
+    if (item[0] === "globalState") return;
+    return item;
+  });
+  return filteredItems;
+}
 
 export function getLocalStorage() {
   const convertLocalStorage = Object.entries(localStorage);
-  const library = convertLocalStorage.map((item) => {
+  const library = removeGlobalState().map((item) => {
     const parsedItem = { ...JSON.parse(item[1]) };
     return { ...parsedItem, lastUpdated: new Date(parsedItem.lastUpdated) };
   });
+  console.log(library);
   return { localLibrary: library };
 }
 
