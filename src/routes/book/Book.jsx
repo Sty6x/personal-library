@@ -9,6 +9,7 @@ import PopupContainer from "../../components/popup-ui/PopupContainer";
 import PopupItem from "../../components/popup-ui/popup-item/PopupItem";
 import { uid } from "uid";
 import { useParams } from "react-router-dom";
+import { updateItem } from "../../utils/localStorage";
 
 // needs to update but is delayed
 const Book = () => {
@@ -24,7 +25,8 @@ const Book = () => {
   const [openedBook, setOpenedBook] = useState(currentBook);
 
   useEffect(() => {
-    setOpenedBook(currentBook);
+    setOpenedBook({ ...currentBook });
+    updateItem(currentBook);
   }, [currentBook]);
 
   function updateCurrentNotePosition(selectedNote) {
