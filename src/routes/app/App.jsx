@@ -166,16 +166,14 @@ function App() {
     addPopupItems("Book Removed!", "remove");
   }
 
-  function removeCurrentNote() {
-    setLibrary((prev) => {
-      return prev.map((book) => {
-        if (currentBook.id !== book.id) return book;
-        const filteredNotes = currentBook.notes.filter(
-          (note) => note.id !== selectedNote.id
-        );
-        return { ...book, notes: filteredNotes };
-      });
-    });
+  async function removeCurrentNote() {
+    const [queriedBook, currentLibraryState] = queryCurrentBook();
+    const updatedBook = {
+      ...queriedBook,
+      notes: queriedBook.notes.filter((note) => note.id !== selectedNote.id),
+    };
+    setLibrary([updatedBook, ...currentLibraryState]);
+    await updateItem(updatedBook);
     addPopupItems("Note Removed!", "remove");
   }
 
