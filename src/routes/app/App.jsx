@@ -119,7 +119,11 @@ function App() {
         },
       };
     });
-    const updatedBook = { ...queriedBook, notes: [...updateNotes] };
+    const updatedBook = {
+      ...queriedBook,
+      lastUpdated: new Date(),
+      notes: [...updateNotes],
+    };
     setLibrary([updatedBook, ...currentLibraryState]);
     await updateItem(updatedBook);
     addPopupItems("Note Updated!", "update");
@@ -132,6 +136,7 @@ function App() {
     const newNote = Object.fromEntries(formData.entries());
     const updatedBook = {
       ...queriedBook,
+      lastUpdated: new Date(),
       notes: [
         {
           id: uid(16),
@@ -170,6 +175,7 @@ function App() {
     const [queriedBook, currentLibraryState] = queryCurrentBook();
     const updatedBook = {
       ...queriedBook,
+      lastUpdated: new Date(),
       notes: queriedBook.notes.filter((note) => note.id !== selectedNote.id),
     };
     setLibrary([updatedBook, ...currentLibraryState]);
