@@ -255,6 +255,10 @@ function App() {
 
   return (
     <main
+      autoFocus
+      onKeyDown={(e) => {
+        e.key === "Escape" && setIsSidebarActive(false);
+      }}
       id="main-contents"
       className={AppStyles.main}
       onClick={(e) => {
