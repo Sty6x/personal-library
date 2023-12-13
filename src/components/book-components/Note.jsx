@@ -54,7 +54,6 @@ const Note = (
 
   function noteSelection(pe) {
     const container = pe.currentTarget;
-    console.log(container.children[1]);
     handleEditPanelOnSelect(container);
   }
 

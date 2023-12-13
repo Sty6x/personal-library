@@ -96,34 +96,36 @@ function App() {
     setSelectedNote({ ...currentNote });
   }
 
-  function editNote(e, noteData) {
+  async function editNote(e, noteData) {
     const target = e.currentTarget;
     const formData = new FormData(target);
     const updatedNoteDataInputs = Object.fromEntries(formData.entries());
     const [currentBook] = queryCurrentBook();
-    setLibrary((prev) =>
-      prev.map((book) => {
-        if (book.id !== currentBook.id) return book;
-        const updateNotes = currentBook.notes.map((note) => {
-          if (note.id !== selectedNote.id) return note;
-          return {
-            ...note,
-            contents: noteData.contents,
-            page: noteData.page,
-            zIndex: 999,
-            styles: {
-              ...note.styles,
-              backgroundColor: updatedNoteDataInputs.pickedColorBackground,
-              textStyles: {
-                ...note.styles.textStyles,
-                fill: updatedNoteDataInputs.pickedColorText,
-              },
-            },
-          };
-        });
-        return { ...currentBook, notes: [...updateNotes] };
-      })
-    );
+
+    const updateNotes = currentBook.notes.map((note) => {
+      if (note.id !== selectedNote.id) return note;
+      return {
+        ...note,
+        contents: noteData.contents,
+        page: noteData.page,
+        zIndex: 999,
+        styles: {
+          ...note.styles,
+          backgroundColor: updatedNoteDataInputs.pickedColorBackground,
+          textStyles: {
+            ...note.styles.textStyles,
+            fill: updatedNoteDataInputs.pickedColorText,
+          },
+        },
+      };
+    });
+    const updatedBook = { ...currentBook, notes: [...updateNotes] };
+    const mappedLibrary = library.map((book) => {
+      if (book.id !== currentBook.id) return book;
+      return updatedBook;
+    });
+    setLibrary([...mappedLibrary]);
+    await updateItem(updatedBook);
     addPopupItems("Note Updated!", "update");
   }
 
