@@ -98,6 +98,7 @@ const Note = (
           new PIXI.TextStyle({
             ...noteData.styles.textStyles,
             wordWrapWidth: currentNote.width,
+            fontSize: 20,
             breakWords: true,
           })
         }
@@ -105,12 +106,13 @@ const Note = (
 
       <Text
         anchor={{ x: 0, y: 0 }}
-        position={{ x: 20, y: 10 }}
+        position={{ x: 20, y: 15 }}
         text={`Page:${noteData.page}`}
         style={
           new PIXI.TextStyle({
             ...noteData.styles.textStyles,
             fontWeight: "600",
+            fontSize: 25,
           })
         }
       />
