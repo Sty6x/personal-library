@@ -39,19 +39,19 @@ function App() {
   const dialogRef = useRef();
 
   function queryCurrentBook() {
-    const [currentBook] = library.filter(
+    const [queriedBook] = library.filter(
       (book) => `/${book.id}` === window.location.pathname
     );
     const currentLibraryState = library.filter(
       (book) => `/${book.id}` !== window.location.pathname
     );
-    return [currentBook, currentLibraryState];
+    return [queriedBook, currentLibraryState];
   }
 
   function editBook(contents) {
-    const [currentBook, currentLibraryState] = queryCurrentBook();
+    const [queriedBook, currentLibraryState] = queryCurrentBook();
     const updatedBook = {
-      ...currentBook,
+      ...queriedBook,
       title: contents.title,
       author: contents.author,
       totalPages: Number(contents.totalPages),
@@ -85,12 +85,12 @@ function App() {
 
   // selecting a note means that it needs to set all of the other notes' zIndex to 0
   function openEditNotePanelOnClick(clickedNote) {
-    const [currentBook] = queryCurrentBook();
+    const [queriedBook] = queryCurrentBook();
     const noteText = clickedNote.children[1];
     setSidebarBtn("edit-note-panel");
     setIsSidebarActive(true);
     const currentNote = filterArrItems(
-      currentBook.notes,
+      queriedBook.notes,
       (note) => note.id.toString().localeCompare(clickedNote.name) === 0
     );
     setSelectedNote({ ...currentNote });
@@ -100,9 +100,9 @@ function App() {
     const target = e.currentTarget;
     const formData = new FormData(target);
     const updatedNoteDataInputs = Object.fromEntries(formData.entries());
-    const [currentBook] = queryCurrentBook();
+    const [queriedBook, currentLibraryState] = queryCurrentBook();
 
-    const updateNotes = currentBook.notes.map((note) => {
+    const updateNotes = queriedBook.notes.map((note) => {
       if (note.id !== selectedNote.id) return note;
       return {
         ...note,
@@ -119,29 +119,25 @@ function App() {
         },
       };
     });
-    const updatedBook = { ...currentBook, notes: [...updateNotes] };
-    const mappedLibrary = library.map((book) => {
-      if (book.id !== currentBook.id) return book;
-      return updatedBook;
-    });
-    setLibrary([...mappedLibrary]);
+    const updatedBook = { ...queriedBook, notes: [...updateNotes] };
+    setLibrary([updatedBook, ...currentLibraryState]);
     await updateItem(updatedBook);
     addPopupItems("Note Updated!", "update");
   }
 
   async function addNote(e) {
     e.preventDefault();
-    const [currentBook] = queryCurrentBook();
+    const [queriedBook, currentLibraryState] = queryCurrentBook();
     const formData = new FormData(e.currentTarget);
     const newNote = Object.fromEntries(formData.entries());
     const updatedBook = {
-      ...currentBook,
+      ...queriedBook,
       notes: [
         {
           id: uid(16),
           contents: newNote.contents,
           position: { x: 100, y: 100 },
-          page: currentBook.currentPage,
+          page: queriedBook.currentPage,
           zIndex: 999,
           width: 400,
           height: 0,
@@ -153,14 +149,10 @@ function App() {
             },
           },
         },
-        ...currentBook.notes,
+        ...queriedBook.notes,
       ],
     };
-    const mappedLibrary = library.map((book) => {
-      if (book.id !== currentBook.id) return book;
-      return updatedBook;
-    });
-    setLibrary([...mappedLibrary]);
+    setLibrary([updatedBook, ...currentLibraryState]);
     await updateItem(updatedBook);
     addPopupItems("New Note Added!", "add");
   }
@@ -168,8 +160,8 @@ function App() {
   async function removeCurrentBook() {
     dialogRef.current.close();
     setIsSidebarActive(false);
-    const [currentBook, currentLibraryState] = queryCurrentBook();
-    await removeItem(currentBook);
+    const [queriedBook, currentLibraryState] = queryCurrentBook();
+    await removeItem(queriedBook);
     setLibrary(currentLibraryState);
     addPopupItems("Book Removed!", "remove");
   }
