@@ -209,7 +209,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(localLibrary);
     if (library.length !== 0) {
       return navigate(library[0].id);
     }
@@ -238,9 +237,7 @@ function App() {
 
   useEffect(() => {
     if (popupItems.length > 0 && popupItems.length < 2) {
-      removePopupItems().then((result) => {
-        console.log(result);
-      });
+      removePopupItems().then((result) => {});
     }
   }, [popupItems]);
 
