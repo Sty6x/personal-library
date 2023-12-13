@@ -129,38 +129,39 @@ function App() {
     addPopupItems("Note Updated!", "update");
   }
 
-  function addNote(e) {
+  async function addNote(e) {
     e.preventDefault();
     const [currentBook] = queryCurrentBook();
     const formData = new FormData(e.currentTarget);
     const newNote = Object.fromEntries(formData.entries());
-    setLibrary((prev) =>
-      prev.map((book) => {
-        if (book.id !== currentBook.id) return book;
-        return {
-          ...book,
-          notes: [
-            {
-              id: uid(16),
-              contents: newNote.contents,
-              position: { x: 100, y: 100 },
-              page: book.currentPage,
-              zIndex: 999,
-              width: 400,
-              height: 0,
-              styles: {
-                backgroundColor: newNote.pickedColorBackground,
-                textStyles: {
-                  fill: newNote.pickedColorText,
-                  wordWrap: true,
-                },
-              },
+    const updatedBook = {
+      ...currentBook,
+      notes: [
+        {
+          id: uid(16),
+          contents: newNote.contents,
+          position: { x: 100, y: 100 },
+          page: currentBook.currentPage,
+          zIndex: 999,
+          width: 400,
+          height: 0,
+          styles: {
+            backgroundColor: newNote.pickedColorBackground,
+            textStyles: {
+              fill: newNote.pickedColorText,
+              wordWrap: true,
             },
-            ...book.notes,
-          ],
-        };
-      })
-    );
+          },
+        },
+        ...currentBook.notes,
+      ],
+    };
+    const mappedLibrary = library.map((book) => {
+      if (book.id !== currentBook.id) return book;
+      return updatedBook;
+    });
+    setLibrary([...mappedLibrary]);
+    await updateItem(updatedBook);
     addPopupItems("New Note Added!", "add");
   }
 
