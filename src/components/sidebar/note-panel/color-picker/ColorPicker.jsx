@@ -4,32 +4,33 @@ const ColorPicker = ({ title, currentColor }) => {
   // if the local storage for pickedColors array is empty
   // then use default colors state
   const [defaultColor, setdefaultColor] = useState(currentColor);
-  const colorNumbers = 6;
-  const defaultColors = [
+  const placeholderColors = [
     "#C7A2DE",
     "#AFDEA2",
     "#DF9368",
     "#DF7868",
     "#A2C1DE",
     "#6888DE",
-    "#68DE8C",
-    "#DE9C68",
-    "#68A5DE",
-    "#DE6868",
-    "#CA68DE",
   ];
+  const [previousColors, setPreviousColors] = useState(placeholderColors);
+  const colorNumbers = 6;
 
   useEffect(() => {
     setdefaultColor(currentColor);
   }, [currentColor]);
 
-  const randomizeColors = useMemo(() => {
-    return Math.floor(Math.random() * defaultColors.length);
-  }, []);
-
   function handleColorChange(e) {
     const target = e.currentTarget;
     setdefaultColor(target.value);
+    updatePreviousColors(target.value);
+  }
+
+  function updatePreviousColors(color) {
+    const maximumColors = 6;
+    const removeExtraColor = previousColors.filter(
+      (color, i) => i !== maximumColors
+    );
+    setPreviousColors([color, ...removeExtraColor]);
   }
 
   const displayDefaultColors = () => {
@@ -39,13 +40,15 @@ const ColorPicker = ({ title, currentColor }) => {
         <span
           key={i}
           onClick={(e) => {
-            setdefaultColor(e.currentTarget.dataset.color);
+            const color = e.currentTarget.dataset.color;
+            updatePreviousColors(color);
+            setdefaultColor(color);
           }}
-          id={defaultColors[randomizeColors]}
-          data-color={defaultColors[randomizeColors]}
+          id={previousColors[i]}
+          data-color={previousColors[i]}
           className={`${colorPickerStyles.colors}`}
           style={{
-            backgroundColor: `${defaultColors[randomizeColors]}`,
+            backgroundColor: `${previousColors[i]}`,
             ":hover": { outline: `2px solid red` },
           }}
         />
