@@ -10,10 +10,7 @@ function removeGlobalState() {
 function parseLocalStorage(arr, keyValue) {
   const parseItems = arr.map((item) => {
     let parsedItem = { ...JSON.parse(item[keyValue]) };
-    if (parsedItem.lastUpdated) {
-      return { ...parsedItem, lastUpdated: parsedItem.lastUpdated };
-    }
-    return { ...parsedItem };
+    return { ...parsedItem, lastUpdated: parsedItem.lastUpdated };
   });
   return parseItems;
 }
@@ -54,4 +51,9 @@ export function getGlobalState() {
   return { ...parseState };
 }
 
-export function itemExist(itemId) {}
+export function itemExist(itemId) {
+  const convertLocalStorage = Object.entries(localStorage);
+  const getKeys = convertLocalStorage.map((item) => item[0]);
+  const checkKey = getKeys.find((item) => item === itemId);
+  return checkKey !== undefined ? true : false;
+}
