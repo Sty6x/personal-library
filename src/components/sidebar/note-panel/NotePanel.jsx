@@ -3,11 +3,13 @@ import ColorPicker from "./color-picker/ColorPicker";
 import notePanelStyles from "./notePanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
 import PanelBtn from "../../book-components/panel-btn/PanelBtn";
+import { getGlobalState } from "../../../utils/localStorage";
 
 const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const { setIsSidebarActive, removeCurrentNote } = useContext(SidebarContext);
   const [noteContents, setNoteContents] = useState({ contents: "", page: 0 });
   const formRef = useRef();
+  const globalState = getGlobalState();
 
   useEffect(() => {
     title === "Add" && setNoteContents({ contents: "", page: 0 });
@@ -75,6 +77,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         className={`${notePanelStyles.colorProgressContainer}`}
       >
         <ColorPicker
+          prevColors={globalState.note.prevPickedBg}
           key={"pick-background"}
           currentColor={
             currentNote !== undefined
@@ -84,6 +87,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
           title={"Background"}
         />
         <ColorPicker
+          prevColors={globalState.note.prevPickedText}
           key={"pick-text"}
           currentColor={
             currentNote !== undefined

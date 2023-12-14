@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import colorPickerStyles from "./colorPicker.module.css";
-const ColorPicker = ({ title, currentColor }) => {
+const ColorPicker = ({ title, currentColor, prevColors }) => {
   // if the local storage for pickedColors array is empty
   // then use default colors state
   const [defaultColor, setdefaultColor] = useState(currentColor);
