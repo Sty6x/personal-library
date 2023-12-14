@@ -1,15 +1,9 @@
 import { uid } from "uid";
 import { createContext, useEffect, useMemo, useRef, useState } from "react";
-import {
-  useLoaderData,
-  useNavigate,
-  Outlet,
-  useParams,
-} from "react-router-dom";
+import { useLoaderData, useNavigate, Outlet } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
-import { placeholders } from "../../utils/placeholderLibrary.js";
 import filterArrItems from "../../utils/filterArray.js";
 import DialogBox from "../../components/book-components/dialog-box/DialogBox.jsx";
 import usePrevState from "../../utils/hooks/usePrevState.jsx";
@@ -184,7 +178,6 @@ function App() {
     e.stopPropagation();
     const target = e.currentTarget;
     setSidebarBtn(target.id);
-    console.log(target.id);
   }
 
   useEffect(() => {

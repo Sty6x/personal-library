@@ -17,7 +17,6 @@ function parseLocalStorage(arr, keyValue) {
 
 export function getLocalStorage() {
   const library = parseLocalStorage(removeGlobalState(), 1);
-  console.log(library);
   return { localLibrary: library };
 }
 

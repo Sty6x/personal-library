@@ -4,8 +4,6 @@ import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
 import Note from "../../components/book-components/Note";
 import filterArrItems from "../../utils/filterArray";
-import PopupItem from "../../components/popup-ui/popup-item/PopupItem";
-import { uid } from "uid";
 import { updateItem } from "../../utils/localStorage";
 
 // needs to update but is delayed

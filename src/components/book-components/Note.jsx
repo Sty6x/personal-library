@@ -1,24 +1,12 @@
 import { Text, Container, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
-import {
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-const Note = (
-  {
-    noteData,
-    handleUpdateCurrentPosition,
-    handleEditPanelOnSelect,
-    handleUpdateNoteScale,
-  },
-  ref
-) => {
+const Note = ({
+  noteData,
+  handleUpdateCurrentPosition,
+  handleEditPanelOnSelect,
+}) => {
   let noteIsClicked = false;
 
   const [currentNote, setCurrentNote] = useState(noteData);
