@@ -26,6 +26,28 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
     prevPickedText: [],
   });
 
+  function updatePreviousColors(color, context) {
+    console.log(context);
+    const maximumColors = 6;
+    if (context == "bg-colors") {
+      const removeExtraColor = prevColors.prevPickedBg.filter(
+        (color, i) => i !== maximumColors
+      );
+      setPrevColors((prev) => ({
+        ...prev,
+        prevPickedBg: [color, ...removeExtraColor],
+      }));
+    } else if (context === "text-colors") {
+      const removeExtraColor = prevColors.prevPickedText.filter(
+        (color, i) => i !== maximumColors
+      );
+      setPrevColors((prev) => ({
+        ...prev,
+        prevPickedText: [color, ...removeExtraColor],
+      }));
+    }
+  }
+
   useEffect(() => {
     if (localStorageItemExist("globalState")) {
       const { note } = getGlobalState();
@@ -61,6 +83,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
     if (currentNote === undefined) return;
     setNoteContents(currentNote);
   }, [currentNote]);
+
   return (
     <form
       ref={formRef}
@@ -118,8 +141,10 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         className={`${notePanelStyles.colorProgressContainer}`}
       >
         <ColorPicker
+          updatePreviousColors={updatePreviousColors}
           prevColors={prevColors.prevPickedBg}
           key={"pick-background"}
+          name={"bg-colors"}
           currentColor={
             currentNote !== undefined
               ? currentNote.styles.backgroundColor
@@ -128,8 +153,10 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
           title={"Background"}
         />
         <ColorPicker
+          updatePreviousColors={updatePreviousColors}
           prevColors={prevColors.prevPickedText}
           key={"pick-text"}
+          name={"text-colors"}
           currentColor={
             currentNote !== undefined
               ? currentNote.styles.textStyles.fill

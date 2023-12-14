@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import colorPickerStyles from "./colorPicker.module.css";
-const ColorPicker = ({ title, currentColor, prevColors }) => {
+const ColorPicker = ({
+  title,
+  currentColor,
+  prevColors,
+  updatePreviousColors,
+  name,
+}) => {
   // if the local storage for pickedColors array is empty
   // then use default colors state
   const [defaultColor, setdefaultColor] = useState(currentColor);
-  const [previousColors, setPreviousColors] = useState(prevColors);
   const colorNumbers = 6;
-
-  useEffect(() => {
-    setPreviousColors([...prevColors]);
-  }, [prevColors]);
 
   useEffect(() => {
     setdefaultColor(currentColor);
@@ -18,15 +19,6 @@ const ColorPicker = ({ title, currentColor, prevColors }) => {
   function handleColorChange(e) {
     const target = e.currentTarget;
     setdefaultColor(target.value);
-    updatePreviousColors(target.value);
-  }
-
-  function updatePreviousColors(color) {
-    const maximumColors = 6;
-    const removeExtraColor = previousColors.filter(
-      (color, i) => i !== maximumColors
-    );
-    setPreviousColors([color, ...removeExtraColor]);
   }
 
   const displayDefaultColors = () => {
@@ -37,14 +29,16 @@ const ColorPicker = ({ title, currentColor, prevColors }) => {
           key={i}
           onClick={(e) => {
             const color = e.currentTarget.dataset.color;
-            updatePreviousColors(color);
+            const target = e.currentTarget;
             setdefaultColor(color);
+            console.log(name);
+            updatePreviousColors(color, name);
           }}
-          id={previousColors[i]}
-          data-color={previousColors[i]}
-          className={`${colorPickerStyles.colors}`}
+          id={prevColors[i]}
+          data-color={prevColors[i]}
+          className={`${colorPickerStyles.colors} ${name}`}
           style={{
-            backgroundColor: `${previousColors[i]}`,
+            backgroundColor: `${prevColors[i]}`,
             ":hover": { outline: `2px solid red` },
           }}
         />
