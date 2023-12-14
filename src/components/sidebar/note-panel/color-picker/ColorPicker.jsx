@@ -1,22 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import colorPickerStyles from "./colorPicker.module.css";
-import { itemExist } from "../../../../utils/localStorage";
 const ColorPicker = ({ title, currentColor, prevColors }) => {
   // if the local storage for pickedColors array is empty
   // then use default colors state
   const [defaultColor, setdefaultColor] = useState(currentColor);
-  const placeholderColors = [
-    "#C7A2DE",
-    "#AFDEA2",
-    "#DF9368",
-    "#DF7868",
-    "#A2C1DE",
-    "#6888DE",
-  ];
-  const [previousColors, setPreviousColors] = useState(placeholderColors);
+  const [previousColors, setPreviousColors] = useState(prevColors);
   const colorNumbers = 6;
 
-  console.log(itemExist("if"));
+  useEffect(() => {
+    setPreviousColors([...prevColors]);
+  }, [prevColors]);
 
   useEffect(() => {
     setdefaultColor(currentColor);

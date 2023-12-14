@@ -51,7 +51,7 @@ export function getGlobalState() {
   return { ...parseState };
 }
 
-export function itemExist(itemId) {
+export function localStorageItemExist(itemId) {
   const convertLocalStorage = Object.entries(localStorage);
   const getKeys = convertLocalStorage.map((item) => item[0]);
   const checkKey = getKeys.find((item) => item === itemId);

@@ -3,13 +3,55 @@ import ColorPicker from "./color-picker/ColorPicker";
 import notePanelStyles from "./notePanel.module.css";
 import { SidebarContext } from "../../../routes/app/App";
 import PanelBtn from "../../book-components/panel-btn/PanelBtn";
-import { getGlobalState } from "../../../utils/localStorage";
+import {
+  getGlobalState,
+  localStorageItemExist,
+} from "../../../utils/localStorage";
 
+const placeholderColors = [
+  "#C7A2DE",
+  "#AFDEA2",
+  "#DF9368",
+  "#DF7868",
+  "#A2C1DE",
+  "#6888DE",
+];
 const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
   const { setIsSidebarActive, removeCurrentNote } = useContext(SidebarContext);
   const [noteContents, setNoteContents] = useState({ contents: "", page: 0 });
   const formRef = useRef();
   const globalState = getGlobalState();
+  const [prevColors, setPrevColors] = useState({
+    prevPickedBg: [],
+    prevPickedText: [],
+  });
+
+  useEffect(() => {
+    if (localStorageItemExist("globalState")) {
+      const { note } = getGlobalState();
+      if (note.prevPickedBg.length < 6 && note.prevPickedText.length < 6) {
+        setPrevColors({
+          prevPickedBg: [...placeholderColors],
+          prevPickedText: [...placeholderColors],
+        });
+        return;
+      }
+      console.log("lol");
+      setPrevColors({
+        prevPickedBg: [...note.prevPickedBg],
+        prevPickedText: [...note.prevPickedText],
+      });
+    } else {
+      const updateGlobalState = {
+        note: {
+          prevPickedBg: [...placeholderColors],
+          prevPickedText: [...placeholderColors],
+        },
+      };
+      setPrevColors({ ...updateGlobalState.note });
+      localStorage.setItem("globalState", JSON.stringify(updateGlobalState));
+    }
+  }, []);
 
   useEffect(() => {
     title === "Add" && setNoteContents({ contents: "", page: 0 });
@@ -19,7 +61,6 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
     if (currentNote === undefined) return;
     setNoteContents(currentNote);
   }, [currentNote]);
-
   return (
     <form
       ref={formRef}
@@ -77,7 +118,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         className={`${notePanelStyles.colorProgressContainer}`}
       >
         <ColorPicker
-          prevColors={globalState.note.prevPickedBg}
+          prevColors={prevColors.prevPickedBg}
           key={"pick-background"}
           currentColor={
             currentNote !== undefined
@@ -87,7 +128,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
           title={"Background"}
         />
         <ColorPicker
-          prevColors={globalState.note.prevPickedText}
+          prevColors={prevColors.prevPickedText}
           key={"pick-text"}
           currentColor={
             currentNote !== undefined
