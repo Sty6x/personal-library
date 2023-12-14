@@ -10,7 +10,7 @@ function removeGlobalState() {
 function parseLocalStorage(arr, keyValue) {
   const parseItems = arr.map((item) => {
     let parsedItem = { ...JSON.parse(item[keyValue]) };
-    return { ...parsedItem, lastUpdated: parsedItem.lastUpdated };
+    return { ...parsedItem, lastUpdated: new Date(parsedItem.lastUpdated) };
   });
   return parseItems;
 }
