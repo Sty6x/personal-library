@@ -19,6 +19,7 @@ const ColorPicker = ({
   function handleColorChange(e) {
     const target = e.currentTarget;
     setdefaultColor(target.value);
+    updatePreviousColors(target.value, name);
   }
 
   const displayDefaultColors = () => {

@@ -6,6 +6,7 @@ import PanelBtn from "../../book-components/panel-btn/PanelBtn";
 import {
   getGlobalState,
   localStorageItemExist,
+  updateItem,
 } from "../../../utils/localStorage";
 
 const placeholderColors = [
@@ -26,29 +27,52 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
     prevPickedText: [],
   });
 
+  // should i refactor this? if so please tell me
   function updatePreviousColors(color, context) {
     console.log(context);
     const maximumColors = 6;
+    let removeExtraColor;
+    const globalState = getGlobalState();
     if (context == "bg-colors") {
-      const removeExtraColor = prevColors.prevPickedBg.filter(
+      removeExtraColor = prevColors.prevPickedBg.filter(
         (color, i) => i !== maximumColors
       );
       setPrevColors((prev) => ({
         ...prev,
         prevPickedBg: [color, ...removeExtraColor],
       }));
+      localStorage.setItem(
+        "globalState",
+        JSON.stringify({
+          ...globalState,
+          note: {
+            ...globalState.note,
+            prevPickedBg: [color, ...removeExtraColor],
+          },
+        })
+      );
     } else if (context === "text-colors") {
-      const removeExtraColor = prevColors.prevPickedText.filter(
+      removeExtraColor = prevColors.prevPickedText.filter(
         (color, i) => i !== maximumColors
       );
       setPrevColors((prev) => ({
         ...prev,
         prevPickedText: [color, ...removeExtraColor],
       }));
+      localStorage.setItem(
+        "globalState",
+        JSON.stringify({
+          ...globalState,
+          note: {
+            ...globalState.note,
+            prevPickedText: [color, ...removeExtraColor],
+          },
+        })
+      );
     }
   }
 
-  useEffect(() => {
+  function checkExistingPreviousColors() {
     if (localStorageItemExist("globalState")) {
       const { note } = getGlobalState();
       if (note.prevPickedBg.length < 6 && note.prevPickedText.length < 6) {
@@ -73,6 +97,10 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
       setPrevColors({ ...updateGlobalState.note });
       localStorage.setItem("globalState", JSON.stringify(updateGlobalState));
     }
+  }
+
+  useEffect(() => {
+    checkExistingPreviousColors();
   }, []);
 
   useEffect(() => {
