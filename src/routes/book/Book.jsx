@@ -1,26 +1,17 @@
-import { forwardRef, useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import BookStyles from "./book.module.css";
 import { LibraryContext } from "../app/App";
 import { Stage, Container, Text, Graphics } from "@pixi/react";
-import * as PIXI from "pixi.js";
 import Note from "../../components/book-components/Note";
 import filterArrItems from "../../utils/filterArray";
-import PopupContainer from "../../components/popup-ui/PopupContainer";
 import PopupItem from "../../components/popup-ui/popup-item/PopupItem";
 import { uid } from "uid";
-import { useParams } from "react-router-dom";
 import { updateItem } from "../../utils/localStorage";
 
 // needs to update but is delayed
 const Book = () => {
-  const { bookId } = useParams();
-  const {
-    library,
-    setLibrary,
-    openEditNotePanelOnClick,
-    popupItems,
-    currentBook,
-  } = useContext(LibraryContext);
+  const { library, setLibrary, openEditNotePanelOnClick, currentBook } =
+    useContext(LibraryContext);
 
   const [openedBook, setOpenedBook] = useState(currentBook);
 
@@ -93,10 +84,6 @@ const Book = () => {
     setOpenedBook((prev) => ({ ...prev, notes: mappedNotes }));
   }
 
-  const mapPopupItems = popupItems.map(({ text, action }, i) => {
-    return <PopupItem key={uid(6)} text={text} action={action} />;
-  });
-
   const renderNotes = openedBook.notes.map((note) => {
     return (
       <Note
@@ -111,9 +98,6 @@ const Book = () => {
 
   return (
     <div id="book" className={BookStyles.container}>
-      {popupItems.length > 0 && (
-        <PopupContainer>{mapPopupItems}</PopupContainer>
-      )}
       <Stage
         id="canvas"
         width={window.innerWidth}
