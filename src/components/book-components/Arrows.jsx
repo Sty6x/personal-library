@@ -3,10 +3,10 @@ import * as PIXI from "pixi.js";
 
 const Arrows = () => {
   const fontSize = 16;
+  const fill = "#5e6269";
   function drawBezierArrow(g, point0, controlPoint, point1) {
     g.clear();
-    // control points
-    g.lineStyle(2, "#DF7868", 1);
+    g.lineStyle(2, fill, 1);
     let x0;
     let y0;
     let x1;
@@ -75,7 +75,7 @@ const Arrows = () => {
           text="Your books, book edit and note edit..."
           style={
             new PIXI.TextStyle({
-              fill: "#ffffff30",
+              fill,
               wordWrapWidth: 400,
               fontSize,
               fontFamily: "poppins",
@@ -91,7 +91,7 @@ const Arrows = () => {
           text="*Work in progress*"
           style={
             new PIXI.TextStyle({
-              fill: "#ffffff30",
+              fill,
               wordWrapWidth: 400,
               fontSize,
               fontFamily: "poppins",
