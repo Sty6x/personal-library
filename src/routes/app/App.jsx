@@ -197,6 +197,14 @@ function App() {
     }
   }, [library]);
 
+  useEffect(() => {
+    if (library.some((book) => `/${book.id}` === window.location.pathname)) {
+      navigate(library[0].id);
+      return;
+    }
+    navigate("/start");
+  }, [library]);
+
   // updates the currentBook when user opens different books
   useEffect(() => {
     setCurrentBook(queryCurrentBook()[0]);
@@ -222,7 +230,7 @@ function App() {
         }
       }}
     >
-      {window.location.pathname !== "/start" ? (
+      {library.some((book) => `/${book.id}` === window.location.pathname) ? (
         <DialogBox
           ref={dialogRef}
           handleOnConfirm={removeCurrentBook}
