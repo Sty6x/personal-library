@@ -1,10 +1,10 @@
 import { Container, Graphics, Text } from "@pixi/react";
 import * as PIXI from "pixi.js";
-import MenuText from "../fallback-book-contents/MenuText";
-import CenterText from "../fallback-book-contents/CenterText";
-import ZoomText from "../fallback-book-contents/ZoomText";
+import MenuText from "./MenuText";
+import CenterText from "./CenterText";
+import ZoomText from "./ZoomText";
 
-const Arrows = () => {
+const EmptyLibrary = () => {
   const fontSize = 16;
   const fill = "#5e6269";
   function drawBezierArrow(g, point0, controlPoint, point1) {
@@ -78,4 +78,4 @@ const Arrows = () => {
     </Container>
   );
 };
-export default Arrows;
+export default EmptyLibrary;
