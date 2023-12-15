@@ -85,6 +85,35 @@ const Arrows = () => {
         <Graphics draw={drawLeftArrow} />
       </Container>
 
+      <Container x={innerWidth * 0.5} y={innerHeight * 0.5}>
+        <Text
+          anchor={0.5}
+          y={-50}
+          text="Personal Library"
+          style={
+            new PIXI.TextStyle({
+              fill: "#DF7868",
+              fontSize: 45,
+              fontWeight: 600,
+              fontFamily: "poppins",
+            })
+          }
+        />
+
+        <Text
+          anchor={0.5}
+          y={0}
+          text="*your data is saved locally on your browser*"
+          style={
+            new PIXI.TextStyle({
+              fill,
+              fontSize: 20,
+              fontWeight: 400,
+              fontFamily: "poppins",
+            })
+          }
+        />
+      </Container>
       <Container>
         <Text
           position={{ x: innerWidth - 360, y: 190 }}
