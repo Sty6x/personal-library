@@ -1,5 +1,8 @@
 import { Container, Graphics, Text } from "@pixi/react";
 import * as PIXI from "pixi.js";
+import MenuText from "../fallback-book-contents/MenuText";
+import CenterText from "../fallback-book-contents/CenterText";
+import ZoomText from "../fallback-book-contents/ZoomText";
 
 const Arrows = () => {
   const fontSize = 16;
@@ -69,66 +72,9 @@ const Arrows = () => {
 
   return (
     <Container x={0} height={0}>
-      <Container>
-        <Text
-          position={{ x: 210, y: 235 }}
-          text="Your books, book edit and note edit..."
-          style={
-            new PIXI.TextStyle({
-              fill,
-              wordWrapWidth: 400,
-              fontSize,
-              fontFamily: "poppins",
-            })
-          }
-        />
-        <Graphics draw={drawLeftArrow} />
-      </Container>
-
-      <Container x={innerWidth * 0.5} y={innerHeight * 0.5}>
-        <Text
-          anchor={0.5}
-          y={-50}
-          text="Personal Library"
-          style={
-            new PIXI.TextStyle({
-              fill: "#DF7868",
-              fontSize: 45,
-              fontWeight: 600,
-              fontFamily: "poppins",
-            })
-          }
-        />
-
-        <Text
-          anchor={0.5}
-          y={0}
-          text="*your data is saved locally on your browser*"
-          style={
-            new PIXI.TextStyle({
-              fill,
-              fontSize: 20,
-              fontWeight: 400,
-              fontFamily: "poppins",
-            })
-          }
-        />
-      </Container>
-      <Container>
-        <Text
-          position={{ x: innerWidth - 360, y: 190 }}
-          text="*Work in progress*"
-          style={
-            new PIXI.TextStyle({
-              fill,
-              wordWrapWidth: 400,
-              fontSize,
-              fontFamily: "poppins",
-            })
-          }
-        />
-        <Graphics draw={drawRighttArrow} />
-      </Container>
+      <MenuText draw={drawLeftArrow} textFill={fill} fontSize={fontSize} />
+      <CenterText textFill={fill} />
+      <ZoomText draw={drawRighttArrow} textFill={fill} fontSize={fontSize} />
     </Container>
   );
 };
