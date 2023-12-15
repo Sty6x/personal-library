@@ -88,6 +88,7 @@ const Note = ({
             wordWrapWidth: currentNote.width,
             fontSize: 20,
             breakWords: true,
+            fontFamily: "poppins",
           })
         }
       />
@@ -95,12 +96,14 @@ const Note = ({
       <Text
         anchor={{ x: 0, y: 0 }}
         position={{ x: 20, y: 15 }}
-        text={`Page:${noteData.page}`}
+        text={`Page: ${noteData.page}`}
         style={
           new PIXI.TextStyle({
             ...noteData.styles.textStyles,
-            fontWeight: "600",
-            fontSize: 25,
+            wordWrapWidth: 400,
+            fontWeight: "500",
+            fontSize: 22,
+            fontFamily: "poppins",
           })
         }
       />

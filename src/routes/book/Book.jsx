@@ -5,6 +5,8 @@ import { Stage, Container, Text, Graphics } from "@pixi/react";
 import Note from "../../components/book-components/Note";
 import filterArrItems from "../../utils/filterArray";
 import { updateItem } from "../../utils/localStorage";
+import { getFontFamilyName } from "pixi.js";
+import poppins from "../../assets/fonts/poppins-regular-webfont.woff2";
 
 // needs to update but is delayed
 const Book = () => {
@@ -18,6 +20,9 @@ const Book = () => {
     updateItem(currentBook);
   }, [currentBook]);
 
+  useEffect(() => {
+    getFontFamilyName(poppins);
+  }, []);
   function updateCurrentNotePosition(selectedNote) {
     const currentNote = filterArrItems(
       currentBook.notes,
