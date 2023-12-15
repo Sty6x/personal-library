@@ -17,7 +17,11 @@ const PanelBtn = ({ handleOnCancel, handleOnRemove, buttonText }) => {
           Cancel
         </button>
       </span>
-      <button onClick={handleOnRemove} type="button">
+      <button
+        style={{ display: buttonText !== "Edit Note" && "none" }}
+        onClick={handleOnRemove}
+        type="button"
+      >
         Remove
       </button>
     </div>
