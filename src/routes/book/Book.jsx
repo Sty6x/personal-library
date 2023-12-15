@@ -7,6 +7,7 @@ import filterArrItems from "../../utils/filterArray";
 import { updateItem } from "../../utils/localStorage";
 import { getFontFamilyName } from "pixi.js";
 import poppins from "../../assets/fonts/poppins-regular-webfont.woff2";
+import Arrows from "../../components/book-components/Arrows";
 
 // needs to update but is delayed
 const Book = () => {
@@ -107,7 +108,10 @@ const Book = () => {
         height={window.innerHeight}
         options={{ backgroundColor: 0x1a1b1d, antialias: true }}
       >
-        <Container sortableChildren={true}>{renderNotes}</Container>
+        <Container sortableChildren={true}>
+          <Arrows />
+          {/* {renderNotes} */}
+        </Container>
       </Stage>
     </div>
   );
