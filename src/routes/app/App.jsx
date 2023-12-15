@@ -193,7 +193,7 @@ function App() {
       if (library.length !== 0) {
         return navigate(library[0].id);
       }
-      navigate("/");
+      navigate("/start");
     }
   }, [library]);
 
@@ -222,13 +222,13 @@ function App() {
         }
       }}
     >
-      {window.location.pathname !== "/" && (
+      {window.location.pathname !== "/start" ? (
         <DialogBox
           ref={dialogRef}
           handleOnConfirm={removeCurrentBook}
           currentBook={currentBook}
         />
-      )}
+      ) : null}
       <LibraryContext.Provider
         value={{
           currentBook,
@@ -261,7 +261,7 @@ function App() {
         >
           {isSidebarActive && <Sidebar />}
         </SidebarContext.Provider>
-        {library.length !== 0 && <Outlet />}
+        <Outlet />
       </LibraryContext.Provider>
     </main>
   );

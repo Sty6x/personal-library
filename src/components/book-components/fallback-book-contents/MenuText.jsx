@@ -1,6 +1,6 @@
 import { Container, Text, Graphics } from "@pixi/react";
 import * as PIXI from "pixi.js";
-const MenuText = ({ draw, textFill, fontSize }) => {
+const MenuText = ({ draw, textFill, fontSize, fontFamily }) => {
   return (
     <Container>
       <Text
@@ -11,7 +11,7 @@ const MenuText = ({ draw, textFill, fontSize }) => {
             fill: textFill,
             wordWrapWidth: 400,
             fontSize,
-            fontFamily: "poppins",
+            fontFamily,
           })
         }
       />

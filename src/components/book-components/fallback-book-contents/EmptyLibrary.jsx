@@ -3,8 +3,11 @@ import * as PIXI from "pixi.js";
 import MenuText from "./MenuText";
 import CenterText from "./CenterText";
 import ZoomText from "./ZoomText";
+import poppins from "../../../assets/fonts/poppins-regular-webfont.woff2";
 
 const EmptyLibrary = () => {
+  const fontFamily = ["poppins", "Arial", "System UI"];
+  // PIXI.loadWebFont(poppins);
   const fontSize = 16;
   const fill = "#5e6269";
   function drawBezierArrow(g, point0, controlPoint, point1) {
@@ -72,9 +75,19 @@ const EmptyLibrary = () => {
 
   return (
     <Container x={0} height={0}>
-      <MenuText draw={drawLeftArrow} textFill={fill} fontSize={fontSize} />
-      <CenterText textFill={fill} />
-      <ZoomText draw={drawRighttArrow} textFill={fill} fontSize={fontSize} />
+      <MenuText
+        draw={drawLeftArrow}
+        textFill={fill}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
+      />
+      <CenterText textFill={fill} fontFamily={fontFamily} />
+      <ZoomText
+        draw={drawRighttArrow}
+        textFill={fill}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
+      />
     </Container>
   );
 };

@@ -109,7 +109,7 @@ const Book = () => {
         options={{ backgroundColor: 0x1a1b1d, antialias: true }}
       >
         <Container sortableChildren={true}>
-          {openedBook.notes.length === 0 ? <EmptyLibrary /> : renderNotes}
+          {currentBook.notes.length === 0 ? <EmptyLibrary /> : renderNotes}
         </Container>
       </Stage>
     </div>

@@ -1,6 +1,6 @@
 import { Container, Text } from "@pixi/react";
 import * as PIXI from "pixi.js";
-const CenterText = ({ textFill }) => {
+const CenterText = ({ textFill, fontFamily }) => {
   return (
     <Container x={innerWidth * 0.5} y={innerHeight * 0.5}>
       <Text
@@ -12,7 +12,7 @@ const CenterText = ({ textFill }) => {
             fill: "#DF7868",
             fontSize: 45,
             fontWeight: 600,
-            fontFamily: "poppins",
+            fontFamily,
           })
         }
       />
@@ -26,7 +26,7 @@ const CenterText = ({ textFill }) => {
             fill: textFill,
             fontSize: 17,
             fontWeight: 400,
-            fontFamily: "poppins",
+            fontFamily,
           })
         }
       />
