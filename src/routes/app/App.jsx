@@ -1,15 +1,9 @@
 import { uid } from "uid";
 import { createContext, useEffect, useMemo, useRef, useState } from "react";
-import {
-  useLoaderData,
-  useNavigate,
-  Outlet,
-  useParams,
-} from "react-router-dom";
+import { useLoaderData, useNavigate, Outlet } from "react-router-dom";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
 import AppStyles from "./app.module.css";
-import { placeholders } from "../../utils/placeholderLibrary.js";
 import filterArrItems from "../../utils/filterArray.js";
 import DialogBox from "../../components/book-components/dialog-box/DialogBox.jsx";
 import usePrevState from "../../utils/hooks/usePrevState.jsx";
@@ -32,7 +26,6 @@ function App() {
   const [library, setLibrary] = useState(localLibrary);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
-  const [popupItems, setPopupItems] = useState([]);
   const [currentBook, setCurrentBook] = useState(
     library.filter((book) => `/${book.id}` === window.location.pathname)[0]
   );
@@ -61,7 +54,6 @@ function App() {
     };
     updateItem(updatedBook);
     setLibrary([updatedBook, ...currentLibraryState]);
-    addPopupItems("Book Updated!", "update");
   }
 
   function addBook() {
@@ -80,7 +72,6 @@ function App() {
     };
     addItem(newBook);
     setLibrary((prev) => [newBook, ...prev]);
-    addPopupItems("Added New Book!", "add");
   }
 
   // selecting a note means that it needs to set all of the other notes' zIndex to 0
@@ -126,7 +117,6 @@ function App() {
     };
     setLibrary([updatedBook, ...currentLibraryState]);
     await updateItem(updatedBook);
-    addPopupItems("Note Updated!", "update");
   }
 
   async function addNote(e) {
@@ -159,7 +149,6 @@ function App() {
     };
     setLibrary([updatedBook, ...currentLibraryState]);
     await updateItem(updatedBook);
-    addPopupItems("New Note Added!", "add");
   }
 
   async function removeCurrentBook() {
@@ -168,7 +157,6 @@ function App() {
     const [queriedBook, currentLibraryState] = queryCurrentBook();
     await removeItem(queriedBook);
     setLibrary(currentLibraryState);
-    addPopupItems("Book Removed!", "remove");
   }
 
   async function removeCurrentNote() {
@@ -180,21 +168,6 @@ function App() {
     };
     setLibrary([updatedBook, ...currentLibraryState]);
     await updateItem(updatedBook);
-    addPopupItems("Note Removed!", "remove");
-  }
-
-  async function removePopupItems() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        setPopupItems((prev) => prev.filter((item, i) => i === prev.length));
-        return resolve("remove");
-      }, 1500);
-    });
-  }
-
-  function addPopupItems(text, action) {
-    const newpopupItems = { text, action };
-    setPopupItems([newpopupItems, ...popupItems]);
   }
 
   function openDialogBox() {
@@ -205,7 +178,6 @@ function App() {
     e.stopPropagation();
     const target = e.currentTarget;
     setSidebarBtn(target.id);
-    console.log(target.id);
   }
 
   useEffect(() => {
@@ -221,8 +193,16 @@ function App() {
       if (library.length !== 0) {
         return navigate(library[0].id);
       }
-      navigate("/");
+      navigate("/start");
     }
+  }, [library]);
+
+  useEffect(() => {
+    if (library.some((book) => `/${book.id}` === window.location.pathname)) {
+      navigate(library[0].id);
+      return;
+    }
+    navigate("/start");
   }, [library]);
 
   // updates the currentBook when user opens different books
@@ -234,21 +214,6 @@ function App() {
   useEffect(() => {
     setCurrentBook(queryCurrentBook()[0]);
   }, [library]);
-
-  useEffect(() => {
-    if (popupItems.length > 0 && popupItems.length < 2) {
-      removePopupItems().then((result) => {});
-    }
-  }, [popupItems]);
-
-  // if popup is added means that the user did an action
-  // eg: adding updating deleting
-  // close sidebar if actions are emitted
-  useEffect(() => {
-    if (popupItems.length > 0) {
-      setIsSidebarActive(false);
-    }
-  }, [popupItems]);
 
   return (
     <main
@@ -265,13 +230,13 @@ function App() {
         }
       }}
     >
-      {window.location.pathname !== "/" && (
+      {library.some((book) => `/${book.id}` === window.location.pathname) ? (
         <DialogBox
           ref={dialogRef}
           handleOnConfirm={removeCurrentBook}
           currentBook={currentBook}
         />
-      )}
+      ) : null}
       <LibraryContext.Provider
         value={{
           currentBook,
@@ -280,7 +245,6 @@ function App() {
           prevState,
           setLibrary,
           openEditNotePanelOnClick,
-          popupItems,
         }}
       >
         <TopBarContext.Provider
@@ -305,7 +269,7 @@ function App() {
         >
           {isSidebarActive && <Sidebar />}
         </SidebarContext.Provider>
-        {library.length !== 0 && <Outlet />}
+        <Outlet />
       </LibraryContext.Provider>
     </main>
   );

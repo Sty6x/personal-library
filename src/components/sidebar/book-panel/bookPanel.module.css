@@ -18,9 +18,6 @@
   flex-direction: column;
   gap: 1em;
 }
-.inputsContainer {
-}
-
 .pagesCountContainer {
   display: flex;
   gap: 1em;

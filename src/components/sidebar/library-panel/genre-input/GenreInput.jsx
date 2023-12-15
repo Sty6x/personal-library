@@ -19,12 +19,18 @@ const GenreInput = ({ genreList, handleOnAdd, handleOnRemoveGenre }) => {
   }, [genreList]);
 
   useEffect(() => {
-    currentSidebarWidth.current = document.getElementById("side-bar").offsetWidth;
+    currentSidebarWidth.current =
+      document.getElementById("side-bar").offsetWidth;
   }, []);
 
   const displayGenres = genreList.map((genre, i) => {
     return (
-      <Genre key={`${genre}${i}`} id={i} genreText={genre} handleOnClick={handleOnRemoveGenre} />
+      <Genre
+        key={`${genre}${i}`}
+        id={i}
+        genreText={genre}
+        handleOnClick={handleOnRemoveGenre}
+      />
     );
   });
 
@@ -33,7 +39,7 @@ const GenreInput = ({ genreList, handleOnAdd, handleOnRemoveGenre }) => {
       <div id="genre-input" className={`${genreInputStyles.inputContainer}`}>
         <label htmlFor="genre-input">Genre</label>
         <span className={`${genreInputStyles.innerInputContainer}`}>
-          <input maxLength={9} ref={userInputRef} id="genre-input" />
+          <input maxLength={16} ref={userInputRef} id="genre-input" />
           <button
             type="button"
             onClick={() => {

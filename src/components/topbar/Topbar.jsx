@@ -8,9 +8,9 @@ const Topbar = () => {
   return (
     <nav id="top-bar" className={TopbarStyles.navbar}>
       <SidebarBtns
-        disableButtons={window.location.pathname !== "/" ? false : true}
+        disableButtons={window.location.pathname !== "/start" ? false : true}
       />
-      {window.location.pathname !== "/" && <CurrentBookTitle />}
+      {window.location.pathname !== "/start" && <CurrentBookTitle />}
 
       <ZoomBtns />
     </nav>

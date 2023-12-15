@@ -2,25 +2,32 @@ import { forwardRef } from "react";
 import dialogBoxStyles from "./dialogBox.module.css";
 
 const DialogBox = forwardRef(({ handleOnConfirm, currentBook }, ref) => {
+  console.log(currentBook);
   return (
     <dialog ref={ref} className={`${dialogBoxStyles.container}`}>
       <p>
         Are you sure you want to <span>Remove:</span>{" "}
       </p>
       <div className={dialogBoxStyles.contentContainer}>
-        <div>
-          <span className={dialogBoxStyles.bookTitle}>{currentBook.title}</span>{" "}
-          by{" "}
-          <span className={dialogBoxStyles.bookTitle}>
-            {currentBook.author}
-          </span>
-          <p>
-            and{" "}
+        {currentBook.title === "" && currentBook.author === "" ? (
+          <p>Your unedited Book?</p>
+        ) : (
+          <div>
             <span className={dialogBoxStyles.bookTitle}>
-              {currentBook.notes.length} notes
+              {currentBook.title}
+            </span>{" "}
+            by{" "}
+            <span className={dialogBoxStyles.bookTitle}>
+              {currentBook.author}
             </span>
-          </p>
-        </div>
+            <p>
+              and{" "}
+              <span className={dialogBoxStyles.bookTitle}>
+                {currentBook.notes.length} notes
+              </span>
+            </p>
+          </div>
+        )}
       </div>
       <span className={`${dialogBoxStyles.btnContainer}`}>
         <button type="button" onClick={handleOnConfirm}>
