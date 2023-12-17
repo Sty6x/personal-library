@@ -21,7 +21,7 @@ export const SidebarContext = createContext();
 function App() {
   const { localLibrary } = useLoaderData();
   const navigate = useNavigate();
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
+  const [isSidebarActive, setIsSidebarActive] = useState(true);
   const [sidebarBtn, setSidebarBtn] = useState("library-panel");
   const [library, setLibrary] = useState(localLibrary);
   const [selectedNote, setSelectedNote] = useState(undefined);

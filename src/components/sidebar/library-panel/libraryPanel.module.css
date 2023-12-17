@@ -61,18 +61,6 @@
   max-height: 70vh;
 }
 
-.addBookBtn {
-  padding: 0;
-  display: inline-block;
-  & > svg circle {
-    transition: fill 150ms 200ms ease-in;
-    fill: var(--accent1);
-  }
-  & > svg path {
-    transition: fill 150ms ease-in;
-    fill: var(--bg);
-  }
-}
 .addBookBtn:hover {
   & > svg circle {
     transition: fill 150ms ease-in;
@@ -90,4 +78,29 @@
   justify-content: center;
   align-items: center;
   color: #ffffff40;
+}
+
+@media (max-width: 900px) {
+  .searchInput {
+    display: inline-block;
+    appearance: none;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+    padding: 0.8em;
+    padding-left: 4em;
+    font-size: 0.8rem;
+  }
+
+  .searchContainer::before {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    left: 3em;
+    top: 1.4em;
+  }
+
+  .addBookBtn {
+    scale: 0.9;
+  }
 }
