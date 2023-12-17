@@ -29,7 +29,6 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
 
   // should i refactor this? if so please tell me
   function updatePreviousColors(color, context) {
-    console.log(context);
     const maximumColors = 6;
     let removeExtraColor;
     const globalState = getGlobalState();
@@ -82,7 +81,6 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         });
         return;
       }
-      console.log("lol");
       setPrevColors({
         prevPickedBg: [...note.prevPickedBg],
         prevPickedText: [...note.prevPickedText],
