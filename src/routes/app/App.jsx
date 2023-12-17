@@ -19,6 +19,10 @@ export const SidebarContext = createContext();
 // outlets (book routes) are not supposed to update when sidebar states are changed.
 // mouse hovering over notes rerenders the app
 
+// on first page load when routing to first book
+// users are instead being routed to error page
+// wait for localLibrary to load? wtf?
+
 function App() {
   const { localLibrary } = useLoaderData();
   const navigate = useNavigate();
@@ -201,9 +205,8 @@ function App() {
   }, [library]);
 
   useEffect(() => {
-    if (!library.some((book) => `/${book.id}` === window.location.pathname)) {
+    !library.some((book) => `/${book.id}` === window.location.pathname) &&
       navigate("/start");
-    }
   }, [location.pathname]);
 
   // updates the currentBook when user opens different books
@@ -264,7 +267,12 @@ function App() {
             }}
           >
             <TopBarContext.Provider
-              value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}
+              value={{
+                library,
+                returnSidebarBtn,
+                setIsSidebarActive,
+                isSidebarActive,
+              }}
             >
               <Topbar />
             </TopBarContext.Provider>
