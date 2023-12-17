@@ -60,3 +60,18 @@
 .colorInputContainer > :last-child:hover {
   outline: 1px solid var(--text-white);
 }
+
+@media (max-width: 800px) {
+  .colors {
+    width: 30px;
+    height: 30px;
+  }
+
+  .colorInputContainer {
+    & > :last-child {
+      margin-left: 1.4em;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

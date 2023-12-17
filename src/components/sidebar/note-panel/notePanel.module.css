@@ -15,7 +15,7 @@
   gap: 1.2em;
   & > :first-child {
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
   }
 }
 .inputsContainer {
@@ -38,9 +38,16 @@
   gap: 1em;
 }
 .colorProgressContainer {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 2vw, 1rem);
   display: flex;
   flex-direction: column;
   gap: 1em;
   position: relative;
+}
+
+@media (max-height: 500px) {
+  .container {
+    overflow-y: auto !important;
+    max-height: 100%;
+  }
 }
