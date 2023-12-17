@@ -3,7 +3,7 @@
   justify-content: space-between;
   gap: 2em !important;
   padding: 0.5em 1em !important;
-  width: 40%;
+  width: 35%;
   & > span {
     box-sizing: border-box;
     font-weight: 600;
@@ -17,6 +17,8 @@
 .bookProps {
   display: flex;
   align-items: center;
+  font-size: 0.8rem;
+  font-family: monospace;
   & > * {
     padding: 0em 0.4em;
   }
