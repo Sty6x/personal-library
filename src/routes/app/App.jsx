@@ -23,7 +23,7 @@ function App() {
   const { localLibrary } = useLoaderData();
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(true);
-  const [sidebarBtn, setSidebarBtn] = useState("library-panel");
+  const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
   const [library, setLibrary] = useState(localLibrary);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
