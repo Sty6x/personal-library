@@ -10,4 +10,14 @@ PerLib is your online personal library where you can store, keep track of your p
 
 Reading is a hobby of mine and I love to jot down notes on my books whenever there are things that are interesting on the page that I'm currently reading, but the problem with this approach is that there isn't enough real estate to write long paragraphs, as if you're conversing with the author and how the page's contents correlates with other books.
 
+#### How to run
+
+1. Install project dependencies `$ npm i`
+2. Run project `$ npm run dev`
+
 #### Tools used
+
+- PixiJS
+- ReactJS
+- Vite
+- Local Storage API
