@@ -23,7 +23,7 @@ function App() {
   const { localLibrary } = useLoaderData();
   const navigate = useNavigate();
   const [isSidebarActive, setIsSidebarActive] = useState(true);
-  const [sidebarBtn, setSidebarBtn] = useState("edit-book-panel");
+  const [sidebarBtn, setSidebarBtn] = useState("library-panel");
   const [library, setLibrary] = useState(localLibrary);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
@@ -201,12 +201,10 @@ function App() {
   }, [library]);
 
   useEffect(() => {
-    if (library.some((book) => `/${book.id}` === window.location.pathname)) {
-      navigate(library[0].id);
-      return;
+    if (!library.some((book) => `/${book.id}` === window.location.pathname)) {
+      navigate("/start");
     }
-    navigate("/start");
-  }, [library]);
+  }, [location.pathname]);
 
   // updates the currentBook when user opens different books
   useEffect(() => {
