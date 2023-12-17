@@ -193,6 +193,7 @@ function App() {
   useEffect(() => {
     if (prevState !== library.length) {
       if (library.length !== 0) {
+        setIsSidebarActive(false);
         return navigate(library[0].id);
       }
       navigate("/start");
@@ -210,6 +211,7 @@ function App() {
   // updates the currentBook when user opens different books
   useEffect(() => {
     setCurrentBook(queryCurrentBook()[0]);
+    setIsSidebarActive(false);
   }, [window.location.pathname]);
 
   // updates the currentBook when something changed within the library state
