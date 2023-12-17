@@ -127,7 +127,6 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
         id="contents-container"
         className={`${notePanelStyles.editContainer}`}
       >
-        <h3>{title} Note</h3>
         {currentNote !== undefined && (
           <div className={`${notePanelStyles.inputsContainer}`}>
             <label htmlFor="page">Page</label>
@@ -148,7 +147,7 @@ const NotePanel = ({ title, handleOnSubmit, currentNote }) => {
           </div>
         )}
         <div className={`${notePanelStyles.inputsContainer}`}>
-          <label htmlFor="note-contents">Note Text</label>
+          <label htmlFor="note-contents">{title} Text</label>
           <textarea
             onChange={(e) => {
               setNoteContents({

@@ -79,6 +79,12 @@
   align-items: center;
   color: #ffffff40;
 }
+@media (max-height: 550px) and (max-width: 700px) {
+  .bookItemsContainer {
+    max-height: 100% !important;
+    overflow-y: auto !important;
+  }
+}
 
 @media (max-width: 900px) {
   .searchInput {
