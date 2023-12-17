@@ -21,27 +21,15 @@ export function getLocalStorage() {
 }
 
 export async function addItem(item) {
-  try {
-    localStorage.setItem(item.id, JSON.stringify(item));
-  } catch (err) {
-    throw err;
-  }
+  localStorage.setItem(item.id, JSON.stringify(item));
 }
 
 export async function removeItem(item) {
-  try {
-    localStorage.removeItem(item.id);
-  } catch (err) {
-    throw err;
-  }
+  localStorage.removeItem(item.id);
 }
 
 export async function updateItem(item) {
-  try {
-    localStorage.setItem(item.id, JSON.stringify(item));
-  } catch (err) {
-    throw err;
-  }
+  localStorage.setItem(item.id, JSON.stringify(item));
 }
 
 export function getGlobalState() {

@@ -32,7 +32,6 @@ const ColorPicker = ({
             const color = e.currentTarget.dataset.color;
             const target = e.currentTarget;
             setdefaultColor(color);
-            console.log(name);
             updatePreviousColors(color, name);
           }}
           id={prevColors[i]}
