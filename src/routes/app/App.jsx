@@ -136,7 +136,7 @@ function App() {
           position: { x: 100, y: 100 },
           page: queriedBook.currentPage,
           zIndex: 999,
-          width: 400,
+          width: 300,
           height: 0,
           styles: {
             backgroundColor: newNote.pickedColorBackground,

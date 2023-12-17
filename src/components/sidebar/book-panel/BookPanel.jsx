@@ -11,7 +11,6 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
   function addGenre(input) {
     if (input.current.value !== "") {
       setGenreList([input.current.value, ...genreList]);
-      console.log(input.current.value);
       input.current.value = "";
       return;
     }
@@ -26,9 +25,6 @@ const BookPanel = ({ panelTitle, buttonText, handleButton, currentBook }) => {
     setGenreList(filterGenres);
   }
 
-  useEffect(() => {
-    console.log(currentBook);
-  }, [window.location.pathname]);
   return (
     <div id="book-panel" className={`${bookPanelStyles.container}`}>
       <p>{panelTitle}</p>

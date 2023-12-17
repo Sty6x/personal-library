@@ -3,25 +3,7 @@ import Genre from "./genre/Genre";
 import genreInputStyles from "./genreInput.module.css";
 
 const GenreInput = ({ genreList, handleOnAdd, handleOnRemoveGenre }) => {
-  const currentSidebarWidth = useRef();
   const userInputRef = useRef();
-
-  function wrapGenresInList() {
-    const newSidebarWidth = document.getElementById("side-bar");
-    console.log(newSidebarWidth.offsetWidth);
-    if (newSidebarWidth.offsetWidth > currentSidebarWidth.current) {
-      console.log("too much contents not wrapping");
-    }
-  }
-
-  useEffect(() => {
-    wrapGenresInList();
-  }, [genreList]);
-
-  useEffect(() => {
-    currentSidebarWidth.current =
-      document.getElementById("side-bar").offsetWidth;
-  }, []);
 
   const displayGenres = genreList.map((genre, i) => {
     return (

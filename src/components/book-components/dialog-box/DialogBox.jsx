@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 import dialogBoxStyles from "./dialogBox.module.css";
 
 const DialogBox = forwardRef(({ handleOnConfirm, currentBook }, ref) => {
-  console.log(currentBook);
   return (
     <dialog ref={ref} className={`${dialogBoxStyles.container}`}>
       <p>
