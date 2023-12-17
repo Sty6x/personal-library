@@ -15,6 +15,7 @@ const Book = () => {
     useContext(LibraryContext);
 
   const [openedBook, setOpenedBook] = useState(currentBook);
+  const bookRef = useRef();
 
   useEffect(() => {
     setOpenedBook({ ...currentBook });
@@ -101,7 +102,7 @@ const Book = () => {
   });
 
   return (
-    <div id="book" className={BookStyles.container}>
+    <div ref={bookRef} id="book" className={BookStyles.container}>
       <Stage
         id="canvas"
         width={window.innerWidth}

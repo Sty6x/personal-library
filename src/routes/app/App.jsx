@@ -8,6 +8,7 @@ import filterArrItems from "../../utils/filterArray.js";
 import DialogBox from "../../components/book-components/dialog-box/DialogBox.jsx";
 import usePrevState from "../../utils/hooks/usePrevState.jsx";
 import { addItem, removeItem, updateItem } from "../../utils/localStorage.js";
+import ErrorPage from "../../components/error/ErrorPage.jsx";
 
 export const TopBarContext = createContext();
 export const LibraryContext = createContext();
@@ -26,6 +27,7 @@ function App() {
   const [library, setLibrary] = useState(localLibrary);
   const [selectedNote, setSelectedNote] = useState(undefined);
   const prevState = usePrevState(library.length);
+  const [isMobileSupported, setIsMobileSupported] = useState(true);
   const [currentBook, setCurrentBook] = useState(
     library.filter((book) => `/${book.id}` === window.location.pathname)[0]
   );
@@ -215,6 +217,14 @@ function App() {
     setCurrentBook(queryCurrentBook()[0]);
   }, [library]);
 
+  useEffect(() => {
+    if (innerWidth < 500) {
+      console.log("not supported");
+      setIsMobileSupported(false);
+      return;
+    }
+  }, []);
+
   return (
     <main
       autoFocus
@@ -230,47 +240,55 @@ function App() {
         }
       }}
     >
-      {library.some((book) => `/${book.id}` === window.location.pathname) ? (
-        <DialogBox
-          ref={dialogRef}
-          handleOnConfirm={removeCurrentBook}
-          currentBook={currentBook}
-        />
-      ) : null}
-      <LibraryContext.Provider
-        value={{
-          currentBook,
-          setCurrentBook,
-          library,
-          prevState,
-          setLibrary,
-          openEditNotePanelOnClick,
-        }}
-      >
-        <TopBarContext.Provider
-          value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}
-        >
-          <Topbar />
-        </TopBarContext.Provider>
-        <SidebarContext.Provider
-          value={{
-            currentBook,
-            addBook,
-            addNote,
-            removeCurrentNote,
-            editNote,
-            openDialogBox,
-            currentNote: selectedNote,
-            currentPanel: sidebarBtn,
-            editBook,
-            setIsSidebarActive,
-            library,
-          }}
-        >
-          {isSidebarActive && <Sidebar />}
-        </SidebarContext.Provider>
-        <Outlet />
-      </LibraryContext.Provider>
+      {!isMobileSupported ? (
+        <ErrorPage message={"Mobile devices are currently unsupported."} />
+      ) : (
+        <>
+          {library.some(
+            (book) => `/${book.id}` === window.location.pathname
+          ) ? (
+            <DialogBox
+              ref={dialogRef}
+              handleOnConfirm={removeCurrentBook}
+              currentBook={currentBook}
+            />
+          ) : null}
+          <LibraryContext.Provider
+            value={{
+              currentBook,
+              setCurrentBook,
+              library,
+              prevState,
+              setLibrary,
+              openEditNotePanelOnClick,
+            }}
+          >
+            <TopBarContext.Provider
+              value={{ returnSidebarBtn, setIsSidebarActive, isSidebarActive }}
+            >
+              <Topbar />
+            </TopBarContext.Provider>
+            <SidebarContext.Provider
+              value={{
+                currentBook,
+                addBook,
+                addNote,
+                removeCurrentNote,
+                editNote,
+                openDialogBox,
+                currentNote: selectedNote,
+                currentPanel: sidebarBtn,
+                editBook,
+                setIsSidebarActive,
+                library,
+              }}
+            >
+              {isSidebarActive && <Sidebar />}
+            </SidebarContext.Provider>
+            <Outlet />
+          </LibraryContext.Provider>
+        </>
+      )}
     </main>
   );
 }
