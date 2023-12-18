@@ -88,7 +88,7 @@ const Note = ({
             wordWrapWidth: currentNote.width,
             fontSize: 20,
             breakWords: true,
-            fontFamily: "poppins",
+            fontFamily: ["poppins", "Arial"],
           })
         }
       />
@@ -103,7 +103,7 @@ const Note = ({
             wordWrapWidth: 400,
             fontWeight: "500",
             fontSize: 22,
-            fontFamily: "poppins",
+            fontFamily: ["poppins", "Arial"],
           })
         }
       />
