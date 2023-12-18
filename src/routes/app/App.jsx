@@ -122,6 +122,7 @@ function App() {
       notes: [...updateNotes],
     };
     setLibrary([updatedBook, ...currentLibraryState]);
+    setIsSidebarActive(false);
     await updateItem(updatedBook);
   }
 

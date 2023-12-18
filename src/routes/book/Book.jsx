@@ -13,6 +13,10 @@ import EmptyLibrary from "../../components/book-components/fallback-book-content
 const Book = () => {
   const { library, setLibrary, openEditNotePanelOnClick, currentBook } =
     useContext(LibraryContext);
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const [openedBook, setOpenedBook] = useState(currentBook);
   const bookRef = useRef();
@@ -100,13 +104,23 @@ const Book = () => {
       />
     );
   });
+  const handleResize = () => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize, false);
+  }, []);
 
   return (
     <div ref={bookRef} id="book" className={BookStyles.container}>
       <Stage
+        onResize={handleResize}
         id="canvas"
-        width={window.innerWidth}
-        height={window.innerHeight}
+        width={dimensions.width}
+        height={dimensions.height}
         options={{ backgroundColor: 0x1a1b1d, antialias: true }}
       >
         <Container sortableChildren={true}>
